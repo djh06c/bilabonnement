@@ -1,0 +1,27 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* Forhindrer skærmen i at kunne scrolle til siden? dansk?*/
+    overflow-y: hidden; /* det samme, men vertikalt*/
+}
+
+main{
+    flex: 1;
+}
+
+.site-header{
+    position: fixed;
+    top: 0;
+    width: 100vw; /* Her bruger vi vw som står for viewport, sådan så den skulle se ens ud på alle enheder*/
+    height: 6vw;
+    background-color: blue;
+}
+
+.site-footer{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 4vw;
+    background-color: blue;
+}
+

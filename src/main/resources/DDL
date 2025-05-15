@@ -1,0 +1,68 @@
+DDL:
+
+-- Opret database
+CREATE DATABASE IF NOT EXISTS bilabonnement
+  DEFAULT CHARACTER SET utf8mb4
+  COLLATE utf8mb4_danish_ci;
+
+-- Brug databasen
+USE bilabonnement;
+
+-- Kunde
+CREATE TABLE Kunde (
+    KundeID INT PRIMARY KEY,
+    Navn VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    Adresse VARCHAR(255) NOT NULL,
+    TlfNr VARCHAR(15) NOT NULL,
+    Fødselsdato DATE NOT NULL
+);
+
+-- SkadeKategori
+CREATE TABLE SkadeKategori (
+    KategoriID INT PRIMARY KEY,
+    Navn VARCHAR(20) NOT NULL,
+    Beskrivelse VARCHAR(100) NOT NULL
+);
+
+-- Bil
+CREATE TABLE Bil (
+    BilID INT PRIMARY KEY,
+    Vognnummer VARCHAR(20) NOT NULL UNIQUE,
+    Stelnummer VARCHAR(50) NOT NULL UNIQUE,
+    RegNr VARCHAR(10) NOT NULL UNIQUE,
+    Model VARCHAR(50) NOT NULL,
+    Brand VARCHAR(50) NOT NULL,
+    Co2Udledning DECIMAL(5,2) NOT NULL,
+    Tilgængelig TINYINT(1) NOT NULL DEFAULT 1,
+    Udstyrsniveau ENUM('Standard', 'Premium', 'Sport') NOT NULL,
+    Staalpris DECIMAL(10,2) NOT NULL
+);
+
+-- Lejekontrakt
+CREATE TABLE Lejekontrakt (
+    KontraktID INT PRIMARY KEY,
+    KundeID INT NOT NULL,
+    BilID INT NOT NULL,
+    StartDato DATE NOT NULL,
+    SlutDato DATE NOT NULL,
+    PickupSted VARCHAR(100) NOT NULL,
+    AfleverSted VARCHAR(100) NOT NULL,
+    Pris DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (KundeID) REFERENCES Kunde(KundeID) ON DELETE RESTRICT,
+    FOREIGN KEY (BilID) REFERENCES Bil(BilID) ON DELETE RESTRICT
+);
+
+-- Skadesrapport
+CREATE TABLE Skadesrapport (
+    SkadeID INT PRIMARY KEY,
+    BilID INT NOT NULL,
+    KontraktID INT NOT NULL UNIQUE,
+    KategoriID INT NOT NULL,
+    SkadeBeskrivelse VARCHAR(255),
+    FOREIGN KEY (BilID) REFERENCES Bil(BilID) ON DELETE CASCADE,
+    FOREIGN KEY (KontraktID) REFERENCES Lejekontrakt(KontraktID) ON DELETE RESTRICT,
+    FOREIGN KEY (KategoriID) REFERENCES SkadeKategori(KategoriID) ON DELETE RESTRICT
+);
+
+

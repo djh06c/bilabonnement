@@ -2,11 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>forside</title>
+    <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+    <style>
+        body{
+            background-color: grey;
+        }
+    </style>
 </head>
 <body>
 
+<main>
+    <!-- indhold mellem header og footer -->
+    <h1> tester tester tester tester </h1>
+</main>
 
+<!-- Header fra fragment -->
+<div th:insert="~{fragments/header :: header}"></div>
+
+<!-- Footer fra fragment -->
+<div th:insert="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>
