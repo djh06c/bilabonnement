@@ -5,9 +5,4 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 public class bilController {
-
-    @GetMapping("/index")
-    public String home() {
-        return "index";
     }
-}
