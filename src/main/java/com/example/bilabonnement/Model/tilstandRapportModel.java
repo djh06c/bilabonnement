@@ -6,19 +6,17 @@ public class tilstandRapportModel {
     private int rapportID;
     private int bilID;
     private int kontraktID;
-    private LocalDate dato;
     private int kategoriID;
-    private String skadeBeskrivelse;
+    private String beskrivelse;
 
     public tilstandRapportModel() {}
 
-    public tilstandRapportModel(int rapportID, int bilID, int kontraktID, LocalDate dato, int kategoriID, String skadeBeskrivelse) {
+    public tilstandRapportModel(int rapportID, int bilID, int kontraktID, LocalDate dato, int kategoriID, String beskrivelse) {
         this.rapportID = rapportID;
         this.bilID = bilID;
         this.kontraktID = kontraktID;
-        this.dato = dato;
         this.kategoriID = kategoriID;
-        this.skadeBeskrivelse = skadeBeskrivelse;
+        this.beskrivelse = beskrivelse;
     }
 
     public int getRapportID() {
@@ -45,14 +43,6 @@ public class tilstandRapportModel {
         this.kontraktID = kontraktID;
     }
 
-    public LocalDate getDato() {
-        return dato;
-    }
-
-    public void setDato(LocalDate dato) {
-        this.dato = dato;
-    }
-
     public int getKategoriID() {
         return kategoriID;
     }
@@ -61,11 +51,11 @@ public class tilstandRapportModel {
         this.kategoriID = kategoriID;
     }
 
-    public String getSkadeBeskrivelse() {
-        return skadeBeskrivelse;
+    public String getbeskrivelse() {
+        return beskrivelse;
     }
 
-    public void setSkadeBeskrivelse(String skadeBeskrivelse) {
-        this.skadeBeskrivelse = skadeBeskrivelse;
+    public void setbeskrivelse(String beskrivelse) {
+        this.beskrivelse = beskrivelse;
     }
 }

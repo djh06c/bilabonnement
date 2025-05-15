@@ -1,4 +1,4 @@
 package com.example.bilabonnement.Model;
 
-public class bilModel {
+public class  bilModel {
 }

@@ -68,4 +68,7 @@ public kundeModel(int kundeID, String navn, String email, String adresse, String
     public void setFeodselsdato(LocalDate Feodselsdato) {
         this.Feodselsdato = Feodselsdato;
     }
+    public String getKontaktInfo() {
+        return "Navn: " + navn + ", Telefon: " + tlfNr + ", Email: " + email;
+    }
 }
