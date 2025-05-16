@@ -8,7 +8,6 @@ html, body {
 main{
     flex: 1;
 }
-
 .site-header{
     position: fixed;
     top: 0;
