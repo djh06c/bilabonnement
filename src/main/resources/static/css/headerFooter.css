@@ -14,7 +14,7 @@ main{
     top: 0;
     width: 100vw; /* Her bruger vi vw som står for viewport, sådan så den skulle se ens ud på alle enheder*/
     height: 6vw;
-    background-color: blue;
+    background-color: lightgrey;
 }
 
 .site-footer{
@@ -22,6 +22,6 @@ main{
     bottom: 0;
     width: 100vw;
     height: 3vw;
-    background-color: blue;
+    background-color: lightgrey;
 }
 
