@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Date;
 import java.util.List;
 
+@Repository
 public class lejekontraktRepo {
 
     private final JdbcTemplate jdbcTemplate;

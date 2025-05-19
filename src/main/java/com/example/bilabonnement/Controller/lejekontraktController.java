@@ -5,6 +5,8 @@ import com.example.bilabonnement.Service.lejekontraktService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.List;
 
@@ -36,14 +38,14 @@ public class lejekontraktController {
         }
     }
 
-    /* --------------- POST lejekontrakter --------------- */
+    /* --------------- POST lejekontrakt --------------- */
     @PostMapping
     public ResponseEntity<String> opret(@RequestBody lejekontraktModel kontrakt){
         lkService.save(kontrakt);
         return ResponseEntity.status(HttpStatus.CREATED).body("Lejekontrakt oprettet ");
     }
 
-    /* --------------- PUT Lejekontrakter ud fra id --------------- */
+    /* --------------- PUT Lejekontrakt ud fra id --------------- */
     @PutMapping
     public ResponseEntity<String> opdater(@PathVariable int id, @RequestBody lejekontraktModel kontrakt){
         kontrakt.setKontraktID(id);
@@ -51,9 +53,23 @@ public class lejekontraktController {
         return ResponseEntity.ok("Lejekontrakt opdatertet ");
     }
 
+    /* --------------- DELETE Lejekontrakt ud fra id --------------- */
     @DeleteMapping("/{id}")
     public ResponseEntity<String> slet(@PathVariable int id){
         lkService.deleteById(id);
         return ResponseEntity.ok("Lejekontrakt slettet ");
     }
+
+    @PostMapping(value="/opret", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String opretFraHtml(@ModelAttribute lejekontraktModel kontrakt) {
+        lkService.save(kontrakt);
+        return "redirect:/lejekontrakter.html";
+    }
+
+    @PostMapping("/slet")
+    public String sletFraHtml(@RequestParam int id) {
+        lkService.deleteById(id);
+        return "redirect:/lejekontrakter.html";
+    }
+
 }
