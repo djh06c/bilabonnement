@@ -19,19 +19,19 @@ public class lejekontraktRepo {
 
     /* --------------- Hent/læs alle Lejekontrakt ---------------*/
     public List<lejekontraktModel> findAll(){
-        String sql= "SELECT * from lejekontrakt";
+        String sql= "SELECT * FROM `Lejekontrakt`";
         return jdbcTemplate.query(sql, new lejekontraktRowMapper());
     }
 
     /* --------------- Hent en Lejekontrakt fra ID --------------- */
     public lejekontraktModel findById(int kontraktId){
-        String sql= "SELECT * from lejekontrakt where id=?";
+        String sql= "SELECT * FROM Lejekontrakt WHERE kontrakt_ID=?";
         return jdbcTemplate.queryForObject(sql, new lejekontraktRowMapper(), kontraktId);
     }
 
     /* --------------- Opret en ny lejekontrakk --------------- */
     public void save(lejekontraktModel lk){
-        String sql = "INSERT INTO lejekontrakt (KontraktID, KundeID, BilID, StartDato, SlutDato, PickupSted, AfleverSted, Pris) " +
+        String sql = "INSERT INTO Lejekontrakt (KontraktID, KundeID, BilID, StartDato, SlutDato, PickupSted, AfleverSted, Pris) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 lk.getKontraktID(),
@@ -59,7 +59,7 @@ public class lejekontraktRepo {
 
     /* --------------- Slet en Kontrakt --------------- */
     public void deleteById(int kontraktId){
-        String sql = "DELETE FROM lejekontrakt WHERE KontraktID = ?";
+        String sql = "DELETE FROM Lejekontrakt WHERE KontraktID = ?";
         jdbcTemplate.update(sql, kontraktId);
     }
 }

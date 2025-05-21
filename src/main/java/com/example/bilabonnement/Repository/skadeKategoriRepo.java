@@ -15,27 +15,27 @@ public class skadeKategoriRepo {
     private JdbcTemplate jdbcTemplate;
 
     public List<skadeKategoriModel> hentAlleKategorier() {
-        String sql = "SELECT * FROM SkadeKategori";
+        String sql = "SELECT * FROM Tilstandskategori";
         return jdbcTemplate.query(sql, new skadeKategoriRowMapper()); // <-- Her bruger du den
     }
 
     public skadeKategoriModel hentKategoriVedId(int id) {
-        String sql = "SELECT * FROM SkadeKategori WHERE kategori_ID = ?";
+        String sql = "SELECT * FROM Tilstandskategori WHERE kategori_ID = ?";
         return jdbcTemplate.queryForObject(sql, new skadeKategoriRowMapper(), id);
     }
 
     public void opretKategori(skadeKategoriModel kategori) {
-        String sql = "INSERT INTO SkadeKategori (kategori_ID, navn, beskrivelse) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Tilstandskategori (kategori_ID, navn, beskrivelse) VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, kategori.getKategoriID(), kategori.getNavn(), kategori.getBeskrivelse());
     }
 
     public void opdaterKategori(skadeKategoriModel kategori) {
-        String sql = "UPDATE SkadeKategori SET navn = ?, beskrivelse = ? WHERE kategori_ID = ?";
+        String sql = "UPDATE Tilstandskategori SET navn = ?, beskrivelse = ? WHERE kategori_ID = ?";
         jdbcTemplate.update(sql, kategori.getNavn(), kategori.getBeskrivelse(), kategori.getKategoriID());
     }
 
     public void sletKategori(int id) {
-        String sql = "DELETE FROM SkadeKategori WHERE kategori_ID = ?";
+        String sql = "DELETE FROM Tilstandskategori WHERE kategori_ID = ?";
         jdbcTemplate.update(sql, id);
     }
 }
