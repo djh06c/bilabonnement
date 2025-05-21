@@ -1,8 +1,11 @@
 html, body {
     margin: 0;
-    padding: 0;
+    /*padding: 0;*/
     overflow-x: hidden; /* Forhindrer skærmen i at kunne scrolle til siden? dansk?*/
     overflow-y: hidden; /* det samme, men vertikalt*/
+    padding-top: 6vw;
+    padding-bottom: 3vw;
+    box-sizing: border-box;
 }
 
 main{
@@ -13,7 +16,49 @@ main{
     top: 0;
     width: 100vw; /* Her bruger vi vw som står for viewport, sådan så den skulle se ens ud på alle enheder*/
     height: 6vw;
+    background-color: aliceblue;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2vw;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.header-left{
+    flex:1;
+}
+
+
+.header-right{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5vw;
+}
+
+.header-center{
+    flex:2;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-image{
+    max-height: 5vw;
+}
+
+.header-button{
+    padding: 8px 12px;
     background-color: lightgrey;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+    font-family: inherit;
 }
 
 .site-footer{
@@ -21,6 +66,7 @@ main{
     bottom: 0;
     width: 100vw;
     height: 3vw;
-    background-color: lightgrey;
+    background-color: aliceblue;
 }
+
 

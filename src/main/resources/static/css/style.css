@@ -1,5 +1,97 @@
-main{
-    h1{
-        color: red;
-    }
+body {
+    padding-top:0;
+    padding-bottom:0;
+    font-family: sans-serif;
+    background-color: white;
+}
+html, body{
+    margin:0;
+    padding:0;
+    overflow-y:auto;
+    overflow-x: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2vw;
+    background-color: white;
+}
+
+th, td{
+    padding: 0.8vw;
+    border: 1px solid black;
+    text-align: left;
+}
+
+th{
+    background-color: lightgreen;
+}
+
+h1, h2{
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    color: #333;
+}
+
+.nav-button {
+    padding: 1vw;
+    font-weight: bold;
+    font-size: 1vw;
+    border: 3px solid black;
+    border-radius: 10px;
+    background-color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.nav-button.active {
+    background-color: #ccff00;
+    border: 3px solid black;
+}
+
+.nav-button:hover,
+.submit-button:hover{
+    background-color: lightgrey;
+    transition: 0.3s ease;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="date"]{
+    width: 100%;
+    max-width: 100%;
+    padding: 0.5vw;
+    box-sizing: border-box;
+    height: auto;
+}
+
+input, select, textarea{
+    padding: 0.5vw;
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.main-container{
+    display: flex;
+    margin: 2vw auto 3vw auto;
+    max-width: 90vw;
+    gap: 2vw;
+}
+
+.form-container {
+    flex: 3;
+    background-color: white;
+    border: 3px solid black;
+    padding: 2vw;
+    border-radius: 10px;
+}
+
+.main-container {
+    display: flex;
+    max-width: 95vw;
+    margin: 2vw auto;
+    gap: 2vw;
+    align-items: flex-start;
 }

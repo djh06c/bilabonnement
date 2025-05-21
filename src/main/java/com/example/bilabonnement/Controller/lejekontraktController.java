@@ -63,13 +63,13 @@ public class lejekontraktController {
     @PostMapping(value="/opret", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String opretFraHtml(@ModelAttribute lejekontraktModel kontrakt) {
         lkService.save(kontrakt);
-        return "redirect:/lejekontrakter.html";
+        return "lejekontraktvisning";
     }
 
     @PostMapping("/slet")
     public String sletFraHtml(@RequestParam int id) {
         lkService.deleteById(id);
-        return "redirect:/lejekontrakter.html";
+        return "lejekontraktvisning";
     }
 
 }
