@@ -77,10 +77,11 @@ input, select, textarea{
     display: flex;
     padding-top: 6vw;
     padding-bottom: 3vw;
-    max-width: 90vw;
-    margin: 0 auto;
+    max-width: 95vw;
+    margin: 2vw auto;
     gap: 2vw;
     box-sizing: border-box;
+    align-items: flex-start;
 }
 
 .form-container {
@@ -89,12 +90,4 @@ input, select, textarea{
     border: 3px solid black;
     padding: 2vw;
     border-radius: 10px;
-}
-
-.main-container {
-    display: flex;
-    max-width: 95vw;
-    margin: 2vw auto;
-    gap: 2vw;
-    align-items: flex-start;
 }
