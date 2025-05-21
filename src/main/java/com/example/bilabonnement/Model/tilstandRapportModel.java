@@ -51,11 +51,11 @@ public class tilstandRapportModel {
         this.kategoriID = kategoriID;
     }
 
-    public String getbeskrivelse() {
+    public String getBeskrivelse() {
         return beskrivelse;
     }
 
-    public void setbeskrivelse(String beskrivelse) {
+    public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse = beskrivelse;
     }
 }
