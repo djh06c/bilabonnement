@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tilstandsrapporter</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<h1>Tilstandsrapporter</h1>
+
+<section class="form-section">
+    <h2>Opret ny rapport</h2>
+    <form th:action="@{/tilstandsrapporter/vis}" th:object="${nyRapport}" method="post">
+        <label>Rapport ID:</label>
+        <input type="number" th:field="*{rapportID}" required><br>
+
+        <label>Bil ID:</label>
+        <input type="number" th:field="*{bilID}" required><br>
+
+        <label>Lejekontrakt:</label>
+        <select th:field="*{kontraktID}">
+            <option th:each="k : ${kontrakter}"
+                    th:value="${k.kontraktID}"
+                    th:text="'#' + ${k.kontraktID} + ' | ' + ${k.startDato} + ' → ' + ${k.slutDato}">
+            </option>
+        </select><br>
+
+        <label>Skadekategori:</label>
+        <select th:field="*{kategoriID}">
+            <option th:each="kat : ${kategorier}"
+                    th:value="${kat.kategoriID}"
+                    th:text="${kat.navn}">
+            </option>
+        </select><br>
+
+        <label>Beskrivelse:</label>
+        <textarea th:field="*{beskrivelse}" rows="3" cols="40"></textarea><br>
+
+        <button type="submit">Gem rapport</button>
+    </form>
+</section>
+
+<section class="table-section">
+    <h2>Eksisterende rapporter</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Rapport ID</th>
+            <th>Bil ID</th>
+            <th>Kontrakt ID</th>
+            <th>Skadekategori</th>
+            <th>Beskrivelse</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rapport : ${rapporter}"
+            th:classappend="${rapport.erTotalskadet} ? 'totalskadet' : ''">
+            <td th:text="${rapport.rapportID}"></td>
+            <td th:text="${rapport.bilID}"></td>
+            <td th:text="${rapport.kontraktID}"></td>
+            <td>
+                    <span th:switch="${rapport.kategoriID}">
+                        <span th:case="0">Ingen skade</span>
+                        <span th:case="1">Kosmetisk</span>
+                        <span th:case="2">Skal repareres</span>
+                        <span th:case="3">Totalskadet</span>
+                        <span th:case="*">Ukendt</span>
+                    </span>
+            </td>
+            <td th:text="${rapport.beskrivelse}"></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>
