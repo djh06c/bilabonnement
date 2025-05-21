@@ -75,9 +75,12 @@ input, select, textarea{
 
 .main-container{
     display: flex;
-    margin: 2vw auto 3vw auto;
+    padding-top: 6vw;
+    padding-bottom: 3vw;
     max-width: 90vw;
+    margin: 0 auto;
     gap: 2vw;
+    box-sizing: border-box;
 }
 
 .form-container {

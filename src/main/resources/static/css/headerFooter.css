@@ -67,6 +67,9 @@ main{
     width: 100vw;
     height: 3vw;
     background-color: aliceblue;
+    z-index: 1000;
 }
+
+
 
 
