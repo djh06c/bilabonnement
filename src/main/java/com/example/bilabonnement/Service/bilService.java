@@ -54,4 +54,29 @@ public class bilService {
         biler.sort(Comparator.comparing(bilModel::getUdstyrsniveauNavn, String.CASE_INSENSITIVE_ORDER));
         return biler;
     }
+
+    public List<bilModel> hentBilerSorteretEfterId() {
+        return bilRepo.hentBilerSorteretEfter("bil_ID");
+    }
+
+    public List<bilModel> hentBilerSorteretEfterModel() {
+        return bilRepo.hentBilerSorteretEfter("model");
+    }
+
+    public List<bilModel> hentBilerSorteretEfterRegnr() {
+        return bilRepo.hentBilerSorteretEfter("regNr");
+    }
+
+    public List<bilModel> hentBilerSorteretEfterStelnummer() {
+        return bilRepo.hentBilerSorteretEfter("stelNummer");
+    }
+
+    public List<bilModel> hentBilerSorteretEfterVognnummer() {
+        return bilRepo.hentBilerSorteretEfter("vognNummer");
+    }
+
+    public List<bilModel> hentBilerSorteretEfterCO2() {
+        return bilRepo.hentBilerSorteretEfter("co2");
+    }
+
 }
