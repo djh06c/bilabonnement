@@ -94,7 +94,7 @@ public class bilModel {
         this.udstyrsniveauId = udstyrsniveauId;
     }
 
-    // --- toString() til debug ---
+    // --- Optional: toString() til debug ---
     @Override
     public String toString() {
         return "bilModel{" +

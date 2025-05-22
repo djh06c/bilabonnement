@@ -5,16 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class homeController {
-
-    // ➤ Standard forsiden (index.html)
     @GetMapping("/index")
-    public String mainMenu() {
+    public String homePage() {
         return "index";
     }
-
-    // ➤ Elegant redirect: localhost:8080/ → /index
-    @GetMapping("/")
-    public String redirectToIndex() {
-        return "redirect:/index";
-    }
 }
+
+
