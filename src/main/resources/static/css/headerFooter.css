@@ -1,6 +1,5 @@
 html, body {
     margin: 0;
-    /*padding: 0;*/
     overflow-x: hidden; /* Forhindrer skærmen i at kunne scrolle til siden? dansk?*/
     overflow-y: hidden; /* det samme, men vertikalt*/
     padding-top: 6vw;
@@ -17,6 +16,7 @@ main{
     width: 100vw; /* Her bruger vi vw som står for viewport, sådan så den skulle se ens ud på alle enheder*/
     height: 6vw;
     background-color: aliceblue;
+    border-bottom: 2px solid black;
 
     display: flex;
     align-items: center;
@@ -48,17 +48,18 @@ main{
 
 .logo-image{
     max-height: 5vw;
+    border: 2px solid black;
 }
 
 .header-button{
     padding: 8px 12px;
     background-color: lightgrey;
-    border: none;
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
     color: black;
     font-family: inherit;
+    border: 1px solid black;
 }
 
 .site-footer{
@@ -68,6 +69,7 @@ main{
     height: 3vw;
     background-color: aliceblue;
     z-index: 1000;
+    border-top: 2px solid black;
 }
 
 

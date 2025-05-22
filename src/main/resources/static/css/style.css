@@ -43,6 +43,9 @@ h1, h2{
     background-color: white;
     cursor: pointer;
     transition: 0.3s ease;
+    text-decoration: none;
+    color: black;
+    font-family: inherit;
 }
 
 .nav-button.active {

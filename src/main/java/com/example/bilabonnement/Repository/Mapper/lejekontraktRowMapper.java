@@ -5,21 +5,20 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
 
 public class lejekontraktRowMapper implements RowMapper<lejekontraktModel> {
 
     @Override
     public lejekontraktModel mapRow(ResultSet rs, int rowNum) throws SQLException {
         lejekontraktModel lk = new lejekontraktModel();
-        lk.setKontraktID(rs.getInt("KontraktID"));
-        lk.setKundeID(rs.getInt("KundeID"));
-        lk.setBilID(rs.getInt("BilID"));
-        lk.setStartDato(rs.getDate("StartDato").toLocalDate());
-        lk.setSlutDato(rs.getDate("SlutDato").toLocalDate());
-        lk.setPickupSted(rs.getString("PickupSted"));
-        lk.setAfleverSted(rs.getString("AfleverSted"));
-        lk.setPris(rs.getBigDecimal("Pris"));
+        lk.setKontraktID(rs.getInt("kontrakt_ID"));
+        lk.setKundeID(rs.getInt("kunde_ID"));
+        lk.setBilID(rs.getInt("bil_ID"));
+        lk.setStartDato(rs.getDate("start_dato").toLocalDate());
+        lk.setSlutDato(rs.getDate("slut_dato").toLocalDate());
+        lk.setPickupSted(rs.getString("pickupSted"));
+        lk.setAfleveringsSted(rs.getString("afleveringsSted"));
+        lk.setPris(rs.getBigDecimal("pris"));
         return lk;
     }
 }

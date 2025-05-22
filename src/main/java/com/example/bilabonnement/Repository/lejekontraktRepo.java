@@ -25,13 +25,13 @@ public class lejekontraktRepo {
 
     /* --------------- Hent en Lejekontrakt fra ID --------------- */
     public lejekontraktModel findById(int kontraktId){
-        String sql= "SELECT * from lejekontrakt where id=?";
+        String sql= "SELECT * from lejekontrakt where kontrakt_ID=?";
         return jdbcTemplate.queryForObject(sql, new lejekontraktRowMapper(), kontraktId);
     }
 
     /* --------------- Opret en ny lejekontrakk --------------- */
     public void save(lejekontraktModel lk){
-        String sql = "INSERT INTO lejekontrakt (KontraktID, KundeID, BilID, StartDato, SlutDato, PickupSted, AfleverSted, Pris) " +
+        String sql = "INSERT INTO lejekontrakt (kontrakt_ID, kunde_ID, bil_ID, start_dato, slut_dato, pickupSted, afleveringsSted, pris) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,
                 lk.getKontraktID(),
@@ -40,26 +40,27 @@ public class lejekontraktRepo {
                 Date.valueOf(lk.getStartDato()),
                 Date.valueOf(lk.getSlutDato()),
                 lk.getPickupSted(),
-                lk.getAfleverSted(),
+                lk.getAfleveringsSted(),
                 lk.getPris());
     }
 
     /* --------------- Opdater en eksisterende lejekontrakt --------------- */
     public void update(lejekontraktModel lk){
-        String sql = "UPDATE Lejekontrakt SET KundeID = ?, BilID = ?, StartDato =?, SlutDato =?, PickupSted =?, AfleverSted =?, Pris =? WHERE KontraktID =?";
+        String sql = "UPDATE Lejekontrakt SET kunde_ID = ?, bil_ID = ?, Start_dato =?, Slut_dato =?, PickupSted =?, AfleveringsSted =?, Pris =? WHERE kontrakt_ID =?";
         jdbcTemplate.update(sql,
                 lk.getKundeID(),
                 lk.getBilID(),
                 Date.valueOf(lk.getStartDato()),
                 Date.valueOf(lk.getSlutDato()),
                 lk.getPickupSted(),
-                lk.getAfleverSted(),
-                lk.getPris());
+                lk.getAfleveringsSted(),
+                lk.getPris(),
+                lk.getKontraktID());
     }
 
     /* --------------- Slet en Kontrakt --------------- */
     public void deleteById(int kontraktId){
-        String sql = "DELETE FROM lejekontrakt WHERE KontraktID = ?";
+        String sql = "DELETE FROM lejekontrakt WHERE kontrakt_ID = ?";
         jdbcTemplate.update(sql, kontraktId);
     }
 }

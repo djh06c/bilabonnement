@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VisLejekontrakter</title>
+    <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- header insert fragment-->
+<div th:insert="~{fragments/header :: header}"></div>
+
+<!-- footer insert fragment -->
+<div th:insert="~{fragments/footer :: footer}"></div>
+
+<div class="main-container">
+    <div class="sidebar">
+        <a href="/lejekontrakter/vis" class="nav-button active">Vis Lejekontrakter</a>
+        <a href="/lejekontrakter" class="nav-button">Opret Lejekontrakt</a>
+
+    </div>
+    <div class="form-container">
+
+
+        <!-- Find en specifik lejekontrakt ud fra ID -->
+        <h2>Find Lejekontrakt</h2>
+        <form action="/lejekontrakter" method="get">
+            <label for="id">Kontrakt ID:</label>
+            <input type="number" name="id" id="id">
+            <button type="submit">Hent</button>
+        </form>
+
+
+        <!-- Viser Alle lejekontrakter -->
+        <h2>Alle Lejekontrakter</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>KontraktID</th>
+                <th>KundeID</th>
+                <th>BilID</th>
+                <th>StartDato</th>
+                <th>SlutDato</th>
+                <th>PickupSted</th>
+                <th>AfleveringsSted</th>
+                <th>Pris</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="kontrakt : ${lejekontrakter}">
+                <td th:text="${kontrakt.kontraktID}"></td>
+                <td th:text="${kontrakt.kundeID}"></td>
+                <td th:text="${kontrakt.bilID}"></td>
+                <td th:text="${kontrakt.startDato}"></td>
+                <td th:text="${kontrakt.slutDato}"></td>
+                <td th:text="${kontrakt.pickupSted}"></td>
+                <td th:text="${kontrakt.afleveringsSted}"></td>
+                <td th:text="${kontrakt.pris}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Slet en lejekontrakt ud fra ID -->
+        <h2>Slet Lejekontrakt</h2>
+        <form th:action="@{/lejekontrakter/slet}" method="post">
+            <label>Kontrakt ID: <input type="number" name="id" required></label><br>
+            <button type="submit">Slet</button>
+        </form>
+
+    </div>
+</div>
+
+
+</body>
+</html>
