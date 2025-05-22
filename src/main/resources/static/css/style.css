@@ -1,0 +1,205 @@
+/* ============================================================================
+   GLOBAL STYLING – gælder for hele systemet
+============================================================================ */
+img, table, .content, .main-box, .form-container {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    font-family: sans-serif;
+    background-color: white;
+    overscroll-behavior: none;
+}
+
+h1, h2 {
+    color: #333;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+button, .nav-button {
+    padding: 1vw;
+    font-size: 1vw;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 3px solid black;
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+.nav-button:hover {
+    background-color: lightgrey;
+}
+
+.nav-button.active {
+    background-color: #ccff00;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 0.5vw;
+    box-sizing: border-box;
+    max-width: 100%;
+    font-size: 1vw;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2vw;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+th, td {
+    padding: 0.4vw 0.6vw;
+    border: 1px solid black;
+    text-align: left;
+    max-width: 15vw;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+    vertical-align: middle;
+    height: 2.4vw;
+}
+
+
+th {
+    background-color: lightgreen;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+table tr:hover {
+    background-color: #f2f2f2;
+}
+
+/* ============================================================================
+   LAYOUT: CONTAINERS
+============================================================================ */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 95vw;
+    height: calc(100vh - 9vw);
+    margin: 0 auto;
+    padding-top: 6vw;
+    padding-bottom: 3vw;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.form-container {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white;
+    border: 3px solid black;
+    padding: 2vw;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    max-width: 100%;
+}
+
+/* ============================================================================
+   DASHBOARD / 2-KOLONNE LAYOUT
+============================================================================ */
+.dashboard-layout {
+    display: flex;
+    max-width: 95vw;
+    height: calc(100vh - 9vw);
+    margin: 0 auto;
+    padding-top: 6vw;
+    padding-bottom: 3vw;
+    gap: 2vw;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.sidebar {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vw;
+}
+
+.sidebar-button {
+    padding: 1vw;
+    font-weight: bold;
+    font-size: 1.1vw;
+    border: 2px solid black;
+    border-radius: 15px;
+    text-align: center;
+    background-color: white;
+    transition: 0.3s ease;
+    text-decoration: none;
+    color: black;
+}
+
+.sidebar-button:hover {
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.sidebar-button.active {
+    background-color: #caff9f;
+    font-weight: bolder;
+}
+
+.main-box {
+    flex: 3;
+    background-color: white;
+    border: 3px solid black;
+    padding: 2vw;
+    border-radius: 10px;
+}
+
+/* ============================================================================
+   BIL-SEKTION – layout og styling til biloversigt/opret/rediger
+============================================================================ */
+.content {
+    flex: 3;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: white;
+    border: 3px solid black;
+    padding: 2vw;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    max-width: 100%;
+}
+
+tr.tilgaengelig {
+    background-color: #eaffea;
+}
+
+tr.udlejet {
+    background-color: #ffeaea;
+}
+
+/* 🔧 Ikonknapper i bil-tabel */
+.action-cell {
+    display: flex;
+    gap: 0.6vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}

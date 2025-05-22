@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>forside</title>
+    <title>BilDesk - Hovedmenu</title>
     <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
-    <style>
-        body{
-            background-color: grey;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<main>
-    <!-- indhold mellem header og footer -->
-    <h1> tester tester tester tester </h1>
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<!-- Layout -->
+<main class="dashboard-layout">
+
+    <!-- Sidebar menu -->
+    <div class="sidebar">
+        <a th:href="@{/kunder}" class="sidebar-button">Kunder</a>
+        <a th:href="@{/lejekontrakter}" class="sidebar-button">Lejekontrakter</a>
+        <a th:href="@{/biler}" class="sidebar-button">Bilkatalog</a>
+        <a th:href="@{/tilstandsrapporter}" class="sidebar-button">Skadesrapporter</a>
+    </div>
+
+    <!-- Hovedboks med tekst -->
+    <div class="main-box">
+        <h1>BilAbonnement A/S' brugersystem</h1>
+
+        <p>Dette system er leveret af <strong>BilDesk™</strong> og er skræddersyet til at understøtte jeres daglige arbejde i BilAbonnement A/S.</p>
+
+        <p>Navigér i systemet ved hjælp af menuknapperne i venstre side.</p>
+
+        <p>Har du brug for hjælp, kan du kontakte vores support på <strong>+45 55 55 55 55</strong>.</p>
+    </div>
+
 </main>
 
-<!-- Header fra fragment -->
-<div th:insert="~{fragments/header :: header}"></div>
-
-<!-- Footer fra fragment -->
-<div th:insert="~{fragments/footer :: footer}"></div>
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>
