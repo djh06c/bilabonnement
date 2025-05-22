@@ -1,64 +1,104 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Biloversigt</title>
+  <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<h1>Biloversigt</h1>
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
 
-<!-- Sorterings- og filter-links -->
-<h3>Sorter og filtrer:</h3>
-<a th:href="@{/biler}">Vis alle</a> |
-<a th:href="@{/biler/ledige}">Kun ledige</a> |
-<a th:href="@{/biler/sorteret/ledighed}">Ledighed (ledige øverst)</a> |
-<a th:href="@{/biler/sorteret/pris}">Pris (lav til høj)</a> |
-<a th:href="@{/biler/sorteret/maerke}">Mærke (A–Z)</a> |
-<a th:href="@{/biler/sorteret/udstyr}">Udstyrsniveau (A–Z)</a>
-<br><br>
+<main class="dashboard-layout">
 
-<!-- Link til opret bil -->
-<a th:href="@{/bil/opret}">➕ Opret ny bil</a>
-<br><br>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a th:href="@{/biler}"
+       th:class="'sidebar-button' + (${filter == null} ? ' active' : '')">
+      Biloversigt
+    </a>
+    <a th:href="@{/bil/opret}"
+       th:class="'sidebar-button' + (${filter == 'opret'} ? ' active' : '')">
+      Opret bil
+    </a>
+  </div>
 
-<!-- Tabel med biler -->
-<table border="1">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Vognnummer</th>
-    <th>Stelnummer</th>
-    <th>Registreringsnummer</th>
-    <th>Model</th>
-    <th>Mærke</th>
-    <th>CO2</th>
-    <th>Tilgængelig</th>
-    <th>Stålpris</th>
-    <th>Udstyrsniveau</th>
-    <th>Handlinger</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="bil : ${biler}">
-    <td th:text="${bil.bilId}">1</td>
-    <td th:text="${bil.vognNummer}">ABC123</td>
-    <td th:text="${bil.stelNummer}">XYZ98765</td>
-    <td th:text="${bil.regNr}">AB12345</td>
-    <td th:text="${bil.model}">Golf</td>
-    <td th:text="${bil.maerke}">VW</td>
-    <td th:text="${bil.co2}">99.0</td>
-    <td th:text="${bil.tilgaengelig} ? 'Ja' : 'Nej'">Ja</td>
-    <td th:text="${bil.staalpris}">199999.95</td>
-    <td th:text="${bil.udstyrsniveauNavn}">PREMIUM</td>
-    <td>
-      <a th:href="@{'/bil/rediger/' + ${bil.bilId}}">✏️ Rediger</a> |
-      <a th:href="@{'/bil/slet/' + ${bil.bilId}}"
-         onclick="return confirm('Er du sikker på, at du vil slette bilen?')">🗑️ Slet</a>
-    </td>
-  </tr>
-  </tbody>
-</table>
+  <!-- Indhold -->
+  <div class="content">
+    <h1>Alle Biler</h1>
+
+
+    <table>
+      <thead>
+      <tr>
+        <th>
+          <a th:href="@{/biler/sorteret/id}" th:classappend="${filter == 'id'} ? ' active'" class="sortable-header">ID</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/model}" th:classappend="${filter == 'model'} ? ' active'" class="sortable-header">Model</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/maerke}" th:classappend="${filter == 'maerke'} ? ' active'" class="sortable-header">Mærke</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/regnr}" th:classappend="${filter == 'regnr'} ? ' active'" class="sortable-header">RegNr</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/stelnummer}" th:classappend="${filter == 'stelnummer'} ? ' active'" class="sortable-header">StelNr</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/vognnummer}" th:classappend="${filter == 'vognnummer'} ? ' active'" class="sortable-header">VognNr</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/co2}" th:classappend="${filter == 'co2'} ? ' active'" class="sortable-header">CO2</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/pris}" th:classappend="${filter == 'pris'} ? ' active'" class="sortable-header">Stålpris</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/ledighed}" th:classappend="${filter == 'ledighed'} ? ' active'" class="sortable-header">Ledig</a>
+        </th>
+        <th>
+          <a th:href="@{/biler/sorteret/udstyr}" th:classappend="${filter == 'udstyr'} ? ' active'" class="sortable-header">Udstyr</a>
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr th:each="bil : ${biler}" th:class="${bil.tilgaengelig} ? 'tilgaengelig' : 'udlejet'">
+        <td th:text="${bil.bilId}"></td>
+        <td th:text="${bil.model}"></td>
+        <td th:text="${bil.maerke}"></td>
+        <td th:text="${bil.regNr}"></td>
+        <td th:text="${bil.stelNummer}"></td>
+        <td th:text="${bil.vognNummer}"></td>
+        <td th:text="${bil.co2}"></td>
+        <td th:text="${bil.staalpris}"></td>
+        <td th:text="${bil.tilgaengelig} ? 'Ja' : 'Nej'"></td>
+        <td th:text="${bil.udstyrsniveauNavn}"></td>
+        <td class="action-cell">
+          <a th:href="@{'/bil/rediger/' + ${bil.bilId}}" class="icon-button" title="Rediger">
+            <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger" />
+          </a>
+          <a th:href="@{'/bil/slet/' + ${bil.bilId}}"
+             class="icon-button"
+             title="Slet"
+             onclick="return confirm('Er du sikker på, at du vil slette denne bil?')">
+            <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet" />
+          </a>
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>
