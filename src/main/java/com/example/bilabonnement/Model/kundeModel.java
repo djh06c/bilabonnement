@@ -8,17 +8,17 @@ private String navn;
 private String email;
 private String adresse;
 private String tlfNr;
-private LocalDate Feodselsdato;
+private LocalDate foedselsdato;
 
 public kundeModel() {}
 
-public kundeModel(int kundeID, String navn, String email, String adresse, String tlfNr, LocalDate Feodselsdato){
+public kundeModel(int kundeID, String navn, String email, String adresse, String tlfNr, LocalDate foedselsdato){
     this.kundeID = kundeID;
     this.navn = navn;
     this.email = email;
     this.adresse = adresse;
     this.tlfNr = tlfNr;
-    this.Feodselsdato = Feodselsdato;
+    this.foedselsdato = foedselsdato;
 }
 
     public int getKundeID() {
@@ -61,13 +61,14 @@ public kundeModel(int kundeID, String navn, String email, String adresse, String
         this.tlfNr = tlfNr;
     }
 
-    public LocalDate getFeodselsdato() {
-        return Feodselsdato;
+    public LocalDate getFoedselsdato() {
+        return foedselsdato;
     }
 
-    public void setFeodselsdato(LocalDate Feodselsdato) {
-        this.Feodselsdato = Feodselsdato;
+    public void setFoedselsdato(LocalDate foedselsdato) {
+        this.foedselsdato = foedselsdato;
     }
+
     public String getKontaktInfo() {
         return "Navn: " + navn + ", Telefon: " + tlfNr + ", Email: " + email;
     }

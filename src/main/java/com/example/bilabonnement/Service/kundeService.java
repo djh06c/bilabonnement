@@ -26,15 +26,14 @@ public class kundeService {
     }
 
 
-    public void save(kundeModel kunde) {
+    public void opretKunde(kundeModel kunde) {
         kundeRepo.save(kunde);
     }
 
 
-    public void update(kundeModel kunde) {
+    public void redigerKunde(kundeModel kunde) {
         kundeRepo.update(kunde);
     }
-
 
     public void deleteById(int id) {
         kundeRepo.deleteById(id);

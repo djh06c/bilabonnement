@@ -38,7 +38,7 @@ public class kundeRepo {
                 kunde.getEmail(),
                 kunde.getAdresse(),
                 kunde.getTlfNr(),
-                Date.valueOf(kunde.getFeodselsdato()));
+                Date.valueOf(kunde.getFoedselsdato()));
     }
 
 
@@ -49,7 +49,7 @@ public class kundeRepo {
                 kunde.getEmail(),
                 kunde.getAdresse(),
                 kunde.getTlfNr(),
-                Date.valueOf(kunde.getFeodselsdato()),
+                Date.valueOf(kunde.getFoedselsdato()),
                 kunde.getKundeID());
     }
 

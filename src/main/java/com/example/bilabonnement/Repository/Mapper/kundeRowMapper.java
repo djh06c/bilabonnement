@@ -16,7 +16,7 @@ public class kundeRowMapper implements RowMapper<kundeModel> {
         kunde.setEmail(rs.getString("mail"));
         kunde.setAdresse(rs.getString("adresse"));
         kunde.setTlfNr(rs.getString("tlf"));
-        kunde.setFeodselsdato(rs.getDate("foedselsdato").toLocalDate());
+        kunde.setFoedselsdato(rs.getDate("foedselsdato").toLocalDate());
         return kunde;
     }
 }

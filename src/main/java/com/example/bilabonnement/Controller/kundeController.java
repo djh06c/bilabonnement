@@ -2,14 +2,13 @@ package com.example.bilabonnement.Controller;
 
 import com.example.bilabonnement.Model.kundeModel;
 import com.example.bilabonnement.Service.kundeService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/kunder")
+@Controller
 public class kundeController {
 
     private final kundeService kundeService;
@@ -18,42 +17,40 @@ public class kundeController {
         this.kundeService = kundeService;
     }
 
-
-    @GetMapping
-    public List<kundeModel> hentAlle() {
-        return kundeService.findAll();
+    // Vis alle kunder + tom kunde til formular
+    @GetMapping("/kunder")
+    public String visAlleKunder(Model model) {
+        List<kundeModel> kunder = kundeService.findAll();
+        model.addAttribute("kunder", kunder);
+        model.addAttribute("kundeModel", new kundeModel());
+        return "kunde";
     }
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<kundeModel> hentEn(@PathVariable int id) {
-        kundeModel kunde = kundeService.findById(id);
-        if (kunde != null) {
-            return ResponseEntity.ok(kunde);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    // Opret ny kunde
+    @PostMapping("/kunde/opret")
+    public String opretKunde(@ModelAttribute kundeModel kunde) {
+        kundeService.opretKunde(kunde);
+        return "redirect:/kunder";
     }
 
-
-    @PostMapping
-    public ResponseEntity<String> opret(@RequestBody kundeModel kunde) {
-        kundeService.save(kunde);
-        return ResponseEntity.status(HttpStatus.CREATED).body("Kunde oprettet");
+    // Vis kunde til redigering
+    @GetMapping("/kunde/{id}")
+    @ResponseBody
+    public kundeModel hentKunde(@PathVariable int id) {
+        return kundeService.findById(id);
     }
 
-
-    @PutMapping("/{id}")
-    public ResponseEntity<String> opdater(@PathVariable int id, @RequestBody kundeModel kunde) {
-        kunde.setKundeID(id);
-        kundeService.update(kunde);
-        return ResponseEntity.ok("Kunde opdateret");
+    // Opdater kunde
+    @PostMapping("/kunde/rediger")
+    public String redigerKunde(@ModelAttribute kundeModel kunde) {
+        kundeService.redigerKunde(kunde);
+        return "redirect:/kunder";
     }
 
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> slet(@PathVariable int id) {
+    // Slet kunde
+    @PostMapping("/kunde/slet/{id}")
+    public String sletKunde(@PathVariable int id) {
         kundeService.deleteById(id);
-        return ResponseEntity.ok("Kunde slettet");
+        return "redirect:/kunder";
     }
 }
