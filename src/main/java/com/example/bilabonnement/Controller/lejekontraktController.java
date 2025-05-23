@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import java.util.List;
 
 @RestController
-@RequestMapping("/lejekontrakter")
+@RequestMapping("/api/lejekontrakter")
 public class lejekontraktController {
 
     private final lejekontraktService lkService;
@@ -60,11 +60,6 @@ public class lejekontraktController {
         return ResponseEntity.ok("Lejekontrakt slettet ");
     }
 
-    @PostMapping(value="/opret", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String opretFraHtml(@ModelAttribute lejekontraktModel kontrakt) {
-        lkService.save(kontrakt);
-        return "lejekontraktvisning";
-    }
 
     @PostMapping("/slet")
     public String sletFraHtml(@RequestParam int id) {

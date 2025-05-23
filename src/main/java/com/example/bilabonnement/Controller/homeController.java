@@ -18,5 +18,3 @@ public class homeController {
         return "redirect:/index";
     }
 }
-
-
