@@ -1,8 +1,6 @@
 package com.example.bilabonnement.Controller;
 
-import com.example.bilabonnement.Model.loginModel;
 import com.example.bilabonnement.Service.loginService;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
