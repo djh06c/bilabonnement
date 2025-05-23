@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Opret Kunde</title>
+  <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-layout">
+  <div class="sidebar">
+    <a th:href="@{/kunder}" class="sidebar-button">Kundeoversigt</a>
+    <a th:href="@{/kunder/opret}" class="sidebar-button active">Opret kunde</a>
+  </div>
+
+  <div class="form-container">
+    <h1>Opret ny kunde</h1>
+    <form th:action="@{/kunder/opret}" th:object="${kundeModel}" method="post">
+      <label>Navn:</label>
+      <input type="text" th:field="*{navn}" required>
+
+      <label>Email:</label>
+      <input type="email" th:field="*{email}" required>
+
+      <label>Adresse:</label>
+      <input type="text" th:field="*{adresse}" required>
+
+      <label>Telefon:</label>
+      <input type="text" th:field="*{tlfNr}" required>
+
+      <label>Fødselsdato:</label>
+      <input type="date" th:field="*{foedselsdato}" required>
+
+      <button type="submit" class="nav-button">Opret kunde</button>
+    </form>
+  </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

@@ -7,13 +7,13 @@ CREATE DATABASE IF NOT EXISTS bilabonnement
 USE bilabonnement;
 
 -- Kunde
-CREATE TABLE Kunde (
-    KundeID INT PRIMARY KEY,
-    Navn VARCHAR(50) NOT NULL,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    Adresse VARCHAR(255) NOT NULL,
-    TlfNr VARCHAR(15) NOT NULL,
-    Fødselsdato DATE NOT NULL
+CREATE TABLE kunde (
+    kunde_ID INT PRIMARY KEY,
+    navn VARCHAR(50) NOT NULL,
+    mail VARCHAR(100) NOT NULL UNIQUE,
+    adresse VARCHAR(255) NOT NULL,
+    tlf VARCHAR(15) NOT NULL,
+    foedselsdato DATE NOT NULL
 );
 
 -- SkadeKategori
