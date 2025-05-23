@@ -30,10 +30,8 @@ public class kundeRepo {
 
     // Opret ny kunde
     public void opretKunde(kundeModel kunde) {
-        int id = hentNaesteKundeId();
-        String sql = "INSERT INTO kunde (kunde_ID, navn, mail, adresse, tlf, foedselsdato) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO kunde (navn, mail, adresse, tlf, foedselsdato) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,
-                id,
                 kunde.getNavn(),
                 kunde.getEmail(),
                 kunde.getAdresse(),
@@ -59,12 +57,5 @@ public class kundeRepo {
     public void sletKunde(int id) {
         String sql = "DELETE FROM kunde WHERE kunde_ID = ?";
         jdbcTemplate.update(sql, id);
-    }
-
-    // Find næste ledige ID
-    public int hentNaesteKundeId() {
-        String sql = "SELECT MAX(kunde_ID) FROM kunde";
-        Integer maxId = jdbcTemplate.queryForObject(sql, Integer.class);
-        return (maxId != null ? maxId : 0) + 1;
     }
 }

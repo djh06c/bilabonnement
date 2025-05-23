@@ -2,7 +2,7 @@
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Rediger Kunde</title>
+  <title>Rediger kunde</title>
   <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -12,13 +12,13 @@
 
 <main class="dashboard-layout">
   <div class="sidebar">
-    <a th:href="@{/kunde/kunder}" class="sidebar-button active">Kundeoversigt</a>
-    <a th:href="@{/kunde/opret}" class="sidebar-button">Opret kunde</a>
+    <a th:href="@{/kunder}" class="sidebar-button active">Kundeoversigt</a>
+    <a th:href="@{/kunder/opret}" class="sidebar-button">Opret kunde</a>
   </div>
 
   <div class="form-container">
     <h1>Rediger kunde</h1>
-    <form th:action="@{/kunde/rediger}" th:object="${kundeModel}" method="post">
+    <form th:action="@{/kunder/rediger}" th:object="${kundeModel}" method="post">
       <input type="hidden" th:field="*{kundeID}">
 
       <label>Navn:</label>

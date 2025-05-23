@@ -34,8 +34,4 @@ public class kundeService {
     public void sletKunde(int id) {
         kundeRepo.sletKunde(id);
     }
-
-    public int hentNaesteKundeId() {
-        return kundeRepo.hentNaesteKundeId();
-    }
 }

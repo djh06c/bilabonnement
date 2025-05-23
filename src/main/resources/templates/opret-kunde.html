@@ -12,13 +12,13 @@
 
 <main class="dashboard-layout">
   <div class="sidebar">
-    <a th:href="@{/kunde/kunder}" class="sidebar-button">Kundeoversigt</a>
-    <a th:href="@{/kunde/opret}" class="sidebar-button active">Opret kunde</a>
+    <a th:href="@{/kunder}" class="sidebar-button">Kundeoversigt</a>
+    <a th:href="@{/kunder/opret}" class="sidebar-button active">Opret kunde</a>
   </div>
 
   <div class="form-container">
     <h1>Opret ny kunde</h1>
-    <form th:action="@{/kunde/opret}" th:object="${kundeModel}" method="post">
+    <form th:action="@{/kunder/opret}" th:object="${kundeModel}" method="post">
       <label>Navn:</label>
       <input type="text" th:field="*{navn}" required>
 

@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/kunde")
 public class kundeController {
 
     private final kundeService kundeService;
@@ -16,41 +15,45 @@ public class kundeController {
         this.kundeService = kundeService;
     }
 
-    // Vis alle kunder
+    //  Listevisning af kunder
     @GetMapping("/kunder")
     public String visAlleKunder(Model model) {
         model.addAttribute("kunder", kundeService.hentAlleKunder());
         return "kunder";
     }
 
-    @GetMapping("/opret")
+    //  Vis formular til oprettelse
+    @GetMapping("/kunder/opret")
     public String visOpretForm(Model model) {
         model.addAttribute("kundeModel", new kundeModel());
         return "opret-kunde";
     }
 
-    @PostMapping("/opret")
+    //  Gem ny kunde
+    @PostMapping("/kunder/opret")
     public String opretKunde(@ModelAttribute kundeModel kunde) {
         kundeService.opretKunde(kunde);
-        return "redirect:/kunde/kunder";
+        return "redirect:/kunder";
     }
 
-    @GetMapping("/rediger/{id}")
+    //  Vis formular til redigering
+    @GetMapping("/kunder/rediger/{id}")
     public String visRedigerForm(@PathVariable int id, Model model) {
-        kundeModel kunde = kundeService.findById(id);
-        model.addAttribute("kundeModel", kunde);
+        model.addAttribute("kundeModel", kundeService.findById(id));
         return "rediger-kunde";
     }
 
-    @PostMapping("/rediger")
+    //  Gem ændret kunde
+    @PostMapping("/kunder/rediger")
     public String opdaterKunde(@ModelAttribute kundeModel kunde) {
         kundeService.opdaterKunde(kunde);
-        return "redirect:/kunde/kunder";
+        return "redirect:/kunder";
     }
 
-    @PostMapping("/slet/{id}")
+    //  Slet kunde
+    @PostMapping("/kunder/slet/{id}")
     public String sletKunde(@PathVariable int id) {
         kundeService.sletKunde(id);
-        return "redirect:/kunde/kunder";
+        return "redirect:/kunder";
     }
 }
