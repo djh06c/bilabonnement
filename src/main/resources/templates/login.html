@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <style>
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 9vw); /* tilpasset header/footer */
+      padding-top: 6vw;
+      padding-bottom: 3vw;
+    }
+
+    .login-box {
+      background-color: white;
+      padding: 3vw;
+      border: 3px solid black;
+      border-radius: 15px;
+      max-width: 30vw;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .login-box h1 {
+      margin-bottom: 1vw;
+    }
+
+    .login-box img.logo-image {
+      max-height: 5vw;
+      margin-bottom: 1vw;
+    }
+
+    .login-box input {
+      margin-bottom: 1.2vw;
+    }
+
+    .error-message {
+      color: red;
+      font-weight: bold;
+      margin-bottom: 1vw;
+    }
+
+    .success-message {
+      color: green;
+      font-weight: bold;
+      margin-bottom: 1vw;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="login-container">
+  <div class="login-box">
+
+    <!-- Logo -->
+    <img src="/pictures/bildesk.PNG" alt="BilDesk logo" class="logo-image" />
+    <h1>Login</h1>
+
+    <!-- Fejl / logout beskeder -->
+    <div th:if="${param.error}" class="error-message">
+      Forkert brugernavn eller adgangskode.
+    </div>
+    <div th:if="${param.logout}" class="success-message">
+      Du er nu logget ud.
+    </div>
+
+    <!-- Formular -->
+    <form th:action="@{/login}" method="post">
+      <label for="username">Brugernavn:</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Adgangskode:</label>
+      <input type="password" id="password" name="password" required>
+
+      <button type="submit" class="nav-button">Log ind</button>
+    </form>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

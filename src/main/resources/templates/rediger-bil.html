@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Rediger bil</title>
+  <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a th:href="@{/biler}" th:class="'sidebar-button' + (${filter == null || filter == 'rediger'} ? ' active' : '')">Biloversigt</a>
+    <a th:href="@{/bil/opret}" th:class="'sidebar-button' + (${filter == 'opret'} ? ' active' : '')">Opret bil</a>
+  </div>
+
+  <!-- Formular -->
+  <div class="form-container">
+    <h1>Rediger bil</h1>
+    <form th:action="@{/bil/rediger}" th:object="${bil}" method="post">
+      <input type="hidden" th:field="*{bilId}" />
+
+      <label for="model">Model:</label>
+      <input type="text" id="model" th:field="*{model}" required>
+
+      <label for="maerke">Mærke:</label>
+      <input type="text" id="maerke" th:field="*{maerke}" required>
+
+      <label for="regNr">Registreringsnummer:</label>
+      <input type="text" id="regNr" th:field="*{regNr}" required>
+
+      <label for="stelNummer">Stelnummer:</label>
+      <input type="text" id="stelNummer" th:field="*{stelNummer}" required>
+
+      <label for="vognNummer">Vognnummer:</label>
+      <input type="text" id="vognNummer" th:field="*{vognNummer}" required>
+
+      <label for="co2">CO2-udledning:</label>
+      <input type="number" step="0.01" id="co2" th:field="*{co2}" required>
+
+      <label for="staalpris">Stålpris:</label>
+      <input type="number" step="0.01" id="staalpris" th:field="*{staalpris}" required>
+
+      <label for="tilgaengelig">Tilgængelig:</label>
+      <select id="tilgaengelig" th:field="*{tilgaengelig}">
+        <option th:value="true" th:selected="${bil.tilgaengelig} == true">Ja</option>
+        <option th:value="false" th:selected="${bil.tilgaengelig} == false">Nej</option>
+      </select>
+
+      <label for="udstyrsniveauId">Udstyrsniveau:</label>
+      <select id="udstyrsniveauId" th:field="*{udstyrsniveauId}">
+        <option th:each="u : ${udstyrsniveauer}"
+                th:value="${u.udstyrsniveauId}"
+                th:text="${u.navn}"
+                th:selected="${u.udstyrsniveauId == bil.udstyrsniveauId}">
+        </option>
+      </select>
+
+      <button type="submit" class="nav-button">Gem ændringer</button>
+    </form>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
