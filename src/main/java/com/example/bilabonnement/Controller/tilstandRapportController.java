@@ -2,10 +2,8 @@ package com.example.bilabonnement.Controller;
 
 import com.example.bilabonnement.Model.tilstandRapportModel;
 import com.example.bilabonnement.Model.skadeKategoriModel;
-import com.example.bilabonnement.Model.lejekontraktModel;
 import com.example.bilabonnement.Service.tilstandRapportService;
 import com.example.bilabonnement.Service.skadeKategoriService;
-import com.example.bilabonnement.Service.lejekontraktService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
