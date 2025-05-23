@@ -2,7 +2,7 @@
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Opret bil</title>
+  <title>Opret ny bil</title>
   <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -15,14 +15,8 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <a th:href="@{/biler}"
-       th:class="'sidebar-button' + (${filter == null} ? ' active' : '')">
-      Biloversigt
-    </a>
-    <a th:href="@{/bil/opret}"
-       th:class="'sidebar-button' + (${filter == 'opret'} ? ' active' : '')">
-      Opret bil
-    </a>
+    <a th:href="@{/biler}" th:class="'sidebar-button' + (${filter == null} ? ' active' : '')">Biloversigt</a>
+    <a th:href="@{/bil/opret}" th:class="'sidebar-button' + (${filter == 'opret'} ? ' active' : '')">Opret bil</a>
   </div>
 
   <!-- Formular -->
@@ -51,15 +45,18 @@
       <label for="staalpris">Stålpris:</label>
       <input type="number" step="0.01" id="staalpris" th:field="*{staalpris}" required>
 
-      <label for="udstyrsniveauId">Udstyrsniveau:</label>
-      <select id="udstyrsniveauId" th:field="*{udstyrsniveauId}" required>
-        <option th:each="niveau : ${udstyrsniveauer}"
-                th:value="${niveau.udstyrsniveauId}"
-                th:text="${niveau.navn}">
-        </option>
+      <label for="tilgaengelig">Tilgængelig:</label>
+      <select id="tilgaengelig" th:field="*{tilgaengelig}">
+        <option th:value="true">Ja</option>
+        <option th:value="false">Nej</option>
       </select>
 
-      <button type="submit" class="nav-button">Opret</button>
+      <label for="udstyrsniveauId">Udstyrsniveau:</label>
+      <select id="udstyrsniveauId" th:field="*{udstyrsniveauId}">
+        <option th:each="u : ${udstyrsniveauer}" th:value="${u.udstyrsniveauId}" th:text="${u.navn}"></option>
+      </select>
+
+      <button type="submit" class="nav-button">Opret bil</button>
     </form>
   </div>
 

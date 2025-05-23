@@ -17,7 +17,8 @@ public class loginController {
     }
 
     @GetMapping("/login")
-    public String visLoginSide() {
+    public String visLoginSide(Model model) {
+        model.addAttribute("isLogin", true); // <--- tilføjet
         return "login";
     }
 

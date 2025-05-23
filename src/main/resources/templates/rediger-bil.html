@@ -15,14 +15,8 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <a th:href="@{/biler}"
-       th:class="'sidebar-button' + (${filter == null or filter == 'rediger'} ? ' active' : '')">
-      Biloversigt
-    </a>
-    <a th:href="@{/bil/opret}"
-       th:class="'sidebar-button' + (${filter == 'opret'} ? ' active' : '')">
-      Opret bil
-    </a>
+    <a th:href="@{/biler}" th:class="'sidebar-button' + (${filter == null || filter == 'rediger'} ? ' active' : '')">Biloversigt</a>
+    <a th:href="@{/bil/opret}" th:class="'sidebar-button' + (${filter == 'opret'} ? ' active' : '')">Opret bil</a>
   </div>
 
   <!-- Formular -->
