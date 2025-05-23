@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class tilstandRapportRepo {
+public class     tilstandRapportRepo {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
