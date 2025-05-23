@@ -39,10 +39,6 @@ button:hover,
     background-color: lightgrey;
 }
 
-.nav-button.active {
-    background-color: #ccff00;
-}
-
 input, select, textarea {
     width: 100%;
     padding: 0.5vw;
