@@ -1,0 +1,18 @@
+
+<div th:fragment="header">
+  <header class="site-header">
+    <div class="header-left"><strong>Logo</strong></div>
+
+    <div class="header-center">
+      <div class="header-center" th:if="${isLogin != true}">
+        <img src="/pictures/bildesk.PNG" alt="BilDesk logo" class="logo-image" />
+      </div>
+    </div>
+
+    <!-- Skjul knapper på login-siden -->
+    <div class="header-right" th:if="${isLogin != true}">
+      <a th:href="@{/index}" class="header-button">Menu</a>
+      <a th:href="@{/login}" class="header-button">Log Ud</a>
+    </div>
+  </header>
+</div>
