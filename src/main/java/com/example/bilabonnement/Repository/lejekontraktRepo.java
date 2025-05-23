@@ -24,9 +24,10 @@ public class lejekontraktRepo {
     }
 
     /* --------------- Hent en Lejekontrakt fra ID --------------- */
-    public lejekontraktModel findById(int kontraktId){
-        String sql= "SELECT * from lejekontrakt where kontrakt_ID=?";
-        return jdbcTemplate.queryForObject(sql, new lejekontraktRowMapper(), kontraktId);
+    public lejekontraktModel findById(int kontraktId) {
+        String sql = "SELECT * FROM lejekontrakt WHERE kontrakt_ID = ?";
+        List<lejekontraktModel> result = jdbcTemplate.query(sql, new lejekontraktRowMapper(), kontraktId);
+        return result.isEmpty() ? null : result.get(0);
     }
 
     /* --------------- Opret en ny lejekontrakk --------------- */

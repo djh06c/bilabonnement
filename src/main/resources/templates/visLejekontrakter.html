@@ -31,6 +31,42 @@
                 <input type="number" name="id" id="id">
                 <button type="submit" class="nav-button">Hent</button>
             </form>
+
+        <!-- vis resultat hvis specifikke lejekontrakt er blevet fundet -->
+        <div th:if="${fundetKontrakt != null}">
+            <h3>Resultat:</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>KundeID</th>
+                    <th>BilID</th>
+                    <th>Start</th>
+                    <th>Slut</th>
+                    <th>Pickup</th>
+                    <th>Drop off</th>
+                    <th>Pris</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${fundetKontrakt.kontraktID}"></td>
+                    <td th:text="${fundetKontrakt.kundeID}"></td>
+                    <td th:text="${fundetKontrakt.bilID}"></td>
+                    <td th:text="${fundetKontrakt.startDato}"></td>
+                    <td th:text="${fundetKontrakt.slutDato}"></td>
+                    <td th:text="${fundetKontrakt.pickupSted}"></td>
+                    <td th:text="${fundetKontrakt.afleveringsSted}"></td>
+                    <td th:text="${fundetKontrakt.pris}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Fejlbesked hvis ID ikke blev fundet -->
+        <div th:if="${fejlbesked != null}">
+            <p style="color: red;" th:text="${fejlbesked}"></p>
+        </div>
         </section>
 
         <!-- Vis alle -->
