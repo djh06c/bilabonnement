@@ -27,16 +27,6 @@ public class bilRepo {
         return jdbcTemplate.query(sql, new bilRowMapper());
     }
 
-    public List<bilModel> hentLedigeBiler() {
-        String sql = """
-            SELECT b.*, u.navn AS udstyrsniveauNavn
-            FROM Bil b
-            JOIN Udstyrsniveau u ON b.udstyrsniveau_ID = u.udstyrsniveau_ID
-            WHERE b.tilgaengelig = true
-        """;
-        return jdbcTemplate.query(sql, new bilRowMapper());
-    }
-
     public bilModel findById(int id) {
         String sql = """
             SELECT b.*, u.navn AS udstyrsniveauNavn
