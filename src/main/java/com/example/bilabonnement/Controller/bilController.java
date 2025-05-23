@@ -24,8 +24,6 @@ public class bilController {
 
         if (filter == null || filter.isEmpty()) {
             model.addAttribute("biler", bilService.hentAlleBiler());
-        } else if (filter.equals("ledige")) {
-            model.addAttribute("biler", bilService.hentLedigeBiler());
         } else {
             model.addAttribute("biler", bilService.hentBilerSorteretEfter(filter));
         }

@@ -20,10 +20,6 @@ public class bilService {
         return bilRepo.hentAlleBiler();
     }
 
-    public List<bilModel> hentLedigeBiler() {
-        return bilRepo.hentLedigeBiler();
-    }
-
     public List<bilModel> hentBilerSorteretEfter(String kolonneNavn) {
         return bilRepo.hentBilerSorteretEfter(kolonneNavn);
     }
