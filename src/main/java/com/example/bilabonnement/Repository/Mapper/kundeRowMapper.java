@@ -1,6 +1,5 @@
 package com.example.bilabonnement.Repository.Mapper;
 
-import com.example.bilabonnement.Model.kundeModel;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
