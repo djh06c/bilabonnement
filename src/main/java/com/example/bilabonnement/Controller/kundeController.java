@@ -6,9 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Controller
+@RequestMapping("/kunde")
 public class kundeController {
 
     private final kundeService kundeService;
@@ -17,40 +16,41 @@ public class kundeController {
         this.kundeService = kundeService;
     }
 
-    // Vis alle kunder + tom kunde til formular
+    // Vis alle kunder
     @GetMapping("/kunder")
     public String visAlleKunder(Model model) {
-        List<kundeModel> kunder = kundeService.findAll();
-        model.addAttribute("kunder", kunder);
-        model.addAttribute("kundeModel", new kundeModel());
-        return "kunde";
+        model.addAttribute("kunder", kundeService.hentAlleKunder());
+        return "kunder";
     }
 
-    // Opret ny kunde
-    @PostMapping("/kunde/opret")
+    @GetMapping("/opret")
+    public String visOpretForm(Model model) {
+        model.addAttribute("kundeModel", new kundeModel());
+        return "opret-kunde";
+    }
+
+    @PostMapping("/opret")
     public String opretKunde(@ModelAttribute kundeModel kunde) {
         kundeService.opretKunde(kunde);
-        return "redirect:/kunder";
+        return "redirect:/kunde/kunder";
     }
 
-    // Vis kunde til redigering
-    @GetMapping("/kunde/{id}")
-    @ResponseBody
-    public kundeModel hentKunde(@PathVariable int id) {
-        return kundeService.findById(id);
+    @GetMapping("/rediger/{id}")
+    public String visRedigerForm(@PathVariable int id, Model model) {
+        kundeModel kunde = kundeService.findById(id);
+        model.addAttribute("kundeModel", kunde);
+        return "rediger-kunde";
     }
 
-    // Opdater kunde
-    @PostMapping("/kunde/rediger")
-    public String redigerKunde(@ModelAttribute kundeModel kunde) {
-        kundeService.redigerKunde(kunde);
-        return "redirect:/kunder";
+    @PostMapping("/rediger")
+    public String opdaterKunde(@ModelAttribute kundeModel kunde) {
+        kundeService.opdaterKunde(kunde);
+        return "redirect:/kunde/kunder";
     }
 
-    // Slet kunde
-    @PostMapping("/kunde/slet/{id}")
+    @PostMapping("/slet/{id}")
     public String sletKunde(@PathVariable int id) {
-        kundeService.deleteById(id);
-        return "redirect:/kunder";
+        kundeService.sletKunde(id);
+        return "redirect:/kunde/kunder";
     }
 }

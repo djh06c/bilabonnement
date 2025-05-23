@@ -15,27 +15,27 @@ public class kundeService {
         this.kundeRepo = kundeRepo;
     }
 
-
-    public List<kundeModel> findAll() {
-        return kundeRepo.findAll();
+    public List<kundeModel> hentAlleKunder() {
+        return kundeRepo.hentAlleKunder();
     }
-
 
     public kundeModel findById(int id) {
         return kundeRepo.findById(id);
     }
 
-
     public void opretKunde(kundeModel kunde) {
-        kundeRepo.save(kunde);
+        kundeRepo.opretKunde(kunde);
     }
 
-
-    public void redigerKunde(kundeModel kunde) {
-        kundeRepo.update(kunde);
+    public void opdaterKunde(kundeModel kunde) {
+        kundeRepo.opdaterKunde(kunde);
     }
 
-    public void deleteById(int id) {
-        kundeRepo.deleteById(id);
+    public void sletKunde(int id) {
+        kundeRepo.sletKunde(id);
+    }
+
+    public int hentNaesteKundeId() {
+        return kundeRepo.hentNaesteKundeId();
     }
 }

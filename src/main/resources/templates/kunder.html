@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kundeoversigt</title>
+    <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-layout">
+    <div class="sidebar">
+        <a th:href="@{/kunde/kunder}" class="sidebar-button active">Kundeoversigt</a>
+        <a th:href="@{/kunde/opret}" class="sidebar-button">Opret kunde</a>
+    </div>
+
+    <div class="content">
+        <h1>Alle Kunder</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Navn</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Telefon</th>
+                <th>Fødselsdato</th>
+                <th>Handlinger</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="kunde : ${kunder}">
+                <td th:text="${kunde.kundeID}"></td>
+                <td th:text="${kunde.navn}"></td>
+                <td th:text="${kunde.email}"></td>
+                <td th:text="${kunde.adresse}"></td>
+                <td th:text="${kunde.tlfNr}"></td>
+                <td th:text="${kunde.foedselsdato}"></td>
+                <td class="action-cell">
+                    <a th:href="@{'/kunde/rediger/' + ${kunde.kundeID}}" class="icon-button" title="Rediger">
+                        <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger"/>
+                    </a>
+                    <form th:action="@{'/kunde/slet/' + ${kunde.kundeID}}" method="post" style="display:inline;">
+                        <button type="submit" class="icon-button" onclick="return confirm('Slet kunde?')" title="Slet">
+                            <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet"/>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
