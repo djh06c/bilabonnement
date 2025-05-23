@@ -1,76 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>VisLejekontrakter</title>
+    <title>Vis Lejekontrakter</title>
     <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<!-- header insert fragment-->
-<div th:insert="~{fragments/header :: header}"></div>
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
 
-<!-- footer insert fragment -->
-<div th:insert="~{fragments/footer :: footer}"></div>
+<main class="dashboard-layout">
 
-<div class="main-container">
+    <!-- Sidebar -->
     <div class="sidebar">
-        <a href="/lejekontrakter/vis" class="nav-button active">Vis Lejekontrakter</a>
-        <a href="/lejekontrakter" class="nav-button">Opret Lejekontrakt</a>
-
+        <a th:href="@{/lejekontrakter/vis}" class="sidebar-button active">Vis Lejekontrakter</a>
+        <a th:href="@{/lejekontrakter}" class="sidebar-button">Opret Lejekontrakt</a>
     </div>
+
+    <!-- Indhold -->
     <div class="form-container">
+        <h1>Lejekontrakter</h1>
 
+        <!-- Find en specifik lejekontrakt -->
+        <section>
+            <h2>Find Lejekontrakt</h2>
+            <form action="/lejekontrakter" method="get">
+                <label for="id">Kontrakt ID:</label>
+                <input type="number" name="id" id="id">
+                <button type="submit" class="nav-button">Hent</button>
+            </form>
+        </section>
 
-        <!-- Find en specifik lejekontrakt ud fra ID -->
-        <h2>Find Lejekontrakt</h2>
-        <form action="/lejekontrakter" method="get">
-            <label for="id">Kontrakt ID:</label>
-            <input type="number" name="id" id="id">
-            <button type="submit">Hent</button>
-        </form>
+        <!-- Vis alle -->
+        <section>
+            <h2>Alle Lejekontrakter</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>KundeID</th>
+                    <th>BilID</th>
+                    <th>Start</th>
+                    <th>Slut</th>
+                    <th>Pickup</th>
+                    <th>Drop off</th>
+                    <th>Pris</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="kontrakt : ${lejekontrakter}">
+                    <td th:text="${kontrakt.kontraktID}"></td>
+                    <td th:text="${kontrakt.kundeID}"></td>
+                    <td th:text="${kontrakt.bilID}"></td>
+                    <td th:text="${kontrakt.startDato}"></td>
+                    <td th:text="${kontrakt.slutDato}"></td>
+                    <td th:text="${kontrakt.pickupSted}"></td>
+                    <td th:text="${kontrakt.afleveringsSted}"></td>
+                    <td th:text="${kontrakt.pris}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
 
-
-        <!-- Viser Alle lejekontrakter -->
-        <h2>Alle Lejekontrakter</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>KontraktID</th>
-                <th>KundeID</th>
-                <th>BilID</th>
-                <th>StartDato</th>
-                <th>SlutDato</th>
-                <th>PickupSted</th>
-                <th>AfleveringsSted</th>
-                <th>Pris</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="kontrakt : ${lejekontrakter}">
-                <td th:text="${kontrakt.kontraktID}"></td>
-                <td th:text="${kontrakt.kundeID}"></td>
-                <td th:text="${kontrakt.bilID}"></td>
-                <td th:text="${kontrakt.startDato}"></td>
-                <td th:text="${kontrakt.slutDato}"></td>
-                <td th:text="${kontrakt.pickupSted}"></td>
-                <td th:text="${kontrakt.afleveringsSted}"></td>
-                <td th:text="${kontrakt.pris}"></td>
-            </tr>
-            </tbody>
-        </table>
-
-        <!-- Slet en lejekontrakt ud fra ID -->
-        <h2>Slet Lejekontrakt</h2>
-        <form th:action="@{/lejekontrakter/slet}" method="post">
-            <label>Kontrakt ID: <input type="number" name="id" required></label><br>
-            <button type="submit">Slet</button>
-        </form>
-
+        <!-- Slet -->
+        <section>
+            <h2>Slet Lejekontrakt</h2>
+            <form th:action="@{/lejekontrakter/slet}" method="post">
+                <label for="deleteID">Kontrakt ID:</label>
+                <input type="number" name="id" id="deleteID" required>
+                <button type="submit" class="nav-button">Slet</button>
+            </form>
+        </section>
     </div>
-</div>
 
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

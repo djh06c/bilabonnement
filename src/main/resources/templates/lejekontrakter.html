@@ -1,41 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>OpretLejekontrakt</title>
+  <meta charset="UTF-8">
+  <title>Opret Lejekontrakt</title>
   <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
-<!-- header insert fragment-->
-<div th:insert="~{fragments/header :: header}"></div>
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
 
-<!-- footer insert fragment -->
-<div th:insert="~{fragments/footer :: footer}"></div>
-<div class="main-container">
+<main class="dashboard-layout">
+
+  <!-- Sidebar -->
   <div class="sidebar">
-    <a href="/lejekontrakter/vis" class="nav-button">Vis Lejekontrakter</a>
-    <a href="/lejekontrakter" class="nav-button active">Opret Lejekontrakt</a>
-
+    <a th:href="@{/lejekontrakter/vis}" class="sidebar-button">Vis Lejekontrakter</a>
+    <a th:href="@{/lejekontrakter}" class="sidebar-button active">Opret Lejekontrakt</a>
   </div>
-<div class="form-container">
 
-  <h2>Opret ny lejekontrakt</h2>
+  <!-- Formular -->
+  <div class="form-container">
+    <h1>Opret ny lejekontrakt</h1>
     <form th:action="@{/lejekontrakter/opret}" th:object="${lejekontraktModel}" method="post">
-      <label>Kontrakt ID: <input type="number" th:field="*{kontraktID}" required></label><br>
-      <label>Kunde ID: <input type="number" th:field="*{kundeID}" required></label><br>
-      <label>Bil ID: <input type="number" th:field="*{bilID}" required></label><br>
-      <label>Start Dato: <input type="date" th:field="*{startDato}" required></label><br>
-      <label>Slut Dato: <input type="date" th:field="*{slutDato}" required></label><br>
-      <label>Pickup Sted: <input type="text" th:field="*{pickupSted}" required></label><br>
-      <label>Aflever Sted: <input type="text" th:field="*{afleveringsSted}" required></label><br>
-      <label>Pris: <input type="number" step="0.01" th:field="*{pris}" required></label><br>
-      <button type="submit" class="submit-button">Submit</button>
-    </form>
+      <label for="kontraktID">Kontrakt ID:</label>
+      <input type="number" id="kontraktID" th:field="*{kontraktID}" required>
 
-</div>
-</div>
+      <label for="kundeID">Kunde ID:</label>
+      <input type="number" id="kundeID" th:field="*{kundeID}" required>
+
+      <label for="bilID">Bil ID:</label>
+      <input type="number" id="bilID" th:field="*{bilID}" required>
+
+      <label for="startDato">Start Dato:</label>
+      <input type="date" id="startDato" th:field="*{startDato}" required>
+
+      <label for="slutDato">Slut Dato:</label>
+      <input type="date" id="slutDato" th:field="*{slutDato}" required>
+
+      <label for="pickupSted">Pickup Sted:</label>
+      <input type="text" id="pickupSted" th:field="*{pickupSted}" required>
+
+      <label for="afleveringsSted">Afleverings Sted:</label>
+      <input type="text" id="afleveringsSted" th:field="*{afleveringsSted}" required>
+
+      <label for="pris">Pris:</label>
+      <input type="number" step="0.01" id="pris" th:field="*{pris}" required>
+
+      <button type="submit" class="nav-button">Opret lejekontrakt</button>
+    </form>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>
