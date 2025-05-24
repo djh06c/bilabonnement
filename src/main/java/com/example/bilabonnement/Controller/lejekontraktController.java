@@ -118,5 +118,4 @@ public class lejekontraktController {
         return "visLejekontrakter";
     }
 
-
 }
