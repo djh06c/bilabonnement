@@ -55,6 +55,21 @@ public class lejekontraktController {
         return "visLejekontrakter";
     }
 
+    @GetMapping("/rediger/{id}")
+    public String visRedigerForm(@PathVariable("id") int id, Model model) {
+        lejekontraktModel kontrakt = service.findById(id);
+        model.addAttribute("lejekontraktModel", kontrakt);
+        model.addAttribute("filter", "rediger");
+        return "rediger-Lejekontrakter";
+    }
+
+    @PostMapping("/rediger")
+    public String redigerKontrakt(@ModelAttribute lejekontraktModel kontrakt) {
+        service.update(kontrakt);
+        return "redirect:/lejekontrakter/vis";
+    }
+
+
     // -------------------- REST API ENDPOINTS --------------------
 
     @ResponseBody

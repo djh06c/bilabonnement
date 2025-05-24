@@ -47,6 +47,6 @@ public class lejekontraktModel {
     public void setStartDato(LocalDate startDato){this.startDato = startDato;}
     public void setSlutDato(LocalDate slutDato){this.slutDato = slutDato;}
     public void setPickupSted(String pickupSted){this.pickupSted = pickupSted;}
-    public void setAfleveringsSted(String afleverSted){this.afleveringsSted = afleverSted;}
+    public void setAfleveringsSted(String afleveringsSted){this.afleveringsSted = afleveringsSted;}
     public void setPris(BigDecimal pris){this.pris = pris;}
 }
