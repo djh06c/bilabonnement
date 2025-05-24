@@ -39,7 +39,8 @@ public class kundeController {
     //  Vis formular til redigering
     @GetMapping("/kunder/rediger/{id}")
     public String visRedigerForm(@PathVariable int id, Model model) {
-        model.addAttribute("kundeModel", kundeService.findById(id));
+        kundeModel kunde = kundeService.findById(id);
+        model.addAttribute("kundeModel", kunde);
         return "rediger-kunde";
     }
 
