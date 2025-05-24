@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Skadekategorier</title>
+    <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a th:href="@{/tilstandsrapporter/vis}" class="sidebar-button">Tilstandsrapporter</a>
+        <a th:href="@{/skadekategorier/vis}" class="sidebar-button active">Skadekategorier</a>
+    </div>
+
+    <!-- Indhold -->
+    <div class="content">
+        <h1>Skadekategorier</h1>
+
+        <!-- Formular -->
+        <section class="form-section">
+            <h2 th:text="${rediger} ? 'Rediger kategori' : 'Opret ny kategori'"></h2>
+
+            <form th:action="@{${rediger} ? '/skadekategorier/opdater' : '/skadekategorier/opret'}"
+                  th:object="${kategoriForm}" method="post">
+
+                <label>Kategori ID:</label>
+                <input type="number" th:field="*{kategoriID}" th:readonly="${rediger}" required><br>
+
+                <label>Navn:</label>
+                <input type="text" th:field="*{navn}" required><br>
+
+                <label>Beskrivelse:</label>
+                <textarea th:field="*{beskrivelse}" rows="3" cols="40" required></textarea><br>
+
+                <button type="submit" class="primary-button"
+                        th:text="${rediger} ? 'Opdater kategori' : 'Gem kategori'"></button>
+                <a th:if="${rediger}" th:href="@{/skadekategorier/vis}" class="secondary-button">Annuller</a>
+            </form>
+        </section>
+
+        <!-- Liste -->
+        <section class="table-section">
+            <h2>Eksisterende skadekategorier</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Navn</th>
+                    <th>Beskrivelse</th>
+                    <th>Handling</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="kat : ${kategorier}">
+                    <td th:text="${kat.kategoriID}"></td>
+                    <td th:text="${kat.navn}"></td>
+                    <td th:text="${kat.beskrivelse}"></td>
+                    <td class="action-cell">
+                        <a th:href="@{'/skadekategorier/rediger/' + ${kat.kategoriID}}" class="icon-button" title="Rediger">
+                            <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger"/>
+                        </a>
+                        <a th:href="@{'/skadekategorier/slet/' + ${kat.kategoriID}}"
+                           class="icon-button"
+                           onclick="return confirm('Er du sikker på, at du vil slette denne kategori?')" title="Slet">
+                            <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet"/>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>
