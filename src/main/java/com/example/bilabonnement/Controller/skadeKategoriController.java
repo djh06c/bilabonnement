@@ -16,30 +16,34 @@ public class skadeKategoriController {
     @Autowired
     private skadeKategoriService service;
 
-    // 🔹 Vis alle skadekategorier (til Thymeleaf eller liste-visning)
     @GetMapping("/vis")
     public String visAlle(Model model) {
-        List<skadeKategoriModel> kategorier = service.hentAlleKategorier();
-        model.addAttribute("kategorier", kategorier);
-        model.addAttribute("nyKategori", new skadeKategoriModel());
-        return "skadekategorier"; // skal matche HTML-side i /templates
+        model.addAttribute("kategoriForm", new skadeKategoriModel());
+        model.addAttribute("kategorier", service.hentAlleKategorier());
+        model.addAttribute("rediger", false);
+        return "skadekategorier";
     }
 
-    // 🔹 Opret ny kategori via formular
+    @GetMapping("/rediger/{id}")
+    public String redigerKategori(@PathVariable int id, Model model) {
+        model.addAttribute("kategoriForm", service.hentKategoriVedId(id));
+        model.addAttribute("kategorier", service.hentAlleKategorier());
+        model.addAttribute("rediger", true);
+        return "skadekategorier";
+    }
+
     @PostMapping("/opret")
-    public String opretKategori(@ModelAttribute("nyKategori") skadeKategoriModel kategori) {
+    public String opretKategori(@ModelAttribute("kategoriForm") skadeKategoriModel kategori) {
         service.opretKategori(kategori);
         return "redirect:/skadekategorier/vis";
     }
 
-    // 🔹 (Valgfri) Rediger kategori
     @PostMapping("/opdater")
-    public String opdaterKategori(@ModelAttribute skadeKategoriModel kategori) {
+    public String opdaterKategori(@ModelAttribute("kategoriForm") skadeKategoriModel kategori) {
         service.opdaterKategori(kategori);
         return "redirect:/skadekategorier/vis";
     }
 
-    // 🔹 (Valgfri) Slet kategori
     @GetMapping("/slet/{id}")
     public String sletKategori(@PathVariable int id) {
         service.sletKategori(id);
