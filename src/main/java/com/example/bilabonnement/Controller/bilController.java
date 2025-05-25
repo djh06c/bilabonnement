@@ -5,6 +5,9 @@ import com.example.bilabonnement.Service.bilService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+
 
 @Controller
 public class bilController {
@@ -28,9 +31,25 @@ public class bilController {
             model.addAttribute("biler", bilService.hentBilerSorteretEfter(filter));
         }
 
+        List<bilModel> senesteBiler = bilService.hentSenesteBiler(3);
+        model.addAttribute("senesteBiler", senesteBiler);
         model.addAttribute("filter", filter);
+
+        // 🔍 Debug: Udskriv alle biler
+        System.out.println("=== Alle biler ===");
+        for (bilModel b : bilService.hentAlleBiler()) {
+            System.out.println("ID: " + b.getBilId() + ", Model: " + b.getModel() + ", RegNr: " + b.getRegNr());
+        }
+
+        // 🔍 Debug: Udskriv seneste biler
+        System.out.println("=== Seneste biler (top 3) ===");
+        for (bilModel b : senesteBiler) {
+            System.out.println("ID: " + b.getBilId() + ", Model: " + b.getModel() + ", RegNr: " + b.getRegNr());
+        }
+
         return "biler";
     }
+
 
     // ----- CREATE -----
 

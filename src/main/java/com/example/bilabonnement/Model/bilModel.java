@@ -126,4 +126,19 @@ public class bilModel {
         this.udstyrsniveauNavn = udstyrsniveauNavn;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        bilModel bil = (bilModel) o;
+
+        return bilId == bil.bilId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(bilId);
+    }
+
 }

@@ -42,7 +42,8 @@
       </thead>
 
       <tbody>
-      <tr th:each="bil : ${biler}" th:class="${bil.tilgaengelig} ? 'tilgaengelig' : 'udlejet'">
+      <tr th:each="bil : ${biler}"
+          th:class="${bil.tilgaengelig ? 'ledig' : 'udlejet'} + (${#lists.contains(senesteBiler, bil)} ? ' ny-bil' : '')">
         <td th:text="${bil.bilId}"></td>
         <td th:text="${bil.model}"></td>
         <td th:text="${bil.maerke}"></td>
@@ -54,16 +55,9 @@
         <td th:text="${bil.maanedspris} + ' kr.'"></td>
         <td th:text="${bil.tilgaengelig} ? 'Ja' : 'Nej'"></td>
         <td th:text="${bil.udstyrsniveauNavn}"></td>
-        <td class="action-cell">
-          <a th:href="@{'/bil/rediger/' + ${bil.bilId}}" class="icon-button" title="Rediger">
-            <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger" />
-          </a>
-          <a th:href="@{'/bil/slet/' + ${bil.bilId}}"
-             class="icon-button"
-             title="Slet"
-             onclick="return confirm('Er du sikker på, at du vil slette denne bil?')">
-            <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet" />
-          </a>
+        <td>
+          <a th:href="@{'/bil/rediger/' + ${bil.bilId}}">Rediger</a> |
+          <a th:href="@{'/bil/slet/' + ${bil.bilId}}">Slet</a>
         </td>
       </tr>
       </tbody>
