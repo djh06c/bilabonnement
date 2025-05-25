@@ -39,36 +39,11 @@ public class bilRepo {
 
     public void opretBil(bilModel bil) {
         String sql = """
-            INSERT INTO Bil 
-            (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, udstyrsniveau_ID)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """;
-        jdbcTemplate.update(sql,
-                bil.getVognNummer(),
-                bil.getStelNummer(),
-                bil.getRegNr(),
-                bil.getModel(),
-                bil.getMaerke(),
-                bil.getCo2(),
-                bil.isTilgaengelig(),
-                bil.getStaalpris(),
-                bil.getUdstyrsniveauId());
-    }
+        INSERT INTO Bil 
+        (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, udstyrsniveau_ID, maanedspris)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """;
 
-    public void opdaterBil(bilModel bil) {
-        String sql = """
-            UPDATE Bil SET 
-                vognNummer = ?, 
-                stelNummer = ?, 
-                regNr = ?, 
-                model = ?, 
-                maerke = ?, 
-                co2 = ?, 
-                tilgaengelig = ?, 
-                staalpris = ?, 
-                udstyrsniveau_ID = ?
-            WHERE bil_ID = ?
-        """;
         jdbcTemplate.update(sql,
                 bil.getVognNummer(),
                 bil.getStelNummer(),
@@ -79,7 +54,39 @@ public class bilRepo {
                 bil.isTilgaengelig(),
                 bil.getStaalpris(),
                 bil.getUdstyrsniveauId(),
-                bil.getBilId());
+                bil.getMaanedspris() // NY!
+        );
+    }
+
+    public void opdaterBil(bilModel bil) {
+        String sql = """
+        UPDATE Bil SET 
+            vognNummer = ?, 
+            stelNummer = ?, 
+            regNr = ?, 
+            model = ?, 
+            maerke = ?, 
+            co2 = ?, 
+            tilgaengelig = ?, 
+            staalpris = ?, 
+            udstyrsniveau_ID = ?,
+            maanedspris = ? -- NY!
+        WHERE bil_ID = ?
+    """;
+
+        jdbcTemplate.update(sql,
+                bil.getVognNummer(),
+                bil.getStelNummer(),
+                bil.getRegNr(),
+                bil.getModel(),
+                bil.getMaerke(),
+                bil.getCo2(),
+                bil.isTilgaengelig(),
+                bil.getStaalpris(),
+                bil.getUdstyrsniveauId(),
+                bil.getMaanedspris(),      // NY!
+                bil.getBilId()
+        );
     }
 
     public void sletBil(int id) {
