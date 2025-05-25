@@ -79,6 +79,14 @@ table tr:hover {
     background-color: #f2f2f2;
 }
 
+/* Gør ID-kolonnen smallere i biloversigten */
+table.biloversigt th:first-child,
+table.biloversigt td:first-child {
+    width: 40px;
+    text-align: center;
+}
+
+
 /* ============================================================================
    LAYOUT: CONTAINERS
 ============================================================================ */
@@ -161,7 +169,7 @@ table tr:hover {
 }
 
 /* ============================================================================
-   BIL-SEKTION – layout og styling til biloversigt/opret/rediger
+   layout og styling til CRUD
 ============================================================================ */
 .content {
     flex: 3;
@@ -184,7 +192,7 @@ tr.udlejet {
     background-color: #ffeaea;
 }
 
-/* 🔧 Ikonknapper i bil-tabel */
+/* 🔧 Ikonknapper i tabel */
 .action-cell {
     display: flex;
     gap: 0.6vw;

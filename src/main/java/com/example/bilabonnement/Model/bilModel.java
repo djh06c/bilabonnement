@@ -11,6 +11,7 @@ public class bilModel {
     private boolean tilgaengelig;
     private double staalpris;
     private int udstyrsniveauId;
+    private double maanedspris;
 
     // --- Getters og setters ---
 
@@ -93,6 +94,10 @@ public class bilModel {
     public void setUdstyrsniveauId(int udstyrsniveauId) {
         this.udstyrsniveauId = udstyrsniveauId;
     }
+
+    public double getMaanedspris() {return maanedspris;}
+
+    public void setMaanedspris(double maanedspris) {this.maanedspris = maanedspris;}
 
     // --- toString() til debug ---
     @Override
