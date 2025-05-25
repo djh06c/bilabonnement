@@ -19,7 +19,7 @@
     <a th:href="@{/lejekontrakter}" th:class="'sidebar-button' + (${filter == 'opret'} ? ' active' : '')">Opret Lejekontrakt</a>
   </div>
 
-  <div class="form-container">
+  <div class="form-container" style="flex: 2;">
     <h1>Rediger Lejekontrakt</h1>
     <form th:action="@{/lejekontrakter/rediger}" th:object="${lejekontraktModel}" method="post">
       <input type="hidden" th:field="*{kontraktID}" />
