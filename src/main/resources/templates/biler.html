@@ -43,7 +43,8 @@
 
       <tbody>
       <tr th:each="bil : ${biler}"
-          th:class="${bil.tilgaengelig ? 'ledig' : 'udlejet'} + (${#lists.contains(senesteBiler, bil)} ? ' ny-bil' : '')">
+          th:class="${bil.tilgaengelig ? 'ledig' : 'udlejet'}"
+          th:classappend="${#lists.contains(senesteBiler, bil)} ? ' ny-bil'">
         <td th:text="${bil.bilId}"></td>
         <td th:text="${bil.model}"></td>
         <td th:text="${bil.maerke}"></td>
@@ -52,12 +53,15 @@
         <td th:text="${bil.vognNummer}"></td>
         <td th:text="${bil.co2}"></td>
         <td th:text="${bil.staalpris}"></td>
-        <td th:text="${bil.maanedspris} + ' kr.'"></td>
+        <td th:text="${bil.maanedspris + ' kr.'}"></td>
         <td th:text="${bil.tilgaengelig} ? 'Ja' : 'Nej'"></td>
         <td th:text="${bil.udstyrsniveauNavn}"></td>
         <td>
           <a th:href="@{'/bil/rediger/' + ${bil.bilId}}">Rediger</a> |
-          <a th:href="@{'/bil/slet/' + ${bil.bilId}}">Slet</a>
+          <a th:href="@{'/bil/slet/' + ${bil.bilId}}"
+             onclick="return confirm('Er du sikker på, at du vil slette denne bil?');">
+            Slet
+          </a>
         </td>
       </tr>
       </tbody>

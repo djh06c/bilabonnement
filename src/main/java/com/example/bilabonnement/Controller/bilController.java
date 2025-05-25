@@ -2,12 +2,13 @@ package com.example.bilabonnement.Controller;
 
 import com.example.bilabonnement.Model.bilModel;
 import com.example.bilabonnement.Service.bilService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-
-
 
 @Controller
 public class bilController {
@@ -19,30 +20,28 @@ public class bilController {
     }
 
     // ----- READ -----
-
     @GetMapping("/biler")
     public String visAlleBiler(
             @RequestParam(name = "filter", required = false) String filter,
             Model model) {
 
-        if (filter == null || filter.isEmpty()) {
-            model.addAttribute("biler", bilService.hentAlleBiler());
-        } else {
-            model.addAttribute("biler", bilService.hentBilerSorteretEfter(filter));
-        }
+        List<bilModel> biler = (filter == null || filter.isEmpty())
+                ? bilService.hentAlleBiler()
+                : bilService.hentBilerSorteretEfter(filter);
 
         List<bilModel> senesteBiler = bilService.hentSenesteBiler(3);
+
+        model.addAttribute("biler", biler);
         model.addAttribute("senesteBiler", senesteBiler);
         model.addAttribute("filter", filter);
 
-        // 🔍 Debug: Udskriv alle biler
+        // 🔍 Debug (kan fjernes i produktion)
         System.out.println("=== Alle biler ===");
-        for (bilModel b : bilService.hentAlleBiler()) {
+        for (bilModel b : biler) {
             System.out.println("ID: " + b.getBilId() + ", Model: " + b.getModel() + ", RegNr: " + b.getRegNr());
         }
 
-        // 🔍 Debug: Udskriv seneste biler
-        System.out.println("=== Seneste biler (top 3) ===");
+        System.out.println("=== Seneste biler (oprettet via system) ===");
         for (bilModel b : senesteBiler) {
             System.out.println("ID: " + b.getBilId() + ", Model: " + b.getModel() + ", RegNr: " + b.getRegNr());
         }
@@ -50,9 +49,7 @@ public class bilController {
         return "biler";
     }
 
-
     // ----- CREATE -----
-
     @GetMapping("/bil/opret")
     public String visOpretForm(Model model) {
         model.addAttribute("bil", new bilModel());
@@ -62,13 +59,21 @@ public class bilController {
     }
 
     @PostMapping("/bil/opret")
-    public String opretBil(@ModelAttribute bilModel bil) {
+    public String opretBil(@Valid @ModelAttribute("bil") bilModel bil,
+                           BindingResult bindingResult,
+                           Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("udstyrsniveauer", bilService.hentAlleUdstyrsniveauer());
+            model.addAttribute("filter", "opret");
+            return "opret-bil";
+        }
+
         bilService.opretBil(bil);
         return "redirect:/biler";
     }
 
     // ----- UPDATE -----
-
     @GetMapping("/bil/rediger/{id}")
     public String visRedigerForm(@PathVariable("id") int id, Model model) {
         bilModel bil = bilService.findBilById(id);
@@ -85,7 +90,6 @@ public class bilController {
     }
 
     // ----- DELETE -----
-
     @GetMapping("/bil/slet/{id}")
     public String sletBil(@PathVariable("id") int id) {
         bilService.sletBil(id);

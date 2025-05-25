@@ -13,7 +13,7 @@ public class bilService {
 
     private final bilRepo bilRepo;
 
-    // ✅ 1. Tilføj liste til at holde styr på senest oprettede biler
+    // ✅ Holder kun biler oprettet via hjemmesiden
     private final LinkedList<bilModel> senesteBiler = new LinkedList<>();
 
     public bilService(bilRepo bilRepo) {
@@ -28,20 +28,19 @@ public class bilService {
         return bilRepo.hentBilerSorteretEfter(kolonneNavn);
     }
 
-    // ✅ 2. Udvid opretBil til at holde styr på de nyeste
+    // ✅ Tilføjelse via hjemmeside – gemmes i senesteBiler
     public void opretBil(bilModel bil) {
         bilRepo.opretBil(bil);
-        senesteBiler.addFirst(bil);
+        bilModel nyeste = bilRepo.findNyesteBil(); // Hent den nyeste med højest bilId
+        senesteBiler.addFirst(nyeste);
         if (senesteBiler.size() > 3) {
-            senesteBiler.removeLast(); // behold kun de 3 nyeste
+            senesteBiler.removeLast(); // Behold kun de 3 nyeste
         }
     }
 
-    // ✅ 3. Metode til at hente seneste biler til UI
+    // ✅ Returnér kun dem vi har husket
     public List<bilModel> hentSenesteBiler(int antal) {
-        List<bilModel> alleBiler = bilRepo.hentAlleBiler();
-        alleBiler.sort((a, b) -> b.getBilId() - a.getBilId()); // sorter efter bilId faldende
-        return alleBiler.stream().limit(antal).toList();
+        return senesteBiler.stream().limit(antal).toList();
     }
 
     public bilModel findBilById(int id) {
