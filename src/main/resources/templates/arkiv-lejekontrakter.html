@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontraktarkiv</title>
+    <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-layout">
+    <div class="sidebar">
+        <a th:href="@{/lejekontrakter/vis}" class="sidebar-button">Aktive Kontrakter</a>
+        <a th:href="@{/lejekontrakter}" class="sidebar-button">Opret Kontrakt</a>
+        <a th:href="@{/lejekontrakter/arkiv}" class="sidebar-button active">Kontraktarkiv</a>
+    </div>
+
+    <div class="form-container">
+        <h1 th:text="${titel}">Kontraktarkiv</h1>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>KundeID</th>
+                <th>BilID</th>
+                <th>Start</th>
+                <th>Slut</th>
+                <th>Pickup</th>
+                <th>Drop off</th>
+                <th>Pris</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="kontrakt : ${lejekontrakter}">
+                <td th:text="${kontrakt.kontraktID}"></td>
+                <td th:text="${kontrakt.kundeID}"></td>
+                <td th:text="${kontrakt.bilID}"></td>
+                <td th:text="${kontrakt.startDato}"></td>
+                <td th:text="${kontrakt.slutDato}"></td>
+                <td th:text="${kontrakt.pickupSted}"></td>
+                <td th:text="${kontrakt.afleveringsSted}"></td>
+                <td th:text="${kontrakt.pris}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

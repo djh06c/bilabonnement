@@ -37,14 +37,13 @@ public class lejekontraktController {
         } catch (DataIntegrityViolationException e) {
             model.addAttribute("error", "Fejl: Kunde eller bil findes ikke");
         }
-
         model.addAttribute("lejekontraktModel", new lejekontraktModel());
         return "lejekontrakter";
     }
 
     @GetMapping("/vis")
     public String visAlleKontrakter(Model model) {
-        model.addAttribute("lejekontrakter", service.findAll());
+        model.addAttribute("lejekontrakter", service.findAktiveKontrakter());
         return "visLejekontrakter";
     }
 
@@ -54,6 +53,36 @@ public class lejekontraktController {
         model.addAttribute("lejekontrakter", service.findAll());
         return "visLejekontrakter";
     }
+
+    @GetMapping(params = "id")
+    public String findKontraktViaRequestParam(@RequestParam(required = false) String id, Model model) {
+        if (id == null || id.isBlank()) {
+            model.addAttribute("fejlbesked", "Indtast venligst et kontrakt ID før du søger.");
+        } else {
+            try {
+                int parsedId = Integer.parseInt(id);
+                lejekontraktModel kontrakt = service.findById(parsedId);
+                if (kontrakt != null) {
+                    model.addAttribute("fundetKontrakt", kontrakt);
+                } else {
+                    model.addAttribute("fejlbesked", "Ingen lejekontrakt fundet med ID: " + parsedId);
+                }
+            } catch (NumberFormatException e) {
+                model.addAttribute("fejlbesked", "Ugyldigt ID. Indtast venligst et heltal.");
+            }
+        }
+
+        model.addAttribute("lejekontrakter", service.findAll());
+        return "visLejekontrakter";
+    }
+
+    @GetMapping("/arkiv")
+    public String visUdløbneKontrakter(Model model) {
+        model.addAttribute("lejekontrakter", service.findUdløbneKontrakter());
+        model.addAttribute("titel", "Udløbne Lejekontrakter");
+        return "arkiv-lejekontrakter";
+    }
+
 
     // -------------------- REST API ENDPOINTS --------------------
 
@@ -96,27 +125,6 @@ public class lejekontraktController {
         return ResponseEntity.ok("Lejekontrakt slettet");
     }
 
-    @GetMapping(params = "id")
-    public String findKontraktViaRequestParam(@RequestParam(required = false) String id, Model model) {
-        if (id == null || id.isBlank()) {
-            model.addAttribute("fejlbesked", "Indtast venligst et kontrakt ID før du søger.");
-        } else {
-            try {
-                int parsedId = Integer.parseInt(id);
-                lejekontraktModel kontrakt = service.findById(parsedId);
-                if (kontrakt != null) {
-                    model.addAttribute("fundetKontrakt", kontrakt);
-                } else {
-                    model.addAttribute("fejlbesked", "Ingen lejekontrakt fundet med ID: " + parsedId);
-                }
-            } catch (NumberFormatException e) {
-                model.addAttribute("fejlbesked", "Ugyldigt ID. Indtast venligst et heltal.");
-            }
-        }
-
-        model.addAttribute("lejekontrakter", service.findAll());
-        return "visLejekontrakter";
-    }
 
 
 }
