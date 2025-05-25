@@ -74,13 +74,13 @@ CREATE TABLE Login (
     adgangskodeHash VARCHAR(255) NOT NULL
 );
 
--- Indsæt udstyrsniveau-værdier
+-- Indsæt Udstyrsniveau
 INSERT INTO Udstyrsniveau (udstyrsniveau_ID, navn) VALUES
 (1, 'STANDARD'),
 (2, 'PREMIUM'),
 (3, 'SPORT');
 
--- Indsæt biler med maanedspris
+-- Indsæt 10 Biler
 INSERT INTO Bil (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, maanedspris, udstyrsniveau_ID) VALUES
 ('V001', 'STEL123456A', 'AB12345', 'Polo', 'VW', 99.0, TRUE, 179999, 3499, 1),
 ('V002', 'STEL123456B', 'AB12346', 'Golf', 'VW', 109.0, FALSE, 219999, 3799, 2),
@@ -92,3 +92,16 @@ INSERT INTO Bil (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig
 ('V008', 'STEL123456H', 'AB12352', 'Corolla', 'Toyota', 98.0, FALSE, 199999, 3399, 1),
 ('V009', 'STEL123456I', 'AB12353', 'Civic', 'Honda', 95.0, TRUE, 209999, 3499, 2),
 ('V010', 'STEL123456J', 'AB12354', 'Mustang', 'Ford', 159.0, TRUE, 449999, 6199, 3);
+
+-- Indsæt 10 Kunder
+INSERT INTO Kunde (navn, mail, adresse, tlf, foedselsdato) VALUES
+('Anna Madsen', 'anna.madsen@example.com', 'Birkevej 12, 2100 København Ø', '22334455', '1990-03-15'),
+('Lars Hansen', 'lars.hansen@example.com', 'Roskildevej 47, 4000 Roskilde', '33445566', '1985-07-22'),
+('Camilla Sørensen', 'camilla.s@example.com', 'Skovvej 9, 6000 Kolding', '44556677', '1992-11-03'),
+('Jonas Nielsen', 'jonas.n@example.com', 'Nordre Ringgade 30, 8200 Aarhus N', '55667788', '1988-05-17'),
+('Katrine Jensen', 'katrine.j@example.com', 'Vestergade 13, 8700 Horsens', '66778899', '1995-01-28'),
+('Peter Holm', 'peter.holm@example.com', 'Søndergade 21, 9800 Hjørring', '77889900', '1983-09-10'),
+('Sofie Christiansen', 'sofie.c@example.com', 'Fjordvej 5, 5000 Odense C', '88990011', '1991-06-06'),
+('Mikkel Andersen', 'mikkel.a@example.com', 'Østerbrogade 99, 2100 København Ø', '99001122', '1987-02-14'),
+('Emilie Rasmussen', 'emilie.r@example.com', 'Torvegade 1, 1400 København K', '10111213', '1993-12-09'),
+('Frederik Thomsen', 'frederik.t@example.com', 'Amagerbrogade 55, 2300 København S', '12131415', '1989-04-03');

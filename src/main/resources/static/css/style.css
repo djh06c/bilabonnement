@@ -67,7 +67,6 @@ th, td {
     height: 2.4vw;
 }
 
-
 th {
     background-color: lightgreen;
     text-transform: uppercase;
@@ -85,7 +84,6 @@ table.biloversigt td:first-child {
     width: 40px;
     text-align: center;
 }
-
 
 /* ============================================================================
    LAYOUT: CONTAINERS
@@ -184,26 +182,20 @@ table.biloversigt td:first-child {
     max-width: 100%;
 }
 
-tr.tilgaengelig {
-    background-color: #eaffea;
+/* 🔧 NYT: styling til biloversigt  */
+.bil-række {
+    border: 2px solid black;
 }
 
-tr.udlejet {
-    background-color: #ffeaea;
+.udlejet {
+    background-color: rgba(255, 0, 0, 0.2);
 }
 
-/* 🔧 Ikonknapper i tabel */
-.action-cell {
-    display: flex;
-    gap: 0.6vw;
-    justify-content: center;
-    align-items: center;
+.ledig {
+    background-color: rgba(0, 255, 0, 0.15);
 }
 
-.icon-button {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
+.ny-bil {
+    outline: 3px solid yellow;
+    outline-offset: -3px;
 }
