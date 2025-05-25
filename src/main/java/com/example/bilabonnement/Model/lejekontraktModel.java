@@ -39,7 +39,7 @@ public class lejekontraktModel {
     public String getAfleveringsSted() {return afleveringsSted;}
     public BigDecimal getPris() {return pris;}
 
-    /* ---------------SETTERS---------------*/
+    /* ---------------SETTERS--------------- */
 
     public void setKontraktID(int kontraktID){ this.kontraktID = kontraktID;}
     public void setKundeID(int kundeID){this.kundeID = kundeID;}

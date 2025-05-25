@@ -31,10 +31,12 @@
       <input type="number" th:field="*{bilID}" required />
 
       <label>Start Dato:</label>
-      <input type="date" th:field="*{startDato}" required />
+      <input type="date" id="startDato" name="startDato"
+             th:value="${#temporals.format(lejekontraktModel.startDato, 'yyyy-MM-dd')}" required />
 
       <label>Slut Dato:</label>
-      <input type="date" th:field="*{slutDato}" required />
+      <input type="date" id="slutDato" name="slutDato"
+             th:value="${#temporals.format(lejekontraktModel.slutDato, 'yyyy-MM-dd')}" required />
 
       <label>Pickup Sted:</label>
       <input type="text" th:field="*{pickupSted}" required />
