@@ -29,7 +29,7 @@ CREATE TABLE Bil (
 
 -- Lejekontrakt
 CREATE TABLE Lejekontrakt (
-    kontrakt_ID INT PRIMARY KEY,
+    kontrakt_ID INT AUTO_INCREMENT PRIMARY KEY,
     kunde_ID INT NOT NULL,
     bil_ID INT NOT NULL,
     start_dato DATE NOT NULL,
