@@ -56,12 +56,15 @@
         <td th:text="${bil.maanedspris + ' kr.'}"></td>
         <td th:text="${bil.tilgaengelig} ? 'Ja' : 'Nej'"></td>
         <td th:text="${bil.udstyrsniveauNavn}"></td>
-        <td>
-          <a th:href="@{'/bil/rediger/' + ${bil.bilId}}">Rediger</a> |
-          <a th:href="@{'/bil/slet/' + ${bil.bilId}}"
-             onclick="return confirm('Er du sikker på, at du vil slette denne bil?');">
-            Slet
+        <td class="action-cell">
+          <a th:href="@{'/bil/rediger/' + ${bil.bilId}}" class="icon-button" title="Rediger">
+            <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger"/>
           </a>
+          <form th:action="@{'/bil/slet/' + ${bil.bilId}}" method="get" class="inline-form">
+            <button type="submit" class="icon-button" onclick="return confirm('Slet bil?')" title="Slet">
+              <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet"/>
+            </button>
+          </form>
         </td>
       </tr>
       </tbody>
