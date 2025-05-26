@@ -16,6 +16,10 @@
     <a th:href="@{/opret}" class="sidebar-button">Opret kunde</a>
   </div>
 
+  <div th:if="${errorMessage}" class="error-message">
+    <p th:text="${errorMessage}"></p>
+  </div>
+
   <div class="form-container">
     <h1>Rediger kunde</h1>
     <form th:action="@{/kunder/rediger}" th:object="${kundeModel}" method="post">
