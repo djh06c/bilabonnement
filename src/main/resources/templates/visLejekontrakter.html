@@ -22,7 +22,7 @@
     </div>
 
     <!-- Indhold -->
-    <div class="form-container">
+    <div class="form-container" style="flex: 2;">
         <h1>Lejekontrakter</h1>
 
         <!-- Find en specifik lejekontrakt -->
@@ -46,8 +46,10 @@
                     <th>Start</th>
                     <th>Slut</th>
                     <th>Pickup</th>
-                    <th>Drop off</th>
+                    <th>Drop-off</th>
                     <th>Pris</th>
+                    <th></th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -60,6 +62,7 @@
                     <td th:text="${fundetKontrakt.pickupSted}"></td>
                     <td th:text="${fundetKontrakt.afleveringsSted}"></td>
                     <td th:text="${fundetKontrakt.pris}"></td>
+                    <td class="action-cell">
                 </tr>
                 </tbody>
             </table>
@@ -83,8 +86,9 @@
                     <th>Start</th>
                     <th>Slut</th>
                     <th>Pickup</th>
-                    <th>Drop off</th>
+                    <th style="white-space: nowrap; font-size: 0.9vw;">Drop off</th>
                     <th>Pris</th>
+                    <th> </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -97,6 +101,16 @@
                     <td th:text="${kontrakt.pickupSted}"></td>
                     <td th:text="${kontrakt.afleveringsSted}"></td>
                     <td th:text="${kontrakt.pris}"></td>
+                    <td class="action-cell">
+                        <a th:href="@{'/lejekontrakter/rediger/' + ${kontrakt.kontraktID}}" class="icon-button" title="Rediger">
+                            <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger" />
+                        </a>
+                        <a th:href="@{'/lejekontrakter/slet?id=' + ${kontrakt.kontraktID}}"
+                           class="icon-button"
+                           title="Slet"
+                           onclick="return confirm('Er du sikker på, at du vil slette denne lejekontrakt?')">
+                            <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet" />
+                        </a>
                 </tr>
                 </tbody>
             </table>
