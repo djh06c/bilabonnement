@@ -41,10 +41,9 @@ public class lejekontraktRepo {
 
     /* --------------- Opret en ny lejekontrakk --------------- */
     public void save(lejekontraktModel lk){
-        String sql = "INSERT INTO lejekontrakt (kontrakt_ID, kunde_ID, bil_ID, start_dato, slut_dato, pickupSted, afleveringsSted, pris) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO lejekontrakt (kunde_ID, bil_ID, start_dato, slut_dato, pickupSted, afleveringsSted, pris) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
         jdbcTemplate.update(sql,
-                lk.getKontraktID(),
                 lk.getKundeID(),
                 lk.getBilID(),
                 Date.valueOf(lk.getStartDato()),
