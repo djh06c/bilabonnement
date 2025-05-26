@@ -73,7 +73,7 @@ public class bilController {
     }
 
     @PostMapping("/bil/rediger")
-    public String redigerBil(@Valid @ModelAttribute bilModel bil,
+    public String redigerBil(@Valid @ModelAttribute ("bil") bilModel bil,
                              BindingResult bindingResult,
                              Model model) {
         System.out.println("HVIS DU SER MIG SÅ ER VI INDE I METODEN!!");

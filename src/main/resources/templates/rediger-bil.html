@@ -30,41 +30,40 @@
       <div class="error" th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></div>
 
       <label for="maerke">Mærke:</label>
-      <input type="text" id="maerke" th:field="*{maerke}" required>
+      <input type="text" id="maerke" th:field="*{maerke}" >
       <div class="error" th:if="${#fields.hasErrors('maerke')}" th:errors="*{maerke}"></div>
 
       <label for="regNr">Registreringsnummer:</label>
-      <input type="text" id="regNr" th:field="*{regNr}" required>
+      <input type="text" id="regNr" th:field="*{regNr}" >
       <div class="error" th:if="${#fields.hasErrors('regNr')}" th:errors="*{regNr}"></div>
 
       <label for="stelNummer">Stelnummer:</label>
-      <input type="text" id="stelNummer" th:field="*{stelNummer}" required>
+      <input type="text" id="stelNummer" th:field="*{stelNummer}" >
       <div class="error" th:if="${#fields.hasErrors('stelNummer')}" th:errors="*{stelNummer}"></div>
 
       <label for="vognNummer">Vognnummer:</label>
-      <input type="text" id="vognNummer" th:field="*{vognNummer}" required>
+      <input type="text" id="vognNummer" th:field="*{vognNummer}" >
       <div class="error" th:if="${#fields.hasErrors('vognNummer')}" th:errors="*{vognNummer}"></div>
 
       <label for="co2">CO2-udledning:</label>
-      <input type="number" step="0.01" id="co2" th:field="*{co2}" required>
+      <input type="number" step="0.01" id="co2" th:field="*{co2}" >
       <div class="error" th:if="${#fields.hasErrors('co2')}" th:errors="*{co2}"></div>
 
       <label for="staalpris">Stålpris:</label>
-      <input type="number" step="0.01" id="staalpris" th:field="*{staalpris}" required>
+      <input type="number" step="0.01" id="staalpris" th:field="*{staalpris}" >
       <div class="error" th:if="${#fields.hasErrors('staalpris')}" th:errors="*{staalpris}"></div>
 
       <label for="tilgaengelig">Tilgængelig:</label>
       <select id="tilgaengelig" th:field="*{tilgaengelig}">
-        <option th:value="true" th:selected="${bil.tilgaengelig} == true">Ja</option>
-        <option th:value="false" th:selected="${bil.tilgaengelig} == false">Nej</option>
+        <option th:value="true">Ja</option>
+        <option th:value="false">Nej</option>
       </select>
 
       <label for="udstyrsniveauId">Udstyrsniveau:</label>
       <select id="udstyrsniveauId" th:field="*{udstyrsniveauId}">
         <option th:each="u : ${udstyrsniveauer}"
                 th:value="${u.udstyrsniveauId}"
-                th:text="${u.navn}"
-                th:selected="${u.udstyrsniveauId == bil.udstyrsniveauId}">
+                th:text="${u.navn}">
         </option>
       </select>
 
