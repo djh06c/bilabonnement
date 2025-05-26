@@ -35,16 +35,6 @@ public class bilController {
         model.addAttribute("senesteBiler", senesteBiler);
         model.addAttribute("filter", filter);
 
-        // 🔍 Debug (kan fjernes i produktion)
-        System.out.println("=== Alle biler ===");
-        for (bilModel b : biler) {
-            System.out.println("ID: " + b.getBilId() + ", Model: " + b.getModel() + ", RegNr: " + b.getRegNr());
-        }
-
-        System.out.println("=== Seneste biler (oprettet via system) ===");
-        for (bilModel b : senesteBiler) {
-            System.out.println("ID: " + b.getBilId() + ", Model: " + b.getModel() + ", RegNr: " + b.getRegNr());
-        }
 
         return "biler";
     }
@@ -62,10 +52,9 @@ public class bilController {
     public String opretBil(@Valid @ModelAttribute("bil") bilModel bil,
                            BindingResult bindingResult,
                            Model model) {
-
         if (bindingResult.hasErrors()) {
+            model.addAttribute("bil", bil);
             model.addAttribute("udstyrsniveauer", bilService.hentAlleUdstyrsniveauer());
-            model.addAttribute("filter", "opret");
             return "opret-bil";
         }
 
@@ -84,7 +73,16 @@ public class bilController {
     }
 
     @PostMapping("/bil/rediger")
-    public String redigerBil(@ModelAttribute bilModel bil) {
+    public String redigerBil(@Valid @ModelAttribute bilModel bil,
+                             BindingResult bindingResult,
+                             Model model) {
+        System.out.println("HVIS DU SER MIG SÅ ER VI INDE I METODEN!!");
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("bil", bil);
+            model.addAttribute("udstyrsniveauer", bilService.hentAlleUdstyrsniveauer());
+
+            return "rediger-bil";
+        }
         bilService.opdaterBil(bil);
         return "redirect:/biler";
     }
