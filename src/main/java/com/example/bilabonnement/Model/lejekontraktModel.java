@@ -13,12 +13,12 @@ public class lejekontraktModel {
     private int maaneder;
     private String pickupSted;
     private String afleveringsSted;
-    private BigDecimal pris;
+    private Double pris;
 
     public lejekontraktModel(){
     }
 
-    public lejekontraktModel(int kontraktID, int kundeID, int bilID, LocalDate startDato, LocalDate slutDato, int maaneder, String pickupSted, String afleveringsSted, BigDecimal pris) {
+    public lejekontraktModel(int kontraktID, int kundeID, int bilID, LocalDate startDato, LocalDate slutDato, int maaneder, String pickupSted, String afleveringsSted, Double pris) {
         this.kontraktID = kontraktID;
         this.kundeID = kundeID;
         this.bilID = bilID;
@@ -40,7 +40,7 @@ public class lejekontraktModel {
     public int getMaaneder() {return maaneder;}
     public String getPickupSted() {return pickupSted;}
     public String getAfleveringsSted() {return afleveringsSted;}
-    public BigDecimal getPris() {return pris;}
+    public Double getPris() {return pris;}
 
     /* ---------------SETTERS---------------*/
 
@@ -52,5 +52,5 @@ public class lejekontraktModel {
     public void setMaaneder(int maaneder){this.maaneder = maaneder;}
     public void setPickupSted(String pickupSted){this.pickupSted = pickupSted;}
     public void setAfleveringsSted(String afleverSted){this.afleveringsSted = afleverSted;}
-    public void setPris(BigDecimal pris){this.pris = pris;}
+    public void setPris(Double pris){this.pris = pris;}
 }

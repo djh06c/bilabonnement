@@ -18,7 +18,7 @@ public class lejekontraktRowMapper implements RowMapper<lejekontraktModel> {
         lk.setSlutDato(rs.getDate("slut_dato").toLocalDate());
         lk.setPickupSted(rs.getString("pickupSted"));
         lk.setAfleveringsSted(rs.getString("afleveringsSted"));
-        lk.setPris(rs.getBigDecimal("pris"));
+        lk.setPris(rs.getDouble("pris"));
         return lk;
     }
 }
