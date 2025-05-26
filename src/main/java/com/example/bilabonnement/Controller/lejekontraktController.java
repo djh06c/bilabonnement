@@ -67,7 +67,8 @@ public class lejekontraktController {
     public String redigerKontrakt(@ModelAttribute lejekontraktModel kontrakt) {
         service.update(kontrakt);
         return "redirect:/lejekontrakter/vis";
-      
+    }
+
     @GetMapping(params = "id")
     public String findKontraktViaRequestParam(@RequestParam(required = false) String id, Model model) {
         if (id == null || id.isBlank()) {
