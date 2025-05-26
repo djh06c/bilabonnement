@@ -26,15 +26,15 @@ class skadeKategoriServiceTest {
 
     @Test
     void testHentAlleKategorier() {
-        // Arrange
+
         skadeKategoriModel kat1 = new skadeKategoriModel(1, "Kosmetisk", "Mindre skrammer");
         skadeKategoriModel kat2 = new skadeKategoriModel(2, "Totalskadet", "Ikke brugbar");
         when(mockRepo.hentAlleKategorier()).thenReturn(Arrays.asList(kat1, kat2));
 
-        // Act
+
         List<skadeKategoriModel> result = service.hentAlleKategorier();
 
-        // Assert
+
         assert(result.size() == 2);
         assert(result.get(0).getNavn().equals("Kosmetisk"));
         verify(mockRepo, times(1)).hentAlleKategorier();
