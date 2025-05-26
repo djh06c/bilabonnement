@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="da" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Opret Lejekontrakt</title>
+  <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <a th:href="@{/lejekontrakter/vis}" class="sidebar-button">Vis Lejekontrakter</a>
+    <a th:href="@{/lejekontrakter}" class="sidebar-button active">Opret Lejekontrakt</a>
+    <a th:href="@{/lejekontrakter/arkiv}" class="sidebar-button">Kontraktarkiv</a>
+
+  </div>
+
+  <!-- Formular -->
+  <div class="form-container" style="flex:2;">
+    <h1>Opret ny lejekontrakt</h1>
+    <form th:action="@{/lejekontrakter/opret}" th:object="${lejekontraktModel}" method="post">
+      <label for="kontraktID">Kontrakt ID:</label>
+      <input type="number" id="kontraktID" th:field="*{kontraktID}" required>
+
+      <label for="kundeID">Kunde ID:</label>
+      <input type="number" id="kundeID" th:field="*{kundeID}" required>
+
+      <label for="bilID">Bil ID:</label>
+      <input type="number" id="bilID" th:field="*{bilID}" required>
+
+      <label for="startDato">Start Dato:</label>
+      <input type="date" id="startDato" th:field="*{startDato}" required>
+
+      <label for="slutDato">Slut Dato:</label>
+      <input type="date" id="slutDato" th:field="*{slutDato}" required>
+
+      <label for="pickupSted">Pickup Sted:</label>
+      <input type="text" id="pickupSted" th:field="*{pickupSted}" required>
+
+      <label for="afleveringsSted">Afleverings Sted:</label>
+      <input type="text" id="afleveringsSted" th:field="*{afleveringsSted}" required>
+
+      <label for="pris">Pris:</label>
+      <input type="number" step="0.01" id="pris" th:field="*{pris}" required>
+
+      <button type="submit" class="nav-button">Opret lejekontrakt</button>
+    </form>
+  </div>
+
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+INSERT INTO Bil (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, udstyrsniveau_ID) VALUES
+('V001', 'STEL123456A', 'AB12345', 'Polo', 'VW', 99.0, TRUE, 179999, 1),
+('V002', 'STEL123456B', 'AB12346', 'Golf', 'VW', 109.0, FALSE, 219999, 2),
+('V003', 'STEL123456C', 'AB12347', 'i20', 'Hyundai', 85.0, TRUE, 169999, 3),
+('V004', 'STEL123456D', 'AB12348', 'Model 3', 'Tesla', 0.0, TRUE, 329999, 2),
+('V005', 'STEL123456E', 'AB12349', 'Octavia', 'Skoda', 119.0, FALSE, 189999, 1),
+('V006', 'STEL123456F', 'AB12350', 'iX1', 'BMW', 0.0, TRUE, 389999, 3),
+('V007', 'STEL123456G', 'AB12351', 'A3', 'Audi', 105.0, TRUE, 259999, 2),
+('V008', 'STEL123456H', 'AB12352', 'Corolla', 'Toyota', 98.0, FALSE, 199999, 1),
+('V009', 'STEL123456I', 'AB12353', 'Civic', 'Honda', 95.0, TRUE, 209999, 2),
+('V010', 'STEL123456J', 'AB12354', 'Mustang', 'Ford', 159.0, TRUE, 449999, 3);

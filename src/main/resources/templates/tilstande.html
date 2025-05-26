@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tilstandsrapporter</title>
+    <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-layout">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a th:href="@{/tilstandsrapporter/vis}" class="sidebar-button active">Tilstandsrapporter</a>
+        <a th:href="@{/skadekategorier/vis}" class="sidebar-button">Skadekategorier</a>
+    </div>
+
+    <!-- Indhold -->
+    <div class="content">
+
+        <h1>Tilstandsrapporter</h1>
+
+        <!-- Formular -->
+        <section class="form-section">
+            <h2>Opret ny rapport</h2>
+            <form th:action="@{/tilstandsrapporter/vis}" th:object="${nyRapport}" method="post">
+                <label>Rapport ID:</label>
+                <input type="number" th:field="*{rapportID}" required><br>
+
+                <label>Bil ID:</label>
+                <input type="number" th:field="*{bilID}" required><br>
+
+                <label>Lejekontrakt:</label>
+                <select th:field="*{kontraktID}">
+                    <option th:each="k : ${kontrakter}"
+                            th:value="${k.kontraktID}"
+                            th:text="'#' + ${k.kontraktID} + ' | ' + ${k.startDato} + ' → ' + ${k.slutDato}">
+                    </option>
+                </select><br>
+
+                <label>Skadekategori:</label>
+                <select th:field="*{kategoriID}">
+                    <option th:each="kat : ${kategorier}"
+                            th:value="${kat.kategoriID}"
+                            th:text="${kat.navn}">
+                    </option>
+                </select><br>
+
+                <label>Beskrivelse:</label>
+                <textarea th:field="*{beskrivelse}" rows="3" cols="40"></textarea><br>
+
+                <button type="submit" class="primary-button">Gem rapport</button>
+            </form>
+        </section>
+
+        <!-- Eksisterende rapporter -->
+        <section class="table-section">
+            <h2>Eksisterende rapporter</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rapport ID</th>
+                        <th>Bil ID</th>
+                        <th>Kontrakt ID</th>
+                        <th>Skadekategori</th>
+                        <th>Beskrivelse</th>
+                    </tr>
+                    </thead>
+                <tbody>
+                <tr th:each="rapport : ${rapporter}">
+                    <td th:text="${rapport.rapportID}"></td>
+                    <td th:text="${rapport.bilID}"></td>
+                    <td th:text="${rapport.kontraktID}"></td>
+                    <td>
+        <span th:switch="${rapport.kategoriID}">
+            <span th:case="0">Ingen skade</span>
+            <span th:case="1">Kosmetisk</span>
+            <span th:case="2">Skal repareres</span>
+            <span th:case="3">Totalskadet</span>
+            <span th:case="*">Ukendt</span>
+        </span>
+                    </td>
+                    <td th:text="${rapport.beskrivelse}"></td>
+                    <td class="action-cell">
+                        <!-- ✏️ Rediger-knap -->
+                        <a th:href="@{'/tilstandsrapporter/rediger/' + ${rapport.rapportID}}" class="icon-button" title="Rediger">
+                            <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger" />
+                        </a>
+                        <!-- 🗑 Slet-knap -->
+                        <a th:href="@{'/tilstandsrapporter/slet/' + ${rapport.rapportID}}" class="icon-button" title="Slet"
+                           onclick="return confirm('Er du sikker på, at du vil slette denne rapport?')">
+                            <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet" />
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </div>
+
+</main>
+
+<!-- Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+-- Opret database
+CREATE DATABASE IF NOT EXISTS bilabonnement;
+USE bilabonnement;
+
+-- Kunde
+CREATE TABLE Kunde (
+    kunde_ID INT AUTO_INCREMENT PRIMARY KEY,
+    navn VARCHAR(50) NOT NULL,
+    mail VARCHAR(100) NOT NULL UNIQUE,
+    adresse VARCHAR(255) NOT NULL,
+    tlf VARCHAR(15) NOT NULL,
+    foedselsdato DATE NOT NULL
+);
+
+-- Bil
+CREATE TABLE Bil (
+    bil_ID INT AUTO_INCREMENT PRIMARY KEY,
+    vognNummer VARCHAR(20) NOT NULL UNIQUE,
+    stelNummer VARCHAR(50) NOT NULL UNIQUE,
+    regNr VARCHAR(10) NOT NULL UNIQUE,
+    model VARCHAR(50) NOT NULL,
+    maerke VARCHAR(50) NOT NULL,
+    co2 DOUBLE NOT NULL,
+    tilgaengelig BOOLEAN NOT NULL DEFAULT TRUE,
+    staalpris DOUBLE NOT NULL,
+    maanedspris DOUBLE NOT NULL,
+    udstyrsniveau ENUM('STANDARD', 'PREMIUM', 'SPORT') NOT NULL
+);
+
+-- Lejekontrakt
+CREATE TABLE Lejekontrakt (
+    kontrakt_ID INT AUTO_INCREMENT PRIMARY KEY,
+    kunde_ID INT NOT NULL,
+    bil_ID INT NOT NULL,
+    start_dato DATE NOT NULL,
+    slut_dato DATE NOT NULL,
+    pickupSted VARCHAR(100) NOT NULL,
+    afleveringsSted VARCHAR(100) NOT NULL,
+    pris DOUBLE NOT NULL,
+    FOREIGN KEY (kunde_ID) REFERENCES Kunde(kunde_ID) ON DELETE RESTRICT,
+    FOREIGN KEY (bil_ID) REFERENCES Bil(bil_ID) ON DELETE RESTRICT
+);
+
+-- Tilstandskategori
+CREATE TABLE Tilstandskategori (
+    kategori_ID INT PRIMARY KEY,
+    navn VARCHAR(50) NOT NULL,
+    beskrivelse VARCHAR(255) NOT NULL
+);
+
+-- Tilstandsrapport
+CREATE TABLE Tilstandsrapport (
+    rapport_ID INT PRIMARY KEY,
+    kontrakt_ID INT NOT NULL UNIQUE,
+    bil_ID INT NOT NULL,
+    kategori_ID INT NOT NULL,
+    beskrivelse VARCHAR(255),
+    FOREIGN KEY (kontrakt_ID) REFERENCES Lejekontrakt(kontrakt_ID) ON DELETE RESTRICT,
+    FOREIGN KEY (bil_ID) REFERENCES Bil(bil_ID) ON DELETE CASCADE,
+    FOREIGN KEY (kategori_ID) REFERENCES Tilstandskategori(kategori_ID) ON DELETE RESTRICT
+);
+
+-- Login
+CREATE TABLE Login (
+    user_ID INT AUTO_INCREMENT PRIMARY KEY,
+    brugernavn VARCHAR(50) NOT NULL UNIQUE,
+    adgangskodeHash VARCHAR(255) NOT NULL
+);
+
+-- Indsæt 10 Biler
+INSERT INTO Bil (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, maanedspris, udstyrsniveau) VALUES
+('V001', 'STEL123456A', 'AB12345', 'Polo', 'VW', 99.0, TRUE, 179999, 3499, 'STANDARD'),
+('V002', 'STEL123456B', 'AB12346', 'Golf', 'VW', 109.0, FALSE, 219999, 3799, 'PREMIUM'),
+('V003', 'STEL123456C', 'AB12347', 'i20', 'Hyundai', 85.0, TRUE, 169999, 3199, 'SPORT'),
+('V004', 'STEL123456D', 'AB12348', 'Model 3', 'Tesla', 0.0, TRUE, 329999, 5499, 'PREMIUM'),
+('V005', 'STEL123456E', 'AB12349', 'Octavia', 'Skoda', 119.0, FALSE, 189999, 3599, 'STANDARD'),
+('V006', 'STEL123456F', 'AB12350', 'iX1', 'BMW', 0.0, TRUE, 389999, 5899, 'SPORT'),
+('V007', 'STEL123456G', 'AB12351', 'A3', 'Audi', 105.0, TRUE, 259999, 4299, 'PREMIUM'),
+('V008', 'STEL123456H', 'AB12352', 'Corolla', 'Toyota', 98.0, FALSE, 199999, 3399, 'STANDARD'),
+('V009', 'STEL123456I', 'AB12353', 'Civic', 'Honda', 95.0, TRUE, 209999, 3499, 'PREMIUM'),
+('V010', 'STEL123456J', 'AB12354', 'Mustang', 'Ford', 159.0, TRUE, 449999, 6199, 'SPORT');
+
+-- Indsæt 10 Kunder
+INSERT INTO Kunde (navn, mail, adresse, tlf, foedselsdato) VALUES
+('Anna Madsen', 'anna.madsen@example.com', 'Birkevej 12, 2100 København Ø', '22334455', '1990-03-15'),
+('Lars Hansen', 'lars.hansen@example.com', 'Roskildevej 47, 4000 Roskilde', '33445566', '1985-07-22'),
+('Camilla Sørensen', 'camilla.s@example.com', 'Skovvej 9, 6000 Kolding', '44556677', '1992-11-03'),
+('Jonas Nielsen', 'jonas.n@example.com', 'Nordre Ringgade 30, 8200 Aarhus N', '55667788', '1988-05-17'),
+('Katrine Jensen', 'katrine.j@example.com', 'Vestergade 13, 8700 Horsens', '66778899', '1995-01-28'),
+('Peter Holm', 'peter.holm@example.com', 'Søndergade 21, 9800 Hjørring', '77889900', '1983-09-10'),
+('Sofie Christiansen', 'sofie.c@example.com', 'Fjordvej 5, 5000 Odense C', '88990011', '1991-06-06'),
+('Mikkel Andersen', 'mikkel.a@example.com', 'Østerbrogade 99, 2100 København Ø', '99001122', '1987-02-14'),
+('Emilie Rasmussen', 'emilie.r@example.com', 'Torvegade 1, 1400 København K', '10111213', '1993-12-09'),
+('Frederik Thomsen', 'frederik.t@example.com', 'Amagerbrogade 55, 2300 København S', '12131415', '1989-04-03');
