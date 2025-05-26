@@ -38,11 +38,17 @@ public class lejekontraktService {
     }
 
     /* --------------- Metode til at se om dags dato ligger før slutdato på kontrakt --------------- */
+    /* --------------- Ergo om lejekontrakten er aktiv --------------- */
     public List<lejekontraktModel> findAktiveKontrakter(){
-        LocalDate idag = LocalDate.now();
-        return findAll().stream()
+        LocalDate idag = LocalDate.now(); //opretter en instans af LocalDate.now()
+        return findAll().stream() //Metode til at kigge igennem listen af alle lejekontrakter, stream er...
+                // - en sekventiel databehandler
                 .filter(lejekontrakt->!idag.isAfter(lejekontrakt.getSlutDato()))
-                .collect(Collectors.toList());
+                // For hver kontrakt der bliver streamet igenne, bliver den udsat for et filter...
+                // - som tjekker at det ikke er sandt at "idag" er efter slutdatoen på den...
+                // - aktuelle kontrakt i streamen.
+                .collect(Collectors.toList()); //Til sidst, tilføjer den alle kontrakter som...
+                // - er kommet igennem filteret, til en liste.
     }
 
     /* --------------- Metode til at se om dags dato er efter lejekontrakt slutdato --------------- */
