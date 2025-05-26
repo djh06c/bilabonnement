@@ -31,7 +31,17 @@ public class lejekontraktController {
 
     @PostMapping("/opret")
     public String opretFraHtml(@ModelAttribute lejekontraktModel kontrakt, Model model) {
+        int maaneder = kontrakt.getMaaneder();
+
+        //limiter til hvilket antal måneder der kan vælges til lejekontrakt varighed
+        if(maaneder <4 || maaneder > 36){
+            model.addAttribute("Error", "Lejeperioden skal være mellem 4 og 36 måneder!");
+            model.addAttribute("lejekontraktModel", new lejekontraktModel());
+            return "lejekontrakter";
+        }
         try {
+            // udregning af slutdato udfra startdato og antal måneder
+            kontrakt.setSlutDato(kontrakt.getStartDato().plusMonths(kontrakt.getMaaneder()));
             service.save(kontrakt);
             model.addAttribute("success", "Lejekontrakt oprettet");
         } catch (DataIntegrityViolationException e) {

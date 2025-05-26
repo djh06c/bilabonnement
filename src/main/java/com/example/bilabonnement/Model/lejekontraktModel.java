@@ -10,6 +10,7 @@ public class lejekontraktModel {
     private int bilID;
     private LocalDate startDato;
     private LocalDate slutDato;
+    private int maaneder;
     private String pickupSted;
     private String afleveringsSted;
     private BigDecimal pris;
@@ -17,12 +18,13 @@ public class lejekontraktModel {
     public lejekontraktModel(){
     }
 
-    public lejekontraktModel(int kontraktID, int kundeID, int bilID, LocalDate startDato, LocalDate slutDato, String pickupSted, String afleveringsSted, BigDecimal pris) {
+    public lejekontraktModel(int kontraktID, int kundeID, int bilID, LocalDate startDato, LocalDate slutDato, int maaneder, String pickupSted, String afleveringsSted, BigDecimal pris) {
         this.kontraktID = kontraktID;
         this.kundeID = kundeID;
         this.bilID = bilID;
         this.startDato = startDato;
         this.slutDato = slutDato;
+        this.maaneder = maaneder;
         this.pickupSted = pickupSted;
         this.afleveringsSted = afleveringsSted;
         this.pris = pris;
@@ -35,6 +37,7 @@ public class lejekontraktModel {
     public int getBilID() {return bilID;}
     public LocalDate getStartDato() {return startDato;}
     public LocalDate getSlutDato() {return slutDato;}
+    public int getMaaneder() {return maaneder;}
     public String getPickupSted() {return pickupSted;}
     public String getAfleveringsSted() {return afleveringsSted;}
     public BigDecimal getPris() {return pris;}
@@ -46,6 +49,7 @@ public class lejekontraktModel {
     public void setBilID(int bilID){this.bilID = bilID;}
     public void setStartDato(LocalDate startDato){this.startDato = startDato;}
     public void setSlutDato(LocalDate slutDato){this.slutDato = slutDato;}
+    public void setMaaneder(int maaneder){this.maaneder = maaneder;}
     public void setPickupSted(String pickupSted){this.pickupSted = pickupSted;}
     public void setAfleveringsSted(String afleverSted){this.afleveringsSted = afleverSted;}
     public void setPris(BigDecimal pris){this.pris = pris;}
