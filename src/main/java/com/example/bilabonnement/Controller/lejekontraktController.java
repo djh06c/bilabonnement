@@ -87,6 +87,20 @@ public class lejekontraktController {
         return "visLejekontrakter";
     }
 
+
+    @GetMapping("/rediger/{id}")
+    public String visRedigerForm(@PathVariable("id") int id, Model model) {
+        lejekontraktModel kontrakt = service.findById(id);
+        model.addAttribute("lejekontraktModel", kontrakt);
+        model.addAttribute("filter", "rediger");
+        return "rediger-Lejekontrakter";
+    }
+
+    @PostMapping("/rediger")
+    public String redigerKontrakt(@ModelAttribute lejekontraktModel kontrakt) {
+        service.update(kontrakt);
+        return "redirect:/lejekontrakter/vis";
+      
     @GetMapping(params = "id")
     public String findKontraktViaRequestParam(@RequestParam(required = false) String id, Model model) {
         if (id == null || id.isBlank()) {
@@ -114,6 +128,7 @@ public class lejekontraktController {
         model.addAttribute("lejekontrakter", service.findUdløbneKontrakter());
         model.addAttribute("titel", "Udløbne Lejekontrakter");
         return "arkiv-lejekontrakter";
+
     }
 
 
@@ -157,7 +172,6 @@ public class lejekontraktController {
         service.deleteById(id);
         return ResponseEntity.ok("Lejekontrakt slettet");
     }
-
 
 
 }

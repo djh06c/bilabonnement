@@ -42,7 +42,7 @@ public class lejekontraktModel {
     public String getAfleveringsSted() {return afleveringsSted;}
     public Double getPris() {return pris;}
 
-    /* ---------------SETTERS---------------*/
+    /* ---------------SETTERS--------------- */
 
     public void setKontraktID(int kontraktID){ this.kontraktID = kontraktID;}
     public void setKundeID(int kundeID){this.kundeID = kundeID;}
@@ -51,6 +51,7 @@ public class lejekontraktModel {
     public void setSlutDato(LocalDate slutDato){this.slutDato = slutDato;}
     public void setMaaneder(int maaneder){this.maaneder = maaneder;}
     public void setPickupSted(String pickupSted){this.pickupSted = pickupSted;}
+
     public void setAfleveringsSted(String afleverSted){this.afleveringsSted = afleverSted;}
     public void setPris(Double pris){this.pris = pris;}
 }
