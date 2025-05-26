@@ -23,28 +23,35 @@
   <div class="form-container">
     <h1>Rediger bil</h1>
     <form th:action="@{/bil/rediger}" th:object="${bil}" method="post">
-      <input type="hidden" th:field="*{bilId}" />
+    <input type="hidden" th:field="*{bilId}" />
 
       <label for="model">Model:</label>
-      <input type="text" id="model" th:field="*{model}" required>
+      <input type="text" id="model" th:field="*{model}">
+      <div class="error" th:if="${#fields.hasErrors('model')}" th:errors="*{model}"></div>
 
       <label for="maerke">Mærke:</label>
       <input type="text" id="maerke" th:field="*{maerke}" required>
+      <div class="error" th:if="${#fields.hasErrors('maerke')}" th:errors="*{maerke}"></div>
 
       <label for="regNr">Registreringsnummer:</label>
       <input type="text" id="regNr" th:field="*{regNr}" required>
+      <div class="error" th:if="${#fields.hasErrors('regNr')}" th:errors="*{regNr}"></div>
 
       <label for="stelNummer">Stelnummer:</label>
       <input type="text" id="stelNummer" th:field="*{stelNummer}" required>
+      <div class="error" th:if="${#fields.hasErrors('stelNummer')}" th:errors="*{stelNummer}"></div>
 
       <label for="vognNummer">Vognnummer:</label>
       <input type="text" id="vognNummer" th:field="*{vognNummer}" required>
+      <div class="error" th:if="${#fields.hasErrors('vognNummer')}" th:errors="*{vognNummer}"></div>
 
       <label for="co2">CO2-udledning:</label>
       <input type="number" step="0.01" id="co2" th:field="*{co2}" required>
+      <div class="error" th:if="${#fields.hasErrors('co2')}" th:errors="*{co2}"></div>
 
       <label for="staalpris">Stålpris:</label>
       <input type="number" step="0.01" id="staalpris" th:field="*{staalpris}" required>
+      <div class="error" th:if="${#fields.hasErrors('staalpris')}" th:errors="*{staalpris}"></div>
 
       <label for="tilgaengelig">Tilgængelig:</label>
       <select id="tilgaengelig" th:field="*{tilgaengelig}">
@@ -60,6 +67,10 @@
                 th:selected="${u.udstyrsniveauId == bil.udstyrsniveauId}">
         </option>
       </select>
+
+      <label for="maanedspris">Månedspris:</label>
+      <input type="number" step="0.01" id="maanedspris" th:field="*{maanedspris}">
+      <div class="error" th:if="${#fields.hasErrors('maanedspris')}" th:errors="*{maanedspris}"></div>
 
       <button type="submit" class="nav-button">Gem ændringer</button>
     </form>
