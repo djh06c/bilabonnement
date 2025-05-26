@@ -20,6 +20,7 @@ public class bilRowMapper implements RowMapper<bilModel> {
         bil.setTilgaengelig(rs.getBoolean("tilgaengelig"));
         bil.setStaalpris(rs.getDouble("staalpris"));
         bil.setUdstyrsniveauId(rs.getInt("udstyrsniveau_ID"));
+        bil.setMaanedspris(rs.getDouble("maanedspris"));
 
         // Hvis vi har lavet JOIN med navn
         try {

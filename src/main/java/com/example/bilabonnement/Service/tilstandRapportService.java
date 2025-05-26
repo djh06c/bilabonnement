@@ -18,7 +18,7 @@ public class tilstandRapportService {
         return repo.hentAlleRapporter();
     }
 
-    // 🔹 Hent rapport ved ID (valgfri funktion)
+    // 🔹 Hent rapport ved ID
     public tilstandRapportModel hentRapportVedId(int id) {
         return repo.hentRapportVedId(id);
     }
@@ -28,12 +28,12 @@ public class tilstandRapportService {
         repo.opretRapport(rapport);
     }
 
-    // 🔹 Opdater rapport (valgfri)
+    // 🔹 Opdater rapport
     public void opdaterRapport(tilstandRapportModel rapport) {
         repo.opdaterRapport(rapport);
     }
 
-    // 🔹 Slet rapport (valgfri)
+    // 🔹 Slet rapport
     public void sletRapport(int id) {
         repo.sletRapport(id);
     }

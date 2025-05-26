@@ -49,4 +49,27 @@ public class tilstandRapportController {
         tilstandService.opretRapport(rapport);
         return "redirect:/tilstandsrapporter/vis";
     }
+    // Slet rapport
+    @GetMapping("/slet/{id}")
+    public String sletRapport(@PathVariable int id) {
+        tilstandService.sletRapport(id);
+        return "redirect:/tilstandsrapporter/vis";
+    }
+
+    // Gå til redigeringsside
+    @GetMapping("/rediger/{id}")
+    public String redigerRapport(@PathVariable int id, Model model) {
+        tilstandRapportModel rapport = tilstandService.hentRapportVedId(id);
+        model.addAttribute("redigerRapport", rapport);
+        model.addAttribute("kategorier", skadeService.hentAlleKategorier());
+        model.addAttribute("kontrakter", lejekontraktService.findAll());
+        return "tilstande-rediger";
+    }
+
+    // Gem ændringer
+    @PostMapping("/rediger")
+    public String opdaterRapport(@ModelAttribute("redigerRapport") tilstandRapportModel rapport) {
+        tilstandService.opdaterRapport(rapport);
+        return "redirect:/tilstandsrapporter/vis";
+    }
 }

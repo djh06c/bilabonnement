@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Rediger Tilstandsrapport</title>
+    <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- Header -->
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="dashboard-layout">
+    <div class="sidebar">
+        <a th:href="@{/tilstandsrapporter/vis}" class="sidebar-button active">Tilstandsrapporter</a>
+    </div>
+
+    <div class="content">
+        <h1>Rediger Tilstandsrapport</h1>
+
+        <form th:action="@{/tilstandsrapporter/rediger}" th:object="${redigerRapport}" method="post">
+            <label>Rapport ID:</label>
+            <input type="number" th:field="*{rapportID}" readonly><br>
+
+            <label>Bil ID:</label>
+            <input type="number" th:field="*{bilID}" required><br>
+
+            <label>Lejekontrakt:</label>
+            <select th:field="*{kontraktID}">
+                <option th:each="k : ${kontrakter}"
+                        th:value="${k.kontraktID}"
+                        th:text="'#' + ${k.kontraktID} + ' | ' + ${k.startDato} + ' → ' + ${k.slutDato}">
+                </option>
+            </select><br>
+
+            <label>Skadekategori:</label>
+            <select th:field="*{kategoriID}">
+                <option th:each="kat : ${kategorier}"
+                        th:value="${kat.kategoriID}"
+                        th:text="${kat.navn}">
+                </option>
+            </select><br>
+
+            <label>Beskrivelse:</label>
+            <textarea th:field="*{beskrivelse}" rows="3" cols="40"></textarea><br>
+
+            <button type="submit" class="primary-button">Gem ændringer</button>
+            <a th:href="@{/tilstandsrapporter/vis}" class="secondary-button">Annuller</a>
+        </form>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>

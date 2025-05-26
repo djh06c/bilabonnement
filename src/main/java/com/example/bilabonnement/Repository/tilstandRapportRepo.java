@@ -17,7 +17,7 @@ public class     tilstandRapportRepo {
 
 
     public List<tilstandRapportModel> hentAlleRapporter() {
-        String sql = "SELECT * FROM Tilstandsrapport";
+        String sql = "SELECT * FROM Tilstandsrapport ORDER BY kontrakt_ID, bil_ID";
         return jdbcTemplate.query(sql, new tilstandRapportRowMapper());
     }
 

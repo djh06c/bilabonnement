@@ -11,7 +11,13 @@ import java.util.List;
 public class skadeKategoriService {
 
     @Autowired
-    private skadeKategoriRepo repo;
+    public skadeKategoriRepo repo;
+
+    public skadeKategoriService() {} // tom constructor for Spring
+
+    public skadeKategoriService(skadeKategoriRepo repo) {
+        this.repo = repo;
+    }
 
     // 🔹 Hent alle skadekategorier
     public List<skadeKategoriModel> hentAlleKategorier() {

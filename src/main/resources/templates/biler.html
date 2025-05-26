@@ -23,7 +23,7 @@
   <div class="content">
     <h1>Alle Biler</h1>
 
-    <table>
+    <table class="biloversigt">
       <thead>
       <tr>
         <th><a th:href="@{/biler(filter='bil_ID')}" th:classappend="${filter == 'bil_ID'} ? ' active'" class="sortable-header">ID</a></th>
@@ -34,6 +34,7 @@
         <th><a th:href="@{/biler(filter='vognNummer')}" th:classappend="${filter == 'vognNummer'} ? ' active'" class="sortable-header">VognNr</a></th>
         <th><a th:href="@{/biler(filter='co2')}" th:classappend="${filter == 'co2'} ? ' active'" class="sortable-header">CO2</a></th>
         <th><a th:href="@{/biler(filter='staalpris')}" th:classappend="${filter == 'staalpris'} ? ' active'" class="sortable-header">Stålpris</a></th>
+        <th><a th:href="@{/biler(filter='maanedspris')}" th:classappend="${filter == 'maanedspris'} ? ' active'" class="sortable-header">kr. pr/m</a></th>
         <th><a th:href="@{/biler(filter='tilgaengelig')}" th:classappend="${filter == 'tilgaengelig'} ? ' active'" class="sortable-header">Ledig</a></th>
         <th><a th:href="@{/biler(filter='udstyrsniveauNavn')}" th:classappend="${filter == 'udstyrsniveauNavn'} ? ' active'" class="sortable-header">Udstyr</a></th>
         <th></th>
@@ -41,7 +42,9 @@
       </thead>
 
       <tbody>
-      <tr th:each="bil : ${biler}" th:class="${bil.tilgaengelig} ? 'tilgaengelig' : 'udlejet'">
+      <tr th:each="bil : ${biler}"
+          th:class="${bil.tilgaengelig ? 'ledig' : 'udlejet'}"
+          th:classappend="${#lists.contains(senesteBiler, bil)} ? ' ny-bil'">
         <td th:text="${bil.bilId}"></td>
         <td th:text="${bil.model}"></td>
         <td th:text="${bil.maerke}"></td>
@@ -50,17 +53,14 @@
         <td th:text="${bil.vognNummer}"></td>
         <td th:text="${bil.co2}"></td>
         <td th:text="${bil.staalpris}"></td>
+        <td th:text="${bil.maanedspris + ' kr.'}"></td>
         <td th:text="${bil.tilgaengelig} ? 'Ja' : 'Nej'"></td>
         <td th:text="${bil.udstyrsniveauNavn}"></td>
-        <td class="action-cell">
-          <a th:href="@{'/bil/rediger/' + ${bil.bilId}}" class="icon-button" title="Rediger">
-            <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger" />
-          </a>
+        <td>
+          <a th:href="@{'/bil/rediger/' + ${bil.bilId}}">Rediger</a> |
           <a th:href="@{'/bil/slet/' + ${bil.bilId}}"
-             class="icon-button"
-             title="Slet"
-             onclick="return confirm('Er du sikker på, at du vil slette denne bil?')">
-            <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet" />
+             onclick="return confirm('Er du sikker på, at du vil slette denne bil?');">
+            Slet
           </a>
         </td>
       </tr>
@@ -74,3 +74,4 @@
 
 </body>
 </html>
+

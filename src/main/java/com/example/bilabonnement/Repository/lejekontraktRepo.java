@@ -30,6 +30,15 @@ public class lejekontraktRepo {
         return result.isEmpty() ? null : result.get(0);
     }
 
+    /* --------------- Find alle aktive rapporter --------------- */
+    public List<lejekontraktModel> findeAktiveKontrakter(){
+        String sql = """
+                SELECT * FROM Lejekontrakt
+                WHERE start_dato <= CURRENT_DATE() AND slut_dato >= CURRENT_DATE()
+                """;
+        return jdbcTemplate.query(sql, new lejekontraktRowMapper());
+    }
+
     /* --------------- Opret en ny lejekontrakk --------------- */
     public void save(lejekontraktModel lk){
         String sql = "INSERT INTO lejekontrakt (kontrakt_ID, kunde_ID, bil_ID, start_dato, slut_dato, pickupSted, afleveringsSted, pris) " +
