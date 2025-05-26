@@ -36,7 +36,7 @@
         <th><a th:href="@{/biler(filter='staalpris')}" th:classappend="${filter == 'staalpris'} ? ' active'" class="sortable-header">Stålpris</a></th>
         <th><a th:href="@{/biler(filter='maanedspris')}" th:classappend="${filter == 'maanedspris'} ? ' active'" class="sortable-header">kr. pr/m</a></th>
         <th><a th:href="@{/biler(filter='tilgaengelig')}" th:classappend="${filter == 'tilgaengelig'} ? ' active'" class="sortable-header">Ledig</a></th>
-        <th><a th:href="@{/biler(filter='udstyrsniveauNavn')}" th:classappend="${filter == 'udstyrsniveauNavn'} ? ' active'" class="sortable-header">Udstyr</a></th>
+        <th><a th:href="@{/biler(filter='udstyrsniveau')}" th:classappend="${filter == 'udstyrsniveau'} ? ' active'" class="sortable-header">Udstyr</a></th>
         <th></th>
       </tr>
       </thead>
@@ -55,7 +55,7 @@
         <td th:text="${bil.staalpris}"></td>
         <td th:text="${bil.maanedspris + ' kr.'}"></td>
         <td th:text="${bil.tilgaengelig} ? 'Ja' : 'Nej'"></td>
-        <td th:text="${bil.udstyrsniveauNavn}"></td>
+        <td th:text="${bil.udstyrsniveau}"></td>
         <td class="action-cell">
           <a th:href="@{'/bil/rediger/' + ${bil.bilId}}" class="icon-button" title="Rediger">
             <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger"/>
