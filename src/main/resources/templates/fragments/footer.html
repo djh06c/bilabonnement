@@ -1,6 +1,22 @@
-
 <div th:fragment="footer">
-  <footer class="site-footer">
-    <!-- Du kan tilføje info her hvis ønsket -->
+  <footer class="site-footer"
+          style="display: flex; justify-content: space-between; align-items: center; padding: 0 2vw; font-size: 0.9rem;">
+
+    <!-- Venstre side: ledige biler -->
+    <div th:if="${isLogin != true}">
+      <span th:if="${ledigeBiler != null and totalBiler != null}"
+            th:text="${ledigeBiler + '/' + totalBiler + ' biler ledige'}">
+        0/0 biler ledige
+      </span>
+    </div>
+
+    <!-- Højre side: samlet pris -->
+    <div th:if="${isLogin != true}">
+      <span th:if="${samletPris != null}"
+            th:text="'Samlet pris: ' + ${#numbers.formatDecimal(samletPris, 0, 0)} + ' kr.'">
+        Samlet pris: 0 kr.
+      </span>
+    </div>
+
   </footer>
 </div>
