@@ -79,11 +79,6 @@ public class lejekontraktController {
         List<lejekontraktModel> aktiveKontrakter = service.findAktiveKontrakter();
         model.addAttribute("lejekontrakter", aktiveKontrakter);
 
-        double samletPris = aktiveKontrakter.stream()
-                .mapToDouble(lejekontraktModel::getPris)
-                .sum();
-        model.addAttribute("samletPris", samletPris);
-
         return "visLejekontrakter";
     }
 
@@ -101,6 +96,7 @@ public class lejekontraktController {
         lejekontraktModel kontrakt = service.findById(id);
         model.addAttribute("lejekontraktModel", kontrakt);
         model.addAttribute("filter", "rediger");
+
         return "rediger-Lejekontrakter";
     }
 
