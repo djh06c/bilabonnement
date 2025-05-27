@@ -45,7 +45,10 @@ public class tilstandRapportController {
     // ✅ Gem rapport fra formular
     @PostMapping("/vis")
     public String opretRapportFraForm(@ModelAttribute("nyRapport") tilstandRapportModel rapport) {
-        // OBS: kontraktID skal eksistere i databasen, ellers får du SQL-fejl!
+        // Hent bil_ID baseret på den valgte kontrakt_ID
+        lejekontraktModel kontrakt = lejekontraktService.findById(rapport.getKontraktID());
+        rapport.setBilID(kontrakt.getBilID()); // sæt automatisk
+
         tilstandService.opretRapport(rapport);
         return "redirect:/tilstandsrapporter/vis";
     }
