@@ -9,3 +9,5 @@ INSERT INTO Bil (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig
 ('V008', 'STEL123456H', 'AB12352', 'Corolla', 'Toyota', 98.0, FALSE, 199999, 1),
 ('V009', 'STEL123456I', 'AB12353', 'Civic', 'Honda', 95.0, TRUE, 209999, 2),
 ('V010', 'STEL123456J', 'AB12354', 'Mustang', 'Ford', 159.0, TRUE, 449999, 3);
+
+test
