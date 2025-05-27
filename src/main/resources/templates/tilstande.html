@@ -16,7 +16,6 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <a th:href="@{/tilstandsrapporter/vis}" class="sidebar-button active">Tilstandsrapporter</a>
-        <a th:href="@{/skadekategorier/vis}" class="sidebar-button">Skadekategorier</a>
     </div>
 
     <!-- Indhold -->
@@ -28,17 +27,20 @@
         <section class="form-section">
             <h2>Opret ny rapport</h2>
             <form th:action="@{/tilstandsrapporter/vis}" th:object="${nyRapport}" method="post">
-                <label>Rapport ID:</label>
-                <input type="number" th:field="*{rapportID}" required><br>
-
-                <label>Bil ID:</label>
-                <input type="number" th:field="*{bilID}" required><br>
+                <label>Næste rapport-ID:</label>
+                <span th:text="${naesteId}">[Auto-genereres]</span><br>
 
                 <label>Lejekontrakt:</label>
                 <select th:field="*{kontraktID}">
                     <option th:each="k : ${kontrakter}"
+                            th:if="${k != null}"
                             th:value="${k.kontraktID}"
-                            th:text="'#' + ${k.kontraktID} + ' | ' + ${k.startDato} + ' → ' + ${k.slutDato}">
+                            th:text="'#' + ${k.kontraktID}
+                            + ' | ' + ${k.startDato}
+                            + ' → ' + ${k.slutDato} + ' | KundeID: '
+                            + ${k.kundeID} + ' | BilID: '
+                            + ${k.bilID}"
+                    >
                     </option>
                 </select><br>
 

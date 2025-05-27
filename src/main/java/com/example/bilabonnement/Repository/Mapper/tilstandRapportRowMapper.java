@@ -21,3 +21,4 @@ public class tilstandRapportRowMapper implements RowMapper<tilstandRapportModel>
         return rapport;
     }
 }
+
