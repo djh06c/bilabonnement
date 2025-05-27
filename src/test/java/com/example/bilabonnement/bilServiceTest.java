@@ -1,5 +1,6 @@
 package com.example.bilabonnement;
 
+import com.example.bilabonnement.Model.Udstyrsniveau;
 import com.example.bilabonnement.Model.bilModel;
 import com.example.bilabonnement.Repository.bilRepo;
 import com.example.bilabonnement.Service.bilService;
@@ -26,7 +27,7 @@ class bilServiceTest {
         bil.setCo2(110.00);
         bil.setStaalpris(210000.00);
         bil.setTilgaengelig(true);
-        bil.setUdstyrsniveauId(2);
+        bil.setUdstyrsniveau(Udstyrsniveau.PREMIUM);
 
         // Act
         service.opretBil(bil);
