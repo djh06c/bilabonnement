@@ -199,3 +199,33 @@ table.biloversigt td:first-child {
     outline: 3px solid yellow;
     outline-offset: -3px;
 }
+
+.error {
+    color: red;
+    font-size: 1vw;
+    margin-top: 0.3vw;
+    margin-bottom: 1vw;
+}
+
+/*Ikon-knapper i tabeller – fjerner kanter, streger og andet random dekoration + liner dem op symmetrisk*/
+.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 5px;
+    display: inline;
+    text-decoration: none; /* den her fjernede den irriterende streg på billedet*/
+    color: inherit;         /* arver tekstfarve fra omgivelser */
+    cursor: pointer;
+}
+
+.icon-button img {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+/* Sørger for at formularen står på linje med ikoner */
+.inline-form {
+    display: inline;
+}

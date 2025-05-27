@@ -1,10 +1,9 @@
 package com.example.bilabonnement.Service;
 
 import com.example.bilabonnement.Model.bilModel;
-import com.example.bilabonnement.Model.udstyrsniveau;
 import com.example.bilabonnement.Repository.bilRepo;
 import org.springframework.stereotype.Service;
-
+import com.example.bilabonnement.Model.Udstyrsniveau;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -55,7 +54,7 @@ public class bilService {
         bilRepo.sletBil(id);
     }
 
-    public List<udstyrsniveau> hentAlleUdstyrsniveauer() {
+    public List<Udstyrsniveau> hentAlleUdstyrsniveauer() {
         return bilRepo.hentAlleUdstyrsniveauer();
     }
 }

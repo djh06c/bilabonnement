@@ -1,11 +1,6 @@
 package com.example.bilabonnement.Model;
 
 import jakarta.validation.constraints.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Digits;
-
 
 public class bilModel {
 
@@ -38,15 +33,13 @@ public class bilModel {
     @Digits(integer = 9, fraction = 2, message = "Stålpris skal være et gyldigt decimaltal")
     private Double staalpris;
 
-    @NotNull(message = "Udstyrsniveau skal vælges")
-    private Integer udstyrsniveauId;
-
     @NotNull(message = "Månedspris skal udfyldes")
     @DecimalMin(value = "0.0", inclusive = true, message = "Månedspris skal være ≥ 0")
     @Digits(integer = 6, fraction = 2, message = "Månedspris skal være et gyldigt decimaltal")
     private Double maanedspris;
 
-    private String udstyrsniveauNavn;
+    @NotNull(message = "Udstyrsniveau skal vælges")
+    private Udstyrsniveau udstyrsniveau;
 
     // --- Getters og setters ---
 
@@ -86,17 +79,13 @@ public class bilModel {
 
     public void setStaalpris(Double staalpris) { this.staalpris = staalpris; }
 
-    public Integer getUdstyrsniveauId() { return udstyrsniveauId; }
-
-    public void setUdstyrsniveauId(Integer udstyrsniveauId) { this.udstyrsniveauId = udstyrsniveauId; }
-
     public Double getMaanedspris() { return maanedspris; }
 
     public void setMaanedspris(Double maanedspris) { this.maanedspris = maanedspris; }
 
-    public String getUdstyrsniveauNavn() { return udstyrsniveauNavn; }
+    public Udstyrsniveau getUdstyrsniveau() { return udstyrsniveau; }
 
-    public void setUdstyrsniveauNavn(String udstyrsniveauNavn) { this.udstyrsniveauNavn = udstyrsniveauNavn; }
+    public void setUdstyrsniveau(Udstyrsniveau udstyrsniveau) { this.udstyrsniveau = udstyrsniveau; }
 
     // --- toString ---
     @Override
@@ -111,9 +100,8 @@ public class bilModel {
                 ", co2=" + co2 +
                 ", tilgaengelig=" + tilgaengelig +
                 ", staalpris=" + staalpris +
-                ", udstyrsniveauId=" + udstyrsniveauId +
                 ", maanedspris=" + maanedspris +
-                ", udstyrsniveauNavn='" + udstyrsniveauNavn + '\'' +
+                ", udstyrsniveau=" + udstyrsniveau +
                 '}';
     }
 

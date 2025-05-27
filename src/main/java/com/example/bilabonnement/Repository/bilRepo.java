@@ -1,12 +1,12 @@
 package com.example.bilabonnement.Repository;
 
 import com.example.bilabonnement.Model.bilModel;
-import com.example.bilabonnement.Model.udstyrsniveau;
 import com.example.bilabonnement.Repository.Mapper.bilRowMapper;
-import com.example.bilabonnement.Repository.Mapper.udstyrsniveauRowMapper;
+import com.example.bilabonnement.Model.Udstyrsniveau;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Repository
@@ -22,7 +22,7 @@ public class bilRepo {
     public void opretBil(bilModel bil) {
         String sql = """
         INSERT INTO Bil 
-        (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, udstyrsniveau_ID, maanedspris)
+        (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, udstyrsniveau, maanedspris)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """;
 
@@ -35,29 +35,20 @@ public class bilRepo {
                 bil.getCo2(),
                 bil.isTilgaengelig(),
                 bil.getStaalpris(),
-                bil.getUdstyrsniveauId(),
+                bil.getUdstyrsniveau().name(), // ENUM som STRING
                 bil.getMaanedspris()
         );
     }
 
-    // ✅ Hent alle biler (med JOIN for udstyrsniveauNavn)
+    // ✅ Hent alle biler
     public List<bilModel> hentAlleBiler() {
-        String sql = """
-            SELECT b.*, u.navn AS udstyrsniveauNavn
-            FROM Bil b
-            JOIN Udstyrsniveau u ON b.udstyrsniveau_ID = u.udstyrsniveau_ID
-        """;
+        String sql = "SELECT * FROM Bil";
         return jdbcTemplate.query(sql, new bilRowMapper());
     }
 
     // ✅ Find bil efter ID
     public bilModel findById(int id) {
-        String sql = """
-            SELECT b.*, u.navn AS udstyrsniveauNavn
-            FROM Bil b
-            JOIN Udstyrsniveau u ON b.udstyrsniveau_ID = u.udstyrsniveau_ID
-            WHERE b.bil_ID = ?
-        """;
+        String sql = "SELECT * FROM Bil WHERE bil_ID = ?";
         return jdbcTemplate.queryForObject(sql, new bilRowMapper(), id);
     }
 
@@ -73,7 +64,7 @@ public class bilRepo {
             co2 = ?, 
             tilgaengelig = ?, 
             staalpris = ?, 
-            udstyrsniveau_ID = ?,
+            udstyrsniveau = ?, 
             maanedspris = ?
         WHERE bil_ID = ?
         """;
@@ -87,7 +78,7 @@ public class bilRepo {
                 bil.getCo2(),
                 bil.isTilgaengelig(),
                 bil.getStaalpris(),
-                bil.getUdstyrsniveauId(),
+                bil.getUdstyrsniveau().name(), // ENUM som STRING
                 bil.getMaanedspris(),
                 bil.getBilId()
         );
@@ -99,41 +90,28 @@ public class bilRepo {
         jdbcTemplate.update(sql, id);
     }
 
-    // ✅ Hent alle udstyrsniveauer
-    public List<udstyrsniveau> hentAlleUdstyrsniveauer() {
-        String sql = "SELECT * FROM Udstyrsniveau";
-        return jdbcTemplate.query(sql, new udstyrsniveauRowMapper());
+    // ✅ Hent alle udstyrsniveauer – fra ENUM direkte
+    public List<Udstyrsniveau> hentAlleUdstyrsniveauer() {
+        return Arrays.asList(Udstyrsniveau.values());
     }
 
-    // ✅ Hent biler sorteret efter kolonnenavn
+    // ✅ Hent biler sorteret efter kolonne (kun direkte kolonner)
     public List<bilModel> hentBilerSorteretEfter(String kolonneNavn) {
         List<String> tilladteKolonner = List.of(
                 "bil_ID", "model", "maerke", "regNr", "stelNummer", "vognNummer",
-                "co2", "staalpris", "maanedspris", "tilgaengelig", "udstyrsniveauNavn"
+                "co2", "staalpris", "maanedspris", "tilgaengelig", "udstyrsniveau"
         );
 
         if (!tilladteKolonner.contains(kolonneNavn)) {
             kolonneNavn = "bil_ID"; // fallback
         }
 
-        String sql = String.format("""
-            SELECT b.*, u.navn AS udstyrsniveauNavn
-            FROM Bil b
-            JOIN Udstyrsniveau u ON b.udstyrsniveau_ID = u.udstyrsniveau_ID
-            ORDER BY %s
-        """, kolonneNavn);
-
+        String sql = "SELECT * FROM Bil ORDER BY " + kolonneNavn;
         return jdbcTemplate.query(sql, new bilRowMapper());
     }
 
     public bilModel findNyesteBil() {
-        String sql = """
-        SELECT b.*, u.navn AS udstyrsniveauNavn
-        FROM Bil b
-        JOIN Udstyrsniveau u ON b.udstyrsniveau_ID = u.udstyrsniveau_ID
-        ORDER BY b.bil_ID DESC
-        LIMIT 1
-    """;
+        String sql = "SELECT * FROM Bil ORDER BY bil_ID DESC LIMIT 1";
         return jdbcTemplate.queryForObject(sql, new bilRowMapper());
     }
 }
