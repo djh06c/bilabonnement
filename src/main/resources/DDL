@@ -29,7 +29,7 @@ CREATE TABLE Bil (
 
 -- Lejekontrakt
 CREATE TABLE Lejekontrakt (
-    kontrakt_ID INT PRIMARY KEY,
+    kontrakt_ID INT AUTO_INCREMENT PRIMARY KEY,
     kunde_ID INT NOT NULL,
     bil_ID INT NOT NULL,
     start_dato DATE NOT NULL,
@@ -92,3 +92,10 @@ INSERT INTO Kunde (navn, mail, adresse, tlf, foedselsdato) VALUES
 ('Mikkel Andersen', 'mikkel.a@example.com', 'Østerbrogade 99, 2100 København Ø', '99001122', '1987-02-14'),
 ('Emilie Rasmussen', 'emilie.r@example.com', 'Torvegade 1, 1400 København K', '10111213', '1993-12-09'),
 ('Frederik Thomsen', 'frederik.t@example.com', 'Amagerbrogade 55, 2300 København S', '12131415', '1989-04-03');
+
+-- Indsæt tilstandskategorier
+INSERT INTO Tilstandskategori (kategori_ID, navn, beskrivelse) VALUES
+(0, 'Ingen skade', 'Ingen synlige eller rapporterede skader på bilen'),
+(1, 'Kosmetisk skade', 'Mindre overfladiske skader som ridser eller buler'),
+(2, 'Skal repareres', 'Skader som kræver reparation for at bilen kan bruges sikkert'),
+(3, 'Totalskadet', 'Bilen er ikke længere egnet til brug eller reparation');

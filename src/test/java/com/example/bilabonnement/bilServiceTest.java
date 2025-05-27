@@ -23,8 +23,8 @@ class bilServiceTest {
         bil.setRegNr("AB11111");
         bil.setStelNummer("STELTEST001");
         bil.setVognNummer("VTEST001");
-        bil.setCo2(110);
-        bil.setStaalpris(210000);
+        bil.setCo2(110.00);
+        bil.setStaalpris(210000.00);
         bil.setTilgaengelig(true);
         bil.setUdstyrsniveauId(2);
 

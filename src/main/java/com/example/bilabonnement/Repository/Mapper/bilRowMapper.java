@@ -21,8 +21,6 @@ public class bilRowMapper implements RowMapper<bilModel> {
         bil.setTilgaengelig(rs.getBoolean("tilgaengelig"));
         bil.setStaalpris(rs.getDouble("staalpris"));
         bil.setMaanedspris(rs.getDouble("maanedspris"));
-
-        // Hent ENUM direkte fra databasefeltet
         bil.setUdstyrsniveau(Udstyrsniveau.valueOf(rs.getString("udstyrsniveau")));
 
         return bil;
