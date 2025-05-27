@@ -240,3 +240,104 @@ table.biloversigt td:first-child {
     font-family: 'Segoe UI', sans-serif;
     box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
 }
+
+/* ============================================================================
+   MEDIA QUERIES: Tablets (≤ 1024px) og Mobiler (≤ 768px)
+============================================================================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    button, .nav-button,
+    input, select, textarea {
+        font-size: 1.5vw;
+        padding: 1.5vw;
+    }
+
+    h1, h2 {
+        font-size: 2vw;
+    }
+
+    .sidebar-button {
+        font-size: 1.5vw;
+        padding: 1.5vw;
+    }
+
+    th, td {
+        font-size: 1.2vw;
+    }
+
+    .dashboard-layout {
+        flex-direction: column;
+        padding-top: 4vw;
+        height: auto;
+    }
+
+    .sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1vw;
+        justify-content: center;
+    }
+
+    .sidebar-button {
+        flex: 1 1 auto;
+        min-width: 40%;
+    }
+}
+
+/* Smartphones */
+@media (max-width: 768px) {
+    html, body {
+        overflow: auto;
+        font-size: 14px;
+    }
+
+    button, .nav-button,
+    input, select, textarea {
+        font-size: 4vw;
+        padding: 3vw;
+    }
+
+    h1, h2 {
+        font-size: 5vw;
+    }
+
+    .sidebar {
+        flex-direction: column;
+        gap: 2vw;
+        align-items: center;
+    }
+
+    .dashboard-layout {
+        padding: 4vw 2vw;
+    }
+
+    .sidebar-button {
+        font-size: 4vw;
+        padding: 3vw;
+        width: 90%;
+    }
+
+    .main-box, .content, .form-container {
+        padding: 4vw;
+    }
+
+    th, td {
+        font-size: 3.5vw;
+        padding: 2vw;
+        height: auto;
+    }
+
+    .icon-button img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .pris-boks {
+        font-size: 4vw;
+    }
+
+    .error {
+        font-size: 3vw;
+    }
+}
