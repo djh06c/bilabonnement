@@ -1,7 +1,6 @@
 package com.example.bilabonnement.Controller;
 
 import com.example.bilabonnement.Model.lejekontraktModel;
-import com.example.bilabonnement.Repository.bilRepo;
 import com.example.bilabonnement.Service.lejekontraktService;
 import com.example.bilabonnement.Model.bilModel;
 import com.example.bilabonnement.Service.bilService;
@@ -34,10 +33,9 @@ public class lejekontraktController {
         return "lejekontrakter"; // opret-side
     }
 
-    /*
+
     @PostMapping("/opret")
     public String opretFraHtml(@ModelAttribute lejekontraktModel kontrakt, Model model) {
-        System.out.println("DEBUG: Har ramt POST /lejekontrakter/opret");
         try {
             int maaneder = kontrakt.getMaaneder();
 
@@ -73,49 +71,7 @@ public class lejekontraktController {
         model.addAttribute("lejekontraktModel", new lejekontraktModel());
         return "lejekontrakter";
     }
-    */
-    @PostMapping("/opret")
-    public String opretFraHtml(@ModelAttribute lejekontraktModel kontrakt, Model model) {
-        System.out.println("DEBUG: Har ramt POST /lejekontrakter/opret");
 
-        int maaneder = kontrakt.getMaaneder();
-        System.out.println("Antal måneder: " + maaneder);
-
-        if (maaneder < 4 || maaneder > 36) {
-            System.out.println("Lejeperiode ikke gyldig.");
-            model.addAttribute("error", "Lejeperioden skal være mellem 4 og 36 måneder!");
-            model.addAttribute("lejekontraktModel", kontrakt);
-            return "lejekontrakter";
-        }
-
-        kontrakt.setSlutDato(kontrakt.getStartDato().plusMonths(maaneder));
-        System.out.println("Slutdato sat til: " + kontrakt.getSlutDato());
-
-        bilModel bil = bilService.findBilById(kontrakt.getBilID());
-        if (bil == null) {
-            System.out.println("Bil ikke fundet!");
-            model.addAttribute("error", "Den valgte bil findes ikke.");
-            model.addAttribute("lejekontraktModel", kontrakt);
-            return "lejekontrakter";
-        }
-
-        System.out.println("Månedspris for bilen: " + bil.getMaanedspris());
-        double totalPris = bil.getMaanedspris() * maaneder;
-        kontrakt.setPris(totalPris);
-        System.out.println("Total pris sat til: " + totalPris);
-
-        try {
-            service.save(kontrakt);
-            System.out.println("Kontrakt gemt!");
-            model.addAttribute("success", "Lejekontrakt oprettet!");
-        } catch (Exception e) {
-            System.out.println("Fejl ved gemning: " + e.getMessage());
-            model.addAttribute("error", "Fejl: " + e.getMessage());
-        }
-
-        model.addAttribute("lejekontraktModel", new lejekontraktModel());
-        return "lejekontrakter";
-    }
 
 
     @GetMapping("/vis")
