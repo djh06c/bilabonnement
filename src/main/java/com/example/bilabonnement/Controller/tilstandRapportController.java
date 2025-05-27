@@ -38,6 +38,7 @@ public class tilstandRapportController {
         model.addAttribute("kategorier", kategorier);
         model.addAttribute("kontrakter", kontrakter);
         model.addAttribute("nyRapport", new tilstandRapportModel());
+        model.addAttribute("naesteId", tilstandService.hentNaesteRapportID());
 
         return "tilstande";
     }
@@ -75,4 +76,5 @@ public class tilstandRapportController {
         tilstandService.opdaterRapport(rapport);
         return "redirect:/tilstandsrapporter/vis";
     }
+
 }

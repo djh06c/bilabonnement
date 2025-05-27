@@ -37,4 +37,8 @@ public class tilstandRapportService {
     public void sletRapport(int id) {
         repo.sletRapport(id);
     }
+
+    public int hentNaesteRapportID() {
+        return repo.hentNaesteRapportID();
+    }
 }

@@ -27,11 +27,8 @@
         <section class="form-section">
             <h2>Opret ny rapport</h2>
             <form th:action="@{/tilstandsrapporter/vis}" th:object="${nyRapport}" method="post">
-                <label>Rapport ID:</label>
-                <input type="number" th:field="*{rapportID}" required><br>
-
-                <label>Bil ID:</label>
-                <input type="number" th:field="*{bilID}" required><br>
+                <label>Næste rapport-ID:</label>
+                <span th:text="${naesteId}">[Auto-genereres]</span><br>
 
                 <label>Lejekontrakt:</label>
                 <select th:field="*{kontraktID}">

@@ -50,4 +50,11 @@ public class     tilstandRapportRepo {
         String sql = "DELETE FROM Tilstandsrapport WHERE rapport_ID = ?";
         jdbcTemplate.update(sql, id);
     }
+
+    public int hentNaesteRapportID() {
+        String sql = "SELECT AUTO_INCREMENT FROM INFORMATION_SCHEMA.TABLES " +
+                "WHERE TABLE_SCHEMA = 'bilabonnement' AND TABLE_NAME = 'Tilstandsrapport'";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
 }
