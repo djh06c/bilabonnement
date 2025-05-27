@@ -76,9 +76,17 @@ public class lejekontraktController {
 
     @GetMapping("/vis")
     public String visAlleKontrakter(Model model) {
-        model.addAttribute("lejekontrakter", service.findAktiveKontrakter());
+        List<lejekontraktModel> aktiveKontrakter = service.findAktiveKontrakter();
+        model.addAttribute("lejekontrakter", aktiveKontrakter);
+
+        double samletPris = aktiveKontrakter.stream()
+                .mapToDouble(lejekontraktModel::getPris)
+                .sum();
+        model.addAttribute("samletPris", samletPris);
+
         return "visLejekontrakter";
     }
+
 
     @PostMapping("/slet")
     public String sletFraHtml(@RequestParam int id, Model model) {

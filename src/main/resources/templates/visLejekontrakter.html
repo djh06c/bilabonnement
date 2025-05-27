@@ -18,7 +18,10 @@
         <a th:href="@{/lejekontrakter/vis}" class="sidebar-button active">Vis Lejekontrakter</a>
         <a th:href="@{/lejekontrakter}" class="sidebar-button">Opret Lejekontrakt</a>
         <a th:href="@{/lejekontrakter/arkiv}" class="sidebar-button">Kontraktarkiv</a>
-
+        <div style="margin-top: 20px; padding: 10px; background-color: #f4f4f4; border-radius: 8px;">
+            <strong>Samlet Aktiv Pris:</strong>
+            <div th:text="'DKK ' + ${samletPris}"></div>
+        </div>
     </div>
 
     <!-- Indhold -->
