@@ -33,8 +33,14 @@
                 <label>Lejekontrakt:</label>
                 <select th:field="*{kontraktID}">
                     <option th:each="k : ${kontrakter}"
+                            th:if="${k != null}"
                             th:value="${k.kontraktID}"
-                            th:text="'#' + ${k.kontraktID} + ' | ' + ${k.startDato} + ' → ' + ${k.slutDato}">
+                            th:text="'#' + ${k.kontraktID}
+                            + ' | ' + ${k.startDato}
+                            + ' → ' + ${k.slutDato} + ' | KundeID: '
+                            + ${k.kundeID} + ' | BilID: '
+                            + ${k.bilID}"
+                    >
                     </option>
                 </select><br>
 
