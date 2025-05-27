@@ -25,8 +25,6 @@
   <div class="form-container" style="flex:2;">
     <h1>Opret ny lejekontrakt</h1>
     <form th:action="@{/lejekontrakter/opret}" th:object="${lejekontraktModel}" method="post">
-      <label for="kontraktID">Kontrakt ID:</label>
-      <input type="number" id="kontraktID" th:field="*{kontraktID}" required>
 
       <label for="kundeID">Kunde ID:</label>
       <input type="number" id="kundeID" th:field="*{kundeID}" required>
@@ -37,8 +35,12 @@
       <label for="startDato">Start Dato:</label>
       <input type="date" id="startDato" th:field="*{startDato}" required>
 
-      <label for="slutDato">Slut Dato:</label>
-      <input type="date" id="slutDato" th:field="*{slutDato}" required>
+      <!-- dropdown menu til valg af antal måneder af lejeperiode -->
+      <label for="maaneder">Lejeperiode (måneder):</label>
+      <select id="maaneder" name="maaneder" required>
+        <option value="">-- Vælg --</option>
+        <option th:each="i : ${#numbers.sequence(4, 36)}" th:value="${i}" th:text="${i}"></option>
+      </select>
 
       <label for="pickupSted">Pickup Sted:</label>
       <input type="text" id="pickupSted" th:field="*{pickupSted}" required>
@@ -46,8 +48,10 @@
       <label for="afleveringsSted">Afleverings Sted:</label>
       <input type="text" id="afleveringsSted" th:field="*{afleveringsSted}" required>
 
+      <!--
       <label for="pris">Pris:</label>
       <input type="number" step="0.01" id="pris" th:field="*{pris}" required>
+      -->
 
       <button type="submit" class="nav-button">Opret lejekontrakt</button>
     </form>

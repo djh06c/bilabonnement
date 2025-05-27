@@ -68,10 +68,11 @@
             </table>
         </div>
 
-        <!-- Fejlbesked hvis ID ikke blev fundet -->
-        <div th:if="${fejlbesked != null}">
-            <p style="color: red;" th:text="${fejlbesked}"></p>
-        </div>
+
+            <!-- Fejlbesked hvis ID ikke blev fundet -->
+            <div th:if="${fejlbesked != null}">
+                <p style="color: red;" th:text="${fejlbesked}"></p>
+            </div>
         </section>
 
         <!-- Vis alle -->
