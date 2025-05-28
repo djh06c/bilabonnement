@@ -22,7 +22,7 @@ public class kundeRepo {
         return jdbcTemplate.query(sql, new kundeRowMapper());
     }
 
-    // Find én kunde via ID
+    // Find en kunde med ID
     public kundeModel findById(int id) {
         String sql = "SELECT * FROM kunde WHERE kunde_ID = ?";
         return jdbcTemplate.queryForObject(sql, new kundeRowMapper(), id);

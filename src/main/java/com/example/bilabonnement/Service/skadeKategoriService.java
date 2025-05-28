@@ -19,27 +19,27 @@ public class skadeKategoriService {
         this.repo = repo;
     }
 
-    // 🔹 Hent alle skadekategorier
+    // Hent alle skadekategorier
     public List<skadeKategoriModel> hentAlleKategorier() {
         return repo.hentAlleKategorier();
     }
 
-    // 🔹 Hent én kategori
+    // Hent en kategori
     public skadeKategoriModel hentKategoriVedId(int id) {
         return repo.hentKategoriVedId(id);
     }
 
-    // 🔹 Opret ny kategori
+    // Opret ny kategori
     public void opretKategori(skadeKategoriModel kategori) {
         repo.opretKategori(kategori);
     }
 
-    // 🔹 Opdater eksisterende kategori
+    // Opdater eksisterende kategori
     public void opdaterKategori(skadeKategoriModel kategori) {
         repo.opdaterKategori(kategori);
     }
 
-    // 🔹 Slet kategori
+    // Slet kategori
     public void sletKategori(int id) {
         repo.sletKategori(id);
     }

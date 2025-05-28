@@ -37,15 +37,4 @@ public class skadeKategoriModel {
     public void setBeskrivelse(String beskrivelse) {
         this.beskrivelse = beskrivelse;
     }
-
-    // Ekstra metode til visning, hvis du ønsker det
-    public String getVurdering() {
-        switch (kategoriID) {
-            case 0: return "Ingen skade";
-            case 1: return "Kosmetisk skade – kan udlejes";
-            case 2: return "Skal repareres";
-            case 3: return "Totalskadet – må ikke udlejes";
-            default: return "Ukendt";
-        }
-    }
 }

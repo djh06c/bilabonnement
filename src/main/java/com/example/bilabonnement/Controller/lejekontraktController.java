@@ -25,7 +25,7 @@ public class lejekontraktController {
         this.bilService = bilservice;
     }
 
-    // -------------------- HTML VIEW ENDPOINTS --------------------
+
 
     @GetMapping
     public String visOpretSide(Model model) {

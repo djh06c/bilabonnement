@@ -16,7 +16,7 @@ public class skadeKategoriRepo {
 
     public List<skadeKategoriModel> hentAlleKategorier() {
         String sql = "SELECT * FROM Tilstandskategori";
-        return jdbcTemplate.query(sql, new skadeKategoriRowMapper()); // <-- Her bruger du den
+        return jdbcTemplate.query(sql, new skadeKategoriRowMapper());
     }
 
     public skadeKategoriModel hentKategoriVedId(int id) {

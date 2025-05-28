@@ -21,7 +21,6 @@ public class     tilstandRapportRepo {
         return jdbcTemplate.query(sql, new tilstandRapportRowMapper());
     }
 
-
     public tilstandRapportModel hentRapportVedId(int id) {
         String sql = "SELECT * FROM Tilstandsrapport WHERE rapport_ID = ?";
         return jdbcTemplate.queryForObject(sql, new tilstandRapportRowMapper(), id);

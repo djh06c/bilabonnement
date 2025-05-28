@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<!-- Header -->
+
 <div th:replace="~{fragments/header :: header}"></div>
 
 <main class="dashboard-layout">
@@ -88,11 +88,11 @@
                     </td>
                     <td th:text="${rapport.beskrivelse}"></td>
                     <td class="action-cell">
-                        <!-- ✏️ Rediger-knap -->
+                        <!-- Rediger-knap -->
                         <a th:href="@{'/tilstandsrapporter/rediger/' + ${rapport.rapportID}}" class="icon-button" title="Rediger">
                             <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger" />
                         </a>
-                        <!-- 🗑 Slet-knap -->
+                        <!-- Slet-knap -->
                         <a th:href="@{'/tilstandsrapporter/slet/' + ${rapport.rapportID}}" class="icon-button" title="Slet"
                            onclick="return confirm('Er du sikker på, at du vil slette denne rapport?')">
                             <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet" />

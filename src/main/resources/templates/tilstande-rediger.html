@@ -20,21 +20,21 @@
 
         <form th:action="@{/tilstandsrapporter/rediger}" th:object="${redigerRapport}" method="post">
 
-            <!-- Rapport ID (readonly) -->
+            <!-- Rapport ID -->
             <label>Rapport ID:</label>
             <input type="number" th:field="*{rapportID}" readonly><br>
 
-            <!-- Lejekontrakt info (vises som tekst) -->
+            <!-- Lejekontrakt info -->
             <label>Lejekontrakt:</label>
             <p th:each="k : ${kontrakter}"
                th:if="${k.kontraktID} == ${redigerRapport.kontraktID}"
                th:text="'#' + ${k.kontraktID} + ' | ' + ${k.startDato} + ' → ' + ${k.slutDato} + ' | KundeID: ' + ${k.kundeID} + ' | BilID: ' + ${k.bilID}">
             </p>
 
-            <!-- skjult kontraktID så det sendes med -->
+            <!-- skjult kontraktID -->
             <input type="hidden" th:field="*{kontraktID}">
 
-            <!-- Skadekategori (redigerbar) -->
+            <!-- Skadekategori -->
             <label>Skadekategori:</label>
             <select th:field="*{kategoriID}">
                 <option th:each="kat : ${kategorier}"
