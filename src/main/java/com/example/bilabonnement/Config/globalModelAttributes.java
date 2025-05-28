@@ -1,4 +1,4 @@
-/*
+
 package com.example.bilabonnement.Config;
 
 import com.example.bilabonnement.Service.bilService;
@@ -41,4 +41,3 @@ public class globalModelAttributes {
     }
 }
 
- */
