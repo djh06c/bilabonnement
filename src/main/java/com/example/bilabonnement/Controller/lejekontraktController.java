@@ -39,17 +39,17 @@ public class lejekontraktController {
         try {
             int maaneder = kontrakt.getMaaneder();
 
-            // 1. Valider antal måneder
+
             if (maaneder < 4 || maaneder > 36) {
                 model.addAttribute("error", "Lejeperioden skal være mellem 4 og 36 måneder!");
                 model.addAttribute("lejekontraktModel", kontrakt);
                 return "lejekontrakter";
             }
 
-            // 2. Udregn slutdato
+
             kontrakt.setSlutDato(kontrakt.getStartDato().plusMonths(maaneder));
 
-            // 3. Hent bilen og udregn pris
+
             bilModel bil = bilService.findBilById(kontrakt.getBilID());
             if (bil == null) {
                 model.addAttribute("error", "Den valgte bil findes ikke.");
@@ -58,7 +58,7 @@ public class lejekontraktController {
             }
             double totalPris = bil.getMaanedspris() * maaneder;
             kontrakt.setPris(totalPris);
-            // 4. Gem kontrakten
+
             service.save(kontrakt);
             model.addAttribute("success", "Lejekontrakt oprettet!");
 
