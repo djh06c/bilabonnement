@@ -1,10 +1,9 @@
 package com.example.bilabonnement.Service;
 
 import com.example.bilabonnement.Model.bilModel;
-import com.example.bilabonnement.Model.udstyrsniveau;
 import com.example.bilabonnement.Repository.bilRepo;
 import org.springframework.stereotype.Service;
-
+import com.example.bilabonnement.Model.Udstyrsniveau;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class bilService {
 
     private final bilRepo bilRepo;
 
-    // ✅ Holder kun biler oprettet via hjemmesiden
+    // Holder kun biler oprettet via hjemmesiden
     private final LinkedList<bilModel> senesteBiler = new LinkedList<>();
 
     public bilService(bilRepo bilRepo) {
@@ -28,7 +27,7 @@ public class bilService {
         return bilRepo.hentBilerSorteretEfter(kolonneNavn);
     }
 
-    // ✅ Tilføjelse via hjemmeside – gemmes i senesteBiler
+    // Tilføjelse via hjemmeside – gemmes i senesteBiler
     public void opretBil(bilModel bil) {
         bilRepo.opretBil(bil);
         bilModel nyeste = bilRepo.findNyesteBil(); // Hent den nyeste med højest bilId
@@ -38,7 +37,7 @@ public class bilService {
         }
     }
 
-    // ✅ Returnér kun dem vi har husket
+    // Returnér kun dem som er husket
     public List<bilModel> hentSenesteBiler(int antal) {
         return senesteBiler.stream().limit(antal).toList();
     }
@@ -55,7 +54,7 @@ public class bilService {
         bilRepo.sletBil(id);
     }
 
-    public List<udstyrsniveau> hentAlleUdstyrsniveauer() {
+    public List<Udstyrsniveau> hentAlleUdstyrsniveauer() {
         return bilRepo.hentAlleUdstyrsniveauer();
     }
 }

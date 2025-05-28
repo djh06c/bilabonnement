@@ -27,7 +27,7 @@ public class tilstandRapportController {
     @Autowired
     private lejekontraktService lejekontraktService;
 
-    // ✅ HTML-visning
+
     @GetMapping("/vis")
     public String visTilstande(Model model) {
         List<tilstandRapportModel> rapporter = tilstandService.hentAlleRapporter();
@@ -38,14 +38,18 @@ public class tilstandRapportController {
         model.addAttribute("kategorier", kategorier);
         model.addAttribute("kontrakter", kontrakter);
         model.addAttribute("nyRapport", new tilstandRapportModel());
+        model.addAttribute("naesteId", tilstandService.hentNaesteRapportID());
 
         return "tilstande";
     }
 
-    // ✅ Gem rapport fra formular
+    // Gem rapport
     @PostMapping("/vis")
     public String opretRapportFraForm(@ModelAttribute("nyRapport") tilstandRapportModel rapport) {
-        // OBS: kontraktID skal eksistere i databasen, ellers får du SQL-fejl!
+
+        lejekontraktModel kontrakt = lejekontraktService.findById(rapport.getKontraktID());
+        rapport.setBilID(kontrakt.getBilID());
+
         tilstandService.opretRapport(rapport);
         return "redirect:/tilstandsrapporter/vis";
     }
@@ -72,4 +76,5 @@ public class tilstandRapportController {
         tilstandService.opdaterRapport(rapport);
         return "redirect:/tilstandsrapporter/vis";
     }
+
 }

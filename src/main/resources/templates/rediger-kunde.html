@@ -2,7 +2,7 @@
 <html lang="da" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Rediger kunde</title>
+  <title>Rediger Kunde</title>
   <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
@@ -13,7 +13,11 @@
 <main class="dashboard-layout">
   <div class="sidebar">
     <a th:href="@{/kunder}" class="sidebar-button active">Kundeoversigt</a>
-    <a th:href="@{/kunder/opret}" class="sidebar-button">Opret kunde</a>
+    <a th:href="@{/opret}" class="sidebar-button">Opret kunde</a>
+  </div>
+
+  <div th:if="${errorMessage}" class="error-message">
+    <p th:text="${errorMessage}"></p>
   </div>
 
   <div class="form-container">
@@ -34,7 +38,7 @@
       <input type="text" th:field="*{tlfNr}" required>
 
       <label>Fødselsdato:</label>
-      <input type="date" th:field="*{foedselsdato}" required>
+      <input type="date" name="foedselsdato" th:value="${kundeModel.foedselsdato}">
 
       <button type="submit" class="nav-button">Gem ændringer</button>
     </form>

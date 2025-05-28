@@ -23,7 +23,7 @@
   <div class="form-container">
     <h1>Rediger bil</h1>
     <form th:action="@{/bil/rediger}" th:object="${bil}" method="post">
-    <input type="hidden" th:field="*{bilId}" />
+      <input type="hidden" th:field="*{bilId}" />
 
       <label for="model">Model:</label>
       <input type="text" id="model" th:field="*{model}">
@@ -59,13 +59,14 @@
         <option th:value="false">Nej</option>
       </select>
 
-      <label for="udstyrsniveauId">Udstyrsniveau:</label>
-      <select id="udstyrsniveauId" th:field="*{udstyrsniveauId}">
-        <option th:each="u : ${udstyrsniveauer}"
-                th:value="${u.udstyrsniveauId}"
-                th:text="${u.navn}">
+      <label for="udstyrsniveau">Udstyrsniveau:</label>
+      <select id="udstyrsniveau" th:field="*{udstyrsniveau}">
+        <option th:each="niveau : ${T(com.example.bilabonnement.Model.Udstyrsniveau).values()}"
+                th:value="${niveau}"
+                th:text="${niveau}">
         </option>
       </select>
+      <div class="error" th:if="${#fields.hasErrors('udstyrsniveau')}" th:errors="*{udstyrsniveau}"></div>
 
       <label for="maanedspris">Månedspris:</label>
       <input type="number" step="0.01" id="maanedspris" th:field="*{maanedspris}">

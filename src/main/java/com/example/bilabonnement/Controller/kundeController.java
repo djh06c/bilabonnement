@@ -31,23 +31,36 @@ public class kundeController {
 
     //  Gem ny kunde
     @PostMapping("/kunder/opret")
-    public String opretKunde(@ModelAttribute kundeModel kunde) {
-        kundeService.opretKunde(kunde);
-        return "redirect:/kunder";
+    public String opretKunde(@ModelAttribute kundeModel kunde, Model model) {
+        try {
+            kundeService.opretKunde(kunde);
+            return "redirect:/kunder";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Mailen '" + kunde.getEmail() + "' er allerede i brug. Vælg en anden.");
+            model.addAttribute("kundeModel", kunde);
+            return "opret-kunde";
+        }
     }
 
     //  Vis formular til redigering
     @GetMapping("/kunder/rediger/{id}")
     public String visRedigerForm(@PathVariable int id, Model model) {
-        model.addAttribute("kundeModel", kundeService.findById(id));
+        kundeModel kunde = kundeService.findById(id);
+        model.addAttribute("kundeModel", kunde);
         return "rediger-kunde";
     }
 
     //  Gem ændret kunde
     @PostMapping("/kunder/rediger")
-    public String opdaterKunde(@ModelAttribute kundeModel kunde) {
-        kundeService.opdaterKunde(kunde);
-        return "redirect:/kunder";
+    public String opdaterKunde(@ModelAttribute kundeModel kunde, Model model) {
+        try {
+            kundeService.opdaterKunde(kunde);
+            return "redirect:/kunder";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Mailen '" + kunde.getEmail() + "' er allerede i brug. Vælg en anden.");
+            model.addAttribute("kundeModel", kunde);  // Bevarer de indtastede data
+            return "rediger-kunde";
+        }
     }
 
     //  Slet kunde

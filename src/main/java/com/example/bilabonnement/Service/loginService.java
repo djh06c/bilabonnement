@@ -25,7 +25,7 @@ public class loginService implements UserDetailsService {
     }
 
 
-    // 🔐 Påkrævet metode af UserDetailsService
+    // UserDetailsService påkræver denne metode
     @Override
     public UserDetails loadUserByUsername(String brugernavn) throws UsernameNotFoundException {
         loginModel bruger = loginRepo.findByBrugernavn(brugernavn)
@@ -38,12 +38,12 @@ public class loginService implements UserDetailsService {
                 .build();
     }
 
-    // 🔑 Hasher adgangskode med BCrypt
+    // Hasher adgangskode med BCrypt
     public String hashKode(String klartekstKode) {
         return new BCryptPasswordEncoder().encode(klartekstKode);
     }
 
-    // ➕ Gem ny bruger (bruger skal have hash i forvejen)
+    // Gem ny bruger (bruger skal have hash i forvejen)
     public void opretBruger(loginModel bruger) {
         loginRepo.gemBruger(bruger);
     }
@@ -58,8 +58,8 @@ public class loginService implements UserDetailsService {
             loginModel bruger = new loginModel();
             bruger.setBrugernavn("admin");
             bruger.setAdgangskodeHash(passwordEncoder.encode("admin123"));
-            loginRepo.gemBruger(bruger);  // hvis din repo hedder "gemBruger"
-            System.out.println("✅ Testbruger 'admin' oprettet");
+            loginRepo.gemBruger(bruger);
+            System.out.println("Testbruger 'admin' oprettet");
         }
     }
 

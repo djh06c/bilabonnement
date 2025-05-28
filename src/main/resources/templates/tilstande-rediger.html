@@ -19,20 +19,22 @@
         <h1>Rediger Tilstandsrapport</h1>
 
         <form th:action="@{/tilstandsrapporter/rediger}" th:object="${redigerRapport}" method="post">
+
+            <!-- Rapport ID -->
             <label>Rapport ID:</label>
             <input type="number" th:field="*{rapportID}" readonly><br>
 
-            <label>Bil ID:</label>
-            <input type="number" th:field="*{bilID}" required><br>
-
+            <!-- Lejekontrakt info -->
             <label>Lejekontrakt:</label>
-            <select th:field="*{kontraktID}">
-                <option th:each="k : ${kontrakter}"
-                        th:value="${k.kontraktID}"
-                        th:text="'#' + ${k.kontraktID} + ' | ' + ${k.startDato} + ' → ' + ${k.slutDato}">
-                </option>
-            </select><br>
+            <p th:each="k : ${kontrakter}"
+               th:if="${k.kontraktID} == ${redigerRapport.kontraktID}"
+               th:text="'#' + ${k.kontraktID} + ' | ' + ${k.startDato} + ' → ' + ${k.slutDato} + ' | KundeID: ' + ${k.kundeID} + ' | BilID: ' + ${k.bilID}">
+            </p>
 
+            <!-- skjult kontraktID -->
+            <input type="hidden" th:field="*{kontraktID}">
+
+            <!-- Skadekategori -->
             <label>Skadekategori:</label>
             <select th:field="*{kategoriID}">
                 <option th:each="kat : ${kategorier}"
@@ -41,11 +43,12 @@
                 </option>
             </select><br>
 
+            <!-- Beskrivelse -->
             <label>Beskrivelse:</label>
             <textarea th:field="*{beskrivelse}" rows="3" cols="40"></textarea><br>
 
+            <!-- Knapper -->
             <button type="submit" class="primary-button">Gem ændringer</button>
-            <a th:href="@{/tilstandsrapporter/vis}" class="secondary-button">Annuller</a>
         </form>
     </div>
 </main>

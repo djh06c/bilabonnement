@@ -39,7 +39,7 @@ public class securityConfig {
                         .logoutSuccessUrl("/login?logout=true")
                         .permitAll()
                 )
-                .csrf(csrf -> csrf.disable()) // Tilladt at slå CSRF fra her
+                .csrf(csrf -> csrf.disable()) //
                 .build();
     }
 
@@ -47,7 +47,7 @@ public class securityConfig {
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setUserDetailsService(loginService);
-        provider.setPasswordEncoder(passwordEncoder); // Bruger den injicerede bean
+        provider.setPasswordEncoder(passwordEncoder);
         return provider;
     }
 }

@@ -1,6 +1,4 @@
-/* ============================================================================
-   GLOBAL STYLING – gælder for hele systemet
-============================================================================ */
+/* GLOBAL STYLING – gælder for hele systemet */
 img, table, .content, .main-box, .form-container {
     max-width: 100%;
     box-sizing: border-box;
@@ -19,13 +17,13 @@ html, body {
 
 h1, h2 {
     color: #333;
-    margin-top: 1vw;
-    margin-bottom: 1vw;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 button, .nav-button {
-    padding: 1vw;
-    font-size: 1vw;
+    padding: 12px;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 10px;
     cursor: pointer;
@@ -41,30 +39,28 @@ button:hover,
 
 input, select, textarea {
     width: 100%;
-    padding: 0.5vw;
+    padding: 10px;
     box-sizing: border-box;
-    max-width: 100%;
-    font-size: 1vw;
+    font-size: 16px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 2vw;
+    margin-top: 40px;
     table-layout: fixed;
     word-wrap: break-word;
 }
 
 th, td {
-    padding: 0.4vw 0.6vw;
+    padding: 10px;
     border: 1px solid black;
     text-align: left;
-    max-width: 15vw;
+    max-width: 250px;
     overflow-wrap: break-word;
-    word-wrap: break-word;
     white-space: normal;
     vertical-align: middle;
-    height: 2.4vw;
+    height: 50px;
 }
 
 th {
@@ -78,24 +74,21 @@ table tr:hover {
     background-color: #f2f2f2;
 }
 
-/* Gør ID-kolonnen smallere i biloversigten */
 table.biloversigt th:first-child,
 table.biloversigt td:first-child {
     width: 40px;
     text-align: center;
 }
 
-/* ============================================================================
-   LAYOUT: CONTAINERS
-============================================================================ */
+/* LAYOUT: CONTAINERS */
 .main-container {
     display: flex;
     flex-direction: column;
     max-width: 95vw;
-    height: calc(100vh - 9vw);
+    height: calc(100vh - 120px);
     margin: 0 auto;
-    padding-top: 6vw;
-    padding-bottom: 3vw;
+    padding-top: 80px;
+    padding-bottom: 40px;
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -106,24 +99,22 @@ table.biloversigt td:first-child {
     overflow-x: hidden;
     background-color: white;
     border: 3px solid black;
-    padding: 2vw;
+    padding: 30px;
     border-radius: 10px;
     box-sizing: border-box;
     height: 100%;
     max-width: 100%;
 }
 
-/* ============================================================================
-   DASHBOARD / 2-KOLONNE LAYOUT
-============================================================================ */
+/* DASHBOARD / 2-KOLONNE LAYOUT */
 .dashboard-layout {
     display: flex;
     max-width: 95vw;
-    height: calc(100vh - 9vw);
+    height: calc(100vh - 120px);
     margin: 0 auto;
-    padding-top: 6vw;
-    padding-bottom: 3vw;
-    gap: 2vw;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    gap: 30px;
     align-items: flex-start;
     overflow: hidden;
 }
@@ -132,13 +123,13 @@ table.biloversigt td:first-child {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 1.5vw;
+    gap: 20px;
 }
 
 .sidebar-button {
-    padding: 1vw;
+    padding: 12px;
     font-weight: bold;
-    font-size: 1.1vw;
+    font-size: 18px;
     border: 2px solid black;
     border-radius: 15px;
     text-align: center;
@@ -162,27 +153,25 @@ table.biloversigt td:first-child {
     flex: 3;
     background-color: white;
     border: 3px solid black;
-    padding: 2vw;
+    padding: 30px;
     border-radius: 10px;
 }
 
-/* ============================================================================
-   layout og styling til CRUD
-============================================================================ */
+/* layout og styling til CRUD */
 .content {
     flex: 3;
     overflow-y: auto;
     overflow-x: hidden;
     background-color: white;
     border: 3px solid black;
-    padding: 2vw;
+    padding: 30px;
     border-radius: 10px;
     box-sizing: border-box;
     height: 100%;
     max-width: 100%;
 }
 
-/* 🔧 NYT: styling til biloversigt  */
+/* styling til biloversigt  */
 .bil-række {
     border: 2px solid black;
 }
@@ -202,20 +191,19 @@ table.biloversigt td:first-child {
 
 .error {
     color: red;
-    font-size: 1vw;
-    margin-top: 0.3vw;
-    margin-bottom: 1vw;
+    font-size: 14px;
+    margin-top: 6px;
+    margin-bottom: 20px;
 }
 
-/*Ikon-knapper i tabeller – fjerner kanter, streger og andet random dekoration + liner dem op symmetrisk*/
 .icon-button {
     background: none;
     border: none;
     padding: 0;
     margin: 0 5px;
     display: inline;
-    text-decoration: none; /* den her fjernede den irriterende streg på billedet*/
-    color: inherit;         /* arver tekstfarve fra omgivelser */
+    text-decoration: none;
+    color: inherit;
     cursor: pointer;
 }
 
@@ -225,7 +213,73 @@ table.biloversigt td:first-child {
     vertical-align: middle;
 }
 
-/* Sørger for at formularen står på linje med ikoner */
 .inline-form {
     display: inline;
+}
+
+.pris-boks {
+    background-color: #f0f8ff;
+    border: 2px solid #4caf50;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 30px;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+/* RESPONSIVT DESIGN – Media Queries */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    button, .nav-button, .sidebar-button {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    th, td {
+        font-size: 14px;
+        height: 45px;
+    }
+
+    .dashboard-layout {
+        flex-direction: column;
+    }
+
+    .sidebar, .main-box {
+        width: 100%;
+    }
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+    button, .nav-button, .sidebar-button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    input, select, textarea {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    h1, h2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .main-container, .dashboard-layout {
+        padding-top: 40px;
+        padding-bottom: 20px;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 8px;
+        height: 40px;
+    }
+
+    .pris-boks {
+        font-size: 14px;
+    }
 }

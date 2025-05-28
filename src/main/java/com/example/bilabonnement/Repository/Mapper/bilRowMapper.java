@@ -1,6 +1,7 @@
 package com.example.bilabonnement.Repository.Mapper;
 
 import com.example.bilabonnement.Model.bilModel;
+import com.example.bilabonnement.Model.Udstyrsniveau;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
@@ -19,15 +20,8 @@ public class bilRowMapper implements RowMapper<bilModel> {
         bil.setCo2(rs.getDouble("co2"));
         bil.setTilgaengelig(rs.getBoolean("tilgaengelig"));
         bil.setStaalpris(rs.getDouble("staalpris"));
-        bil.setUdstyrsniveauId(rs.getInt("udstyrsniveau_ID"));
         bil.setMaanedspris(rs.getDouble("maanedspris"));
-
-        // Hvis vi har lavet JOIN med navn
-        try {
-            bil.setUdstyrsniveauNavn(rs.getString("udstyrsniveauNavn"));
-        } catch (SQLException ignored) {
-            // Feltet findes ikke i alle queries
-        }
+        bil.setUdstyrsniveau(Udstyrsniveau.valueOf(rs.getString("udstyrsniveau")));
 
         return bil;
     }

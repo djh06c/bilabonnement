@@ -6,13 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class homeController {
 
-    // ➤ Standard forsiden (index.html)
+    // forsiden
     @GetMapping("/index")
     public String mainMenu() {
         return "index";
     }
 
-    // ➤ Elegant redirect: localhost:8080/ → /index
+
+    //redirect /index
     @GetMapping("/")
     public String redirectToIndex() {
         return "redirect:/index";

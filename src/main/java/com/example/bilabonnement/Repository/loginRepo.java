@@ -17,7 +17,7 @@ public class loginRepo {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // 🔐 Find bruger ud fra brugernavn – bruges til login
+    // Find bruger ud fra brugernavn – bruges til login
     public Optional<loginModel> findByBrugernavn(String brugernavn) {
         String sql = "SELECT * FROM Login WHERE brugernavn = ?";
         try {
@@ -32,7 +32,7 @@ public class loginRepo {
         }
     }
 
-    // ➕ Tilføj ny bruger (med hash allerede påført)
+    // Tilføj ny bruger
     public void gemBruger(loginModel bruger) {
         String sql = "INSERT INTO Login (brugernavn, adgangskodeHash) VALUES (?, ?)";
         jdbcTemplate.update(sql, bruger.getBrugernavn(), bruger.getAdgangskodeHash());

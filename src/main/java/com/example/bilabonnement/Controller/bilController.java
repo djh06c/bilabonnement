@@ -19,7 +19,7 @@ public class bilController {
         this.bilService = bilService;
     }
 
-    // ----- READ -----
+
     @GetMapping("/biler")
     public String visAlleBiler(
             @RequestParam(name = "filter", required = false) String filter,
@@ -39,7 +39,7 @@ public class bilController {
         return "biler";
     }
 
-    // ----- CREATE -----
+
     @GetMapping("/bil/opret")
     public String visOpretForm(Model model) {
         model.addAttribute("bil", new bilModel());
@@ -62,7 +62,7 @@ public class bilController {
         return "redirect:/biler";
     }
 
-    // ----- UPDATE -----
+
     @GetMapping("/bil/rediger/{id}")
     public String visRedigerForm(@PathVariable("id") int id, Model model) {
         bilModel bil = bilService.findBilById(id);
@@ -87,7 +87,7 @@ public class bilController {
         return "redirect:/biler";
     }
 
-    // ----- DELETE -----
+
     @GetMapping("/bil/slet/{id}")
     public String sletBil(@PathVariable("id") int id) {
         bilService.sletBil(id);
