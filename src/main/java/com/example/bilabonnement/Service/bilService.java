@@ -12,7 +12,7 @@ public class bilService {
 
     private final bilRepo bilRepo;
 
-    // ✅ Holder kun biler oprettet via hjemmesiden
+    // Holder kun biler oprettet via hjemmesiden
     private final LinkedList<bilModel> senesteBiler = new LinkedList<>();
 
     public bilService(bilRepo bilRepo) {
@@ -27,7 +27,7 @@ public class bilService {
         return bilRepo.hentBilerSorteretEfter(kolonneNavn);
     }
 
-    // ✅ Tilføjelse via hjemmeside – gemmes i senesteBiler
+    // Tilføjelse via hjemmeside – gemmes i senesteBiler
     public void opretBil(bilModel bil) {
         bilRepo.opretBil(bil);
         bilModel nyeste = bilRepo.findNyesteBil(); // Hent den nyeste med højest bilId
@@ -37,7 +37,7 @@ public class bilService {
         }
     }
 
-    // ✅ Returnér kun dem vi har husket
+    // Returnér kun dem som er husket
     public List<bilModel> hentSenesteBiler(int antal) {
         return senesteBiler.stream().limit(antal).toList();
     }

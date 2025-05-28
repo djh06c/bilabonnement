@@ -38,12 +38,12 @@ public class loginService implements UserDetailsService {
                 .build();
     }
 
-    // 🔑 Hasher adgangskode med BCrypt
+    // Hasher adgangskode med BCrypt
     public String hashKode(String klartekstKode) {
         return new BCryptPasswordEncoder().encode(klartekstKode);
     }
 
-    // ➕ Gem ny bruger (bruger skal have hash i forvejen)
+    // Gem ny bruger (bruger skal have hash i forvejen)
     public void opretBruger(loginModel bruger) {
         loginRepo.gemBruger(bruger);
     }
@@ -59,7 +59,7 @@ public class loginService implements UserDetailsService {
             bruger.setBrugernavn("admin");
             bruger.setAdgangskodeHash(passwordEncoder.encode("admin123"));
             loginRepo.gemBruger(bruger);
-            System.out.println("✅ Testbruger 'admin' oprettet");
+            System.out.println("Testbruger 'admin' oprettet");
         }
     }
 

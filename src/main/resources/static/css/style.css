@@ -1,6 +1,4 @@
-/* ============================================================================
-   GLOBAL STYLING – gælder for hele systemet
-============================================================================ */
+/* GLOBAL STYLING – gælder for hele systemet */
 img, table, .content, .main-box, .form-container {
     max-width: 100%;
     box-sizing: border-box;
@@ -82,9 +80,7 @@ table.biloversigt td:first-child {
     text-align: center;
 }
 
-/* ============================================================================
-   LAYOUT: CONTAINERS
-============================================================================ */
+/* LAYOUT: CONTAINERS */
 .main-container {
     display: flex;
     flex-direction: column;
@@ -110,9 +106,7 @@ table.biloversigt td:first-child {
     max-width: 100%;
 }
 
-/* ============================================================================
-   DASHBOARD / 2-KOLONNE LAYOUT
-============================================================================ */
+/* DASHBOARD / 2-KOLONNE LAYOUT */
 .dashboard-layout {
     display: flex;
     max-width: 95vw;
@@ -163,9 +157,7 @@ table.biloversigt td:first-child {
     border-radius: 10px;
 }
 
-/* ============================================================================
-   layout og styling til CRUD
-============================================================================ */
+/* layout og styling til CRUD */
 .content {
     flex: 3;
     overflow-y: auto;
@@ -179,7 +171,7 @@ table.biloversigt td:first-child {
     max-width: 100%;
 }
 
-/* 🔧 NYT: styling til biloversigt  */
+/* styling til biloversigt  */
 .bil-række {
     border: 2px solid black;
 }
@@ -236,9 +228,7 @@ table.biloversigt td:first-child {
     box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
 }
 
-/* ============================================================================
-   RESPONSIVT DESIGN – Media Queries
-============================================================================ */
+/* RESPONSIVT DESIGN – Media Queries */
 
 /* Tablet */
 @media (max-width: 1024px) {

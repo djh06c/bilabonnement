@@ -18,7 +18,7 @@ public class bilRepo {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    // ✅ Opret bil
+    // Opret bil
     public void opretBil(bilModel bil) {
         String sql = """
         INSERT INTO Bil 
@@ -35,24 +35,24 @@ public class bilRepo {
                 bil.getCo2(),
                 bil.isTilgaengelig(),
                 bil.getStaalpris(),
-                bil.getUdstyrsniveau().name(), // ENUM som STRING
+                bil.getUdstyrsniveau().name(),
                 bil.getMaanedspris()
         );
     }
 
-    // ✅ Hent alle biler
+    // Hent alle biler
     public List<bilModel> hentAlleBiler() {
         String sql = "SELECT * FROM Bil";
         return jdbcTemplate.query(sql, new bilRowMapper());
     }
 
-    // ✅ Find bil efter ID
+    // Find bil efter ID
     public bilModel findById(int id) {
         String sql = "SELECT * FROM Bil WHERE bil_ID = ?";
         return jdbcTemplate.queryForObject(sql, new bilRowMapper(), id);
     }
 
-    // ✅ Opdater bil
+    // Opdater bil
     public void opdaterBil(bilModel bil) {
         String sql = """
         UPDATE Bil SET 
@@ -84,18 +84,18 @@ public class bilRepo {
         );
     }
 
-    // ✅ Slet bil
+    // Slet bil
     public void sletBil(int id) {
         String sql = "DELETE FROM Bil WHERE bil_ID = ?";
         jdbcTemplate.update(sql, id);
     }
 
-    // ✅ Hent alle udstyrsniveauer – fra ENUM direkte
+    // Hent alle udstyrsniveauer fra ENUM
     public List<Udstyrsniveau> hentAlleUdstyrsniveauer() {
         return Arrays.asList(Udstyrsniveau.values());
     }
 
-    // ✅ Hent biler sorteret efter kolonne (kun direkte kolonner)
+    // Hent biler sorteret efter kolonne
     public List<bilModel> hentBilerSorteretEfter(String kolonneNavn) {
         List<String> tilladteKolonner = List.of(
                 "bil_ID", "model", "maerke", "regNr", "stelNummer", "vognNummer",
