@@ -1,7 +1,9 @@
 
 <div th:fragment="header">
   <header class="site-header">
-    <div class="header-left"><strong>Logo</strong></div>
+    <div class="header-left">
+      <img src="/pictures/BAbillede.png" alt="Bilabonnement logo" class="logo-image" />
+    </div>
 
     <div class="header-center">
       <div class="header-center" th:if="${isLogin != true}">

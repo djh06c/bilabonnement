@@ -25,7 +25,7 @@ public class loginService implements UserDetailsService {
     }
 
 
-    // 🔐 Påkrævet metode af UserDetailsService
+    // UserDetailsService påkræver denne metode
     @Override
     public UserDetails loadUserByUsername(String brugernavn) throws UsernameNotFoundException {
         loginModel bruger = loginRepo.findByBrugernavn(brugernavn)
@@ -58,7 +58,7 @@ public class loginService implements UserDetailsService {
             loginModel bruger = new loginModel();
             bruger.setBrugernavn("admin");
             bruger.setAdgangskodeHash(passwordEncoder.encode("admin123"));
-            loginRepo.gemBruger(bruger);  // hvis din repo hedder "gemBruger"
+            loginRepo.gemBruger(bruger);
             System.out.println("✅ Testbruger 'admin' oprettet");
         }
     }
