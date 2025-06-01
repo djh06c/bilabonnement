@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Kundeoversigt</title>
+    <!-- Import af CSS-filer til styling (header/footer og generel styling) -->
     <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
+<!-- Header-fragmentet fra Thymeleaf, som viser sidens top/header -->
 <div th:replace="~{fragments/header :: header}"></div>
 
 <main class="dashboard-layout">
+    <!-- Sidebar med navigation -->
     <div class="sidebar">
+        <!-- Knap til kundeoversigt (forside til kunder) -->
         <a th:href="@{/kunder}" class="sidebar-button active">Kundeoversigt</a>
+        <!-- Knap til opret kunde-side -->
         <a th:href="@{/kunder/opret}" class="sidebar-button">Opret kunde</a>
     </div>
 
+    <!-- Hovedindholdet på siden -->
     <div class="content">
         <h1>Alle kunder</h1>
 
+        <!-- Tabel der viser listen af kunder -->
         <table>
             <thead>
             <tr>
@@ -28,22 +35,32 @@
                 <th>Adresse</th>
                 <th>Telefon</th>
                 <th>Fødselsdato</th>
-                <th>Handlinger</th>
+                <th>Handlinger</th> <!-- Indeholder funktioner til rediger/slet -->
             </tr>
             </thead>
             <tbody>
+            <!-- Thymeleaf-loop der går gennem alle kunder i "kunder"-listen fra controlleren -->
             <tr th:each="kunde : ${kunder}">
+                <!-- Udfylder kundens ID -->
                 <td th:text="${kunde.kundeID}"></td>
+                <!-- Udfylder kundens navn -->
                 <td th:text="${kunde.navn}"></td>
+                <!-- Udfylder kundens e-mail -->
                 <td th:text="${kunde.email}"></td>
+                <!-- Udfylder kundens adresse -->
                 <td th:text="${kunde.adresse}"></td>
+                <!-- Udfylder kundens telefonnummer -->
                 <td th:text="${kunde.tlfNr}"></td>
+                <!-- Udfylder kundens fødselsdato i formatet dd-MM-yyyy -->
                 <td th:text="${#temporals.format(kunde.foedselsdato, 'dd-MM-yyyy')}"></td>
                 <td class="action-cell">
+                    <!-- Til redigering af kunde, baseret på kundens ID -->
                     <a th:href="@{'/kunder/rediger/' + ${kunde.kundeID}}" class="icon-button" title="Rediger">
                         <img src="https://img.icons8.com/material-outlined/24/edit--v1.png" alt="Rediger"/>
                     </a>
+                    <!-- Til sletning af kunde -->
                     <form th:action="@{'/kunder/slet/' + ${kunde.kundeID}}" method="post">
+                        <!-- Bekræftelsesprompt, når man klikker slet -->
                         <button type="submit" class="icon-button" onclick="return confirm('Slet kunde?')" title="Slet">
                             <img src="https://img.icons8.com/material-outlined/24/trash--v1.png" alt="Slet"/>
                         </button>
@@ -55,6 +72,7 @@
     </div>
 </main>
 
+<!-- Footer-fragmentet fra Thymeleaf, som viser sidens bund/footer -->
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

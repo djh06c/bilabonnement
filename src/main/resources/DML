@@ -1,11 +1,45 @@
-INSERT INTO Bil (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, udstyrsniveau_ID) VALUES
-('V001', 'STEL123456A', 'AB12345', 'Polo', 'VW', 99.0, TRUE, 179999, 1),
-('V002', 'STEL123456B', 'AB12346', 'Golf', 'VW', 109.0, FALSE, 219999, 2),
-('V003', 'STEL123456C', 'AB12347', 'i20', 'Hyundai', 85.0, TRUE, 169999, 3),
-('V004', 'STEL123456D', 'AB12348', 'Model 3', 'Tesla', 0.0, TRUE, 329999, 2),
-('V005', 'STEL123456E', 'AB12349', 'Octavia', 'Skoda', 119.0, FALSE, 189999, 1),
-('V006', 'STEL123456F', 'AB12350', 'iX1', 'BMW', 0.0, TRUE, 389999, 3),
-('V007', 'STEL123456G', 'AB12351', 'A3', 'Audi', 105.0, TRUE, 259999, 2),
-('V008', 'STEL123456H', 'AB12352', 'Corolla', 'Toyota', 98.0, FALSE, 199999, 1),
-('V009', 'STEL123456I', 'AB12353', 'Civic', 'Honda', 95.0, TRUE, 209999, 2),
-('V010', 'STEL123456J', 'AB12354', 'Mustang', 'Ford', 159.0, TRUE, 449999, 3);
+-- Indsæt 10 Biler
+INSERT INTO Bil (vognNummer, stelNummer, regNr, model, maerke, co2, tilgaengelig, staalpris, maanedspris, udstyrsniveau) VALUES
+('V001', 'STEL123456A', 'AB12345', 'Polo', 'VW', 99.0, TRUE, 179999, 3499, 'STANDARD'),
+('V002', 'STEL123456B', 'AB12346', 'Golf', 'VW', 109.0, FALSE, 219999, 3799, 'PREMIUM'),
+('V003', 'STEL123456C', 'AB12347', 'i20', 'Hyundai', 85.0, TRUE, 169999, 3199, 'SPORT'),
+('V004', 'STEL123456D', 'AB12348', 'Model 3', 'Tesla', 0.0, TRUE, 329999, 5499, 'PREMIUM'),
+('V005', 'STEL123456E', 'AB12349', 'Octavia', 'Skoda', 119.0, FALSE, 189999, 3599, 'STANDARD'),
+('V006', 'STEL123456F', 'AB12350', 'iX1', 'BMW', 0.0, TRUE, 389999, 5899, 'SPORT'),
+('V007', 'STEL123456G', 'AB12351', 'A3', 'Audi', 105.0, TRUE, 259999, 4299, 'PREMIUM'),
+('V008', 'STEL123456H', 'AB12352', 'Corolla', 'Toyota', 98.0, FALSE, 199999, 3399, 'STANDARD'),
+('V009', 'STEL123456I', 'AB12353', 'Civic', 'Honda', 95.0, TRUE, 209999, 3499, 'PREMIUM'),
+('V010', 'STEL123456J', 'AB12354', 'Mustang', 'Ford', 159.0, TRUE, 449999, 6199, 'SPORT');
+
+-- Indsæt 10 Kunder
+INSERT INTO Kunde (navn, mail, adresse, tlf, foedselsdato) VALUES
+('Anna Madsen', 'anna.madsen@example.com', 'Birkevej 12, 2100 København Ø', '22334455', '1990-03-15'),
+('Lars Hansen', 'lars.hansen@example.com', 'Roskildevej 47, 4000 Roskilde', '33445566', '1985-07-22'),
+('Camilla Sørensen', 'camilla.s@example.com', 'Skovvej 9, 6000 Kolding', '44556677', '1992-11-03'),
+('Jonas Nielsen', 'jonas.n@example.com', 'Nordre Ringgade 30, 8200 Aarhus N', '55667788', '1988-05-17'),
+('Katrine Jensen', 'katrine.j@example.com', 'Vestergade 13, 8700 Horsens', '66778899', '1995-01-28'),
+('Peter Holm', 'peter.holm@example.com', 'Søndergade 21, 9800 Hjørring', '77889900', '1983-09-10'),
+('Sofie Christiansen', 'sofie.c@example.com', 'Fjordvej 5, 5000 Odense C', '88990011', '1991-06-06'),
+('Mikkel Andersen', 'mikkel.a@example.com', 'Østerbrogade 99, 2100 København Ø', '99001122', '1987-02-14'),
+('Emilie Rasmussen', 'emilie.r@example.com', 'Torvegade 1, 1400 København K', '10111213', '1993-12-09'),
+('Frederik Thomsen', 'frederik.t@example.com', 'Amagerbrogade 55, 2300 København S', '12131415', '1989-04-03');
+
+-- Indsæt tilstandskategorier
+INSERT INTO Tilstandskategori (kategori_ID, navn, beskrivelse) VALUES
+(0, 'Ingen skade', 'Ingen synlige eller rapporterede skader på bilen'),
+(1, 'Kosmetisk skade', 'Mindre overfladiske skader som ridser eller buler'),
+(2, 'Skal repareres', 'Skader som kræver reparation for at bilen kan bruges sikkert'),
+(3, 'Totalskadet', 'Bilen er ikke længere egnet til brug eller reparation');
+
+INSERT INTO Lejekontrakt (kunde_ID, bil_ID, start_dato, slut_dato, pickupSted, afleveringsSted, pris) VALUES
+(3, 2, '2025-05-01', '2025-07-31', 'København', 'København', 11397),
+(9, 5, '2025-04-15', '2025-08-15', 'Aarhus', 'Odense', 14396),
+(1, 8, '2025-05-10', '2025-07-10', 'Odense', 'Odense', 10197),
+(6, 6, '2024-03-01', '2024-06-01', 'Hjørring', 'Hjørring', 17697),
+(7, 7, '2024-02-10', '2024-04-10', 'Odense', 'København', 8598),
+(10, 9, '2024-01-01', '2024-04-01', 'København', 'København', 10497);
+
+INSERT INTO Tilstandsrapport (kontrakt_ID, bil_ID, kategori_ID, beskrivelse) VALUES
+(3, 6, 0, NULL),
+(4, 7, 1, 'Ridser på højre sidespejl'),
+(5, 9, 0, NULL);

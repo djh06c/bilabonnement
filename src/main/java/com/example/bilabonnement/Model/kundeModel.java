@@ -2,6 +2,7 @@ package com.example.bilabonnement.Model;
 
 import java.time.LocalDate;
 
+// Attributer/fields
 public class kundeModel{
 private int kundeID;
 private String navn;
@@ -10,8 +11,10 @@ private String adresse;
 private String tlfNr;
 private LocalDate foedselsdato;
 
+// Tom constructor. Denne klasse repræsenterer en kunde, altså de data, vi gemmer om en kunde i systemet
 public kundeModel() {}
 
+// Parametiseret constructor med alle attributer. Bruges til at oprette en kunde med alle oplysninger på én gang
 public kundeModel(int kundeID, String navn, String email, String adresse, String tlfNr, LocalDate foedselsdato){
     this.kundeID = kundeID;
     this.navn = navn;
@@ -67,9 +70,5 @@ public kundeModel(int kundeID, String navn, String email, String adresse, String
 
     public void setFoedselsdato(LocalDate foedselsdato) {
         this.foedselsdato = foedselsdato;
-    }
-
-    public String getKontaktInfo() {
-        return "Navn: " + navn + ", Telefon: " + tlfNr + ", Email: " + email;
     }
 }
