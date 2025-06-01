@@ -3,46 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <title>Opret Kunde</title>
+  <!-- Import af CSS-filer til styling -->
   <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
+<!-- Header-fragmentet (headeren for siden) -->
 <div th:replace="~{fragments/header :: header}"></div>
 
 <main class="dashboard-layout">
+  <!-- Sidebar med navigation -->
   <div class="sidebar">
+    <!-- Knap til kundeoversigt -->
     <a th:href="@{/kunder}" class="sidebar-button">Kundeoversigt</a>
+    <!-- Knap til opret kunde (aktiv) -->
     <a th:href="@{/kunder/opret}" class="sidebar-button active">Opret kunde</a>
   </div>
 
+  <!-- Her vises en fejlmeddelelse, hvis der er problemer med oprettelsen -->
   <div th:if="${errorMessage}" class="error-message">
     <p th:text="${errorMessage}"></p>
   </div>
 
+  <!-- Formular til oprettelse af ny kunde -->
   <div class="form-container">
     <h1>Opret ny kunde</h1>
+    <!-- Formularen sender data til "/kunder/opret" via POST og binder data til kundeModel -->
     <form th:action="@{/kunder/opret}" th:object="${kundeModel}" method="post">
+      <!-- Navn -->
       <label>Navn:</label>
       <input type="text" th:field="*{navn}" required>
 
+      <!-- E-mail -->
       <label>Email:</label>
       <input type="email" th:field="*{email}" required>
 
+      <!-- Adresse -->
       <label>Adresse:</label>
       <input type="text" th:field="*{adresse}" required>
 
+      <!-- Telefon -->
       <label>Telefon:</label>
       <input type="text" th:field="*{tlfNr}" required>
 
+      <!-- Fødselsdato -->
       <label>Fødselsdato:</label>
       <input type="date" th:field="*{foedselsdato}" required>
 
+      <!-- Opret kunde-knap -->
       <button type="submit" class="nav-button">Opret kunde</button>
     </form>
   </div>
 </main>
 
+<!-- Footer-fragmentet (sidens bund/footer) -->
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>

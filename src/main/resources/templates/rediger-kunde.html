@@ -3,48 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Rediger Kunde</title>
+  <!-- Import af CSS-filer til styling -->
   <link rel="stylesheet" th:href="@{/css/headerFooter.css}">
   <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
+<!-- Header-fragmentet (header for siden) -->
 <div th:replace="~{fragments/header :: header}"></div>
 
 <main class="dashboard-layout">
+  <!-- Sidebar med navigation -->
   <div class="sidebar">
+    <!-- Knap til kundeoversigt -->
     <a th:href="@{/kunder}" class="sidebar-button active">Kundeoversigt</a>
+    <!-- Knap til opret kunde-side -->
     <a th:href="@{/opret}" class="sidebar-button">Opret kunde</a>
   </div>
 
+  <!-- Her vises en fejlmeddelelse, hvis der er problemer med opdateringen -->
   <div th:if="${errorMessage}" class="error-message">
     <p th:text="${errorMessage}"></p>
   </div>
 
+  <!-- Formular til redigering af kunde -->
   <div class="form-container">
     <h1>Rediger kunde</h1>
+    <!-- Formularen sender data til "/kunder/rediger" via POST og binder data til kundeModel -->
     <form th:action="@{/kunder/rediger}" th:object="${kundeModel}" method="post">
+      <!-- Skjult inputfelt for kundeID (så systemet ved, hvilken kunde der skal opdateres) -->
       <input type="hidden" th:field="*{kundeID}">
 
+      <!-- Navn -->
       <label>Navn:</label>
       <input type="text" th:field="*{navn}" required>
 
+      <!-- E-mail -->
       <label>Email:</label>
       <input type="email" th:field="*{email}" required>
 
+      <!-- Adresse -->
       <label>Adresse:</label>
       <input type="text" th:field="*{adresse}" required>
 
+      <!-- Telefon -->
       <label>Telefon:</label>
       <input type="text" th:field="*{tlfNr}" required>
 
+      <!-- Fødselsdato -->
+      <!-- Bemærk: her bruger vi th:value, fordi th:field har en udfordring med LocalDate i redigeringsformularen. Problemet skyldtes, at den eksisterende fødselsdato ikke blev vist frem i feltet  -->
       <label>Fødselsdato:</label>
-      <input type="date" name="foedselsdato" th:value="${kundeModel.foedselsdato}">
+      <input type="date" name="foedselsdato" th:value="${kundeModel.foedselsdato}" required>
 
+      <!-- Gem ændringer-knap -->
       <button type="submit" class="nav-button">Gem ændringer</button>
     </form>
   </div>
 </main>
 
+<!-- Footer-fragmentet (sidens bund/footer) -->
 <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
